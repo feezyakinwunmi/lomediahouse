@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
-import { Sparkles, Target, Eye, Zap, Shield, Heart, TrendingUp, Users } from 'lucide-react';
+import { Sparkles, Target, Zap, Shield, Heart, TrendingUp, Users } from 'lucide-react';
 
 const coreValues = [
   {
@@ -175,34 +175,34 @@ export default function MissionSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-28 md:py-10 overflow-hidden bg-gray-100"
+      className="relative py-16 md:py-12 overflow-hidden bg-gray-100"
     >
      
       
       <div className="max-w-[90%] mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Section Header - Clean & Minimal */}
-        <div className="text-center mb-20 md:mb-18">
-          <p className="text-transparent text-sm uppercase tracking-[4px] font-light mb-4">WHY WE EXIST</p>
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-zinc-400 to-black bg-clip-text text-transparent">
+        <div className="text-center mb-12 md:mb-10">
+          <p className="text-transparent text-xs uppercase tracking-[3px] font-light mb-3">WHY WE EXIST</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-zinc-700 to-black bg-clip-text text-transparent">
             Purpose &
-            <span className="font-bold bg-gradient-to-r from-zinc-400 to-black bg-clip-text text-transparent">Principles</span>
+            <span className="font-bold bg-gradient-to-r from-zinc-700 to-black bg-clip-text text-transparent">Principles</span>
           </h2>
-          <div className="w-12 h-px bg-red-500 mx-auto mt-8" />
+          <div className="w-10 h-px bg-red-500 mx-auto mt-5" />
         </div>
 
         {/* Mission & Vision - Split Layout */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-28 md:mb-16">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-10 mb-20 md:mb-12">
           
           {/* Mission */}
           <div
             ref={missionRef}
-            className="group relative border-l-2 border-red-500 pl-8 md:pl-10 hover:border-red-400 transition-all duration-500"
+            className="group relative border-l-2 border-red-500 pl-6 md:pl-8 hover:border-red-400 transition-all duration-500"
           >
             <div className="absolute -left-[1px] top-0 w-0 h-0 group-hover:w-full group-hover:h-full bg-gradient-to-r from-red-500/5 to-transparent transition-all duration-700" />
-            <div className="text-red-500 text-2xl mb-6">01</div>
-            <h3 className="text-3xl md:text-4xl font-light text-black mb-4">Mission</h3>
-            <p className="text-zinc-400 text-lg leading-relaxed">
+            <div className="text-red-500 text-xl mb-4">01</div>
+            <h3 className="text-2xl md:text-3xl font-light text-black mb-3">Mission</h3>
+            <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
               To build brands that matter through uncompromising creativity, authentic storytelling, and strategic excellence.
             </p>
           </div>
@@ -210,39 +210,39 @@ export default function MissionSection() {
           {/* Vision */}
           <div
             ref={visionRef}
-            className="group relative border-l-2 border-zinc-800 pl-8 md:pl-10 hover:border-purple-500 transition-all duration-500"
+            className="group relative border-l-2 border-zinc-300 pl-6 md:pl-8 hover:border-purple-500 transition-all duration-500"
           >
             <div className="absolute -left-[1px] top-0 w-0 h-0 group-hover:w-full group-hover:h-full bg-gradient-to-r from-purple-500/5 to-transparent transition-all duration-700" />
-            <div className="text-purple-500 text-2xl mb-6">02</div>
-            <h3 className="text-3xl md:text-4xl font-light text-black mb-4">Vision</h3>
-            <p className="text-zinc-400 text-lg leading-relaxed">
+            <div className="text-purple-500 text-xl mb-4">02</div>
+            <h3 className="text-2xl md:text-3xl font-light text-black mb-3">Vision</h3>
+            <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
               To become the definitive creative partner for visionaries who refuse to blend in.
             </p>
           </div>
         </div>
 
         {/* Core Values - Minimal Grid */}
-        <div className="text-center ">
-          <h3 className="text-3xl md:text-4xl font-light text-black">Core Values</h3>
-          <p className="text-zinc-500 mt-3 text-sm tracking-wide">The principles that define us</p>
+        <div className="text-center mb-8">
+          <h3 className="text-2xl md:text-3xl font-light text-black">Core Values</h3>
+          <p className="text-zinc-500 mt-2 text-xs tracking-wide">The principles that define us</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden mb-28">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 rounded-2xl overflow-hidden mb-16">
           {coreValues.map((value, index) => {
             const Icon = value.icon;
             return (
               <div
                 key={index}
                 ref={(el) => { if (el) valuesRef.current[index] = el; }}
-                className="group bg-black hover:bg-white/5 transition-all duration-500 p-8 text-center"
+                className="group bg-white hover:bg-gray-50 transition-all duration-500 p-5 md:p-6 text-center rounded-xl shadow-sm"
               >
-                <div className={`inline-flex p-3 rounded-full bg-gradient-to-br ${value.gradient} bg-opacity-10 mb-6 group-hover:scale-110 transition-transform duration-500`}>
-                  <Icon className="w-6 h-6 text-white" />
+                <div className={`inline-flex p-2 rounded-full bg-gradient-to-br ${value.gradient} bg-opacity-10 mb-4 group-hover:scale-110 transition-transform duration-500`}>
+                  <Icon className="w-5 h-5 text-white" />
                 </div>
-                <h4 className="text-xl font-medium text-white mb-3 group-hover:text-red-500 transition-colors">
+                <h4 className="text-base md:text-lg font-medium text-gray-900 mb-2 group-hover:text-red-500 transition-colors">
                   {value.title}
                 </h4>
-                <p className="text-zinc-500 text-sm leading-relaxed">
+                <p className="text-zinc-500 text-xs leading-relaxed">
                   {value.description}
                 </p>
               </div>

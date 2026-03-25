@@ -86,9 +86,9 @@ export default function ServicesSection() {
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
         if (i === activeIndex) {
-          gsap.to(card, { scale: 1.08, y: -15, duration: 0.3 });
+          gsap.to(card, { scale: 1.05, y: -10, duration: 0.3 });
         } else {
-          gsap.to(card, { scale: 0.95, y: 0, opacity: 0.7, duration: 0.3 });
+          gsap.to(card, { scale: 0.96, y: 0, opacity: 0.8, duration: 0.3 });
         }
       });
     };
@@ -111,24 +111,24 @@ export default function ServicesSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-28 lg:py-20 relative overflow-hidden bg-transparent"
+      className="py-16 md:py-20 lg:py-16 relative overflow-hidden bg-transparent"
     >
-      <div className="max-w-[96%] mx-auto px-5 md:px-8 lg:px-10">
+      <div className="max-w-[96%] mx-auto px-4 md:px-6 lg:px-8">
 
-        <div className="mb-12 md:mb-16 lg:mb-20">
-          <p className="uppercase tracking-[3px] text-xs md:text-sm text-zinc-500 font-medium">
+        <div className="mb-10 md:mb-12 lg:mb-14">
+          <p className="uppercase tracking-[2px] text-xs text-zinc-500 font-medium">
             OUR SERVICES
           </p>
 
           <h2
             ref={titleRef}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-black tracking-[-2px] text-black mt-4 origin-left"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-black tracking-[-1px] text-black mt-3 origin-left"
           >
             OUR CRAFT
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
           {services.map((service, index) => (
             <div
               key={index}
@@ -136,8 +136,8 @@ export default function ServicesSection() {
               onMouseMove={(e) => {
                 const card = e.currentTarget;
                 const rect = card.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
-                const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
 
                 gsap.to(card, {
                   rotateX: y,
@@ -155,26 +155,26 @@ export default function ServicesSection() {
                   ease: "power3.out"
                 });
               }}
-              className="group bg-white/90 backdrop-blur-sm border border-zinc-200 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-300 hover:-translate-y-3 hover:shadow-xl will-change-transform"
+              className="group bg-white/90 backdrop-blur-sm border border-zinc-200 rounded-xl md:rounded-2xl p-5 md:p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg will-change-transform"
             >
-              <div className="flex justify-between items-start mb-6 md:mb-8">
-                <span className="text-4xl md:text-5xl lg:text-6xl font-black text-zinc-300 group-hover:text-zinc-400 transition-colors">
+              <div className="flex justify-between items-start mb-4 md:mb-5">
+                <span className="text-3xl md:text-4xl font-black text-zinc-300 group-hover:text-zinc-400 transition-colors">
                   {service.number}
                 </span>
-                <div className={`w-3 h-3 md:w-4 md:h-4 rounded-full ${colorMap[service.color]} mt-1`} />
+                <div className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full ${colorMap[service.color]} mt-1`} />
               </div>
 
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight mb-3 md:mb-4 text-black group-hover:text-red-500 transition-colors">
+              <h3 className="text-lg md:text-xl font-bold tracking-tight mb-2 md:mb-3 text-black group-hover:text-red-500 transition-colors">
                 {service.title}
               </h3>
 
-              <p className="text-zinc-600 leading-relaxed text-sm md:text-base">
+              <p className="text-zinc-600 leading-relaxed text-xs md:text-sm">
                 {service.desc}
               </p>
 
-              <div className="mt-8 md:mt-10 text-sm font-medium flex items-center gap-2 md:gap-3 text-black group-hover:gap-3 md:group-hover:gap-4 transition-all">
+              <div className="mt-5 md:mt-6 text-xs font-medium flex items-center gap-2 text-black group-hover:gap-3 transition-all">
                 Explore 
-                <span className="text-lg md:text-xl transition-transform group-hover:translate-x-1">→</span>
+                <span className="text-base md:text-lg transition-transform group-hover:translate-x-1">→</span>
               </div>
             </div>
           ))}

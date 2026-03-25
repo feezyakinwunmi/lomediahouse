@@ -40,22 +40,9 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [startIndex, setStartIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  const nextTestimonial = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    setTimeout(() => setIsAnimating(false), 400);
-  };
-
-  const prevTestimonial = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    setTimeout(() => setIsAnimating(false), 400);
-  };
+  const [visibleCount, setVisibleCount] = useState(1);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -80,7 +67,44 @@ export default function TestimonialsSection() {
     };
   }, []);
 
-  const currentTestimonial = testimonials[currentIndex];
+  // Update visible count based on screen size
+  useEffect(() => {
+    const updateVisibleCount = () => {
+      if (window.innerWidth >= 1280) {
+        setVisibleCount(3); // Desktop large
+      } else if (window.innerWidth >= 1024) {
+        setVisibleCount(2); // Desktop
+      } else {
+        setVisibleCount(1); // Mobile/Tablet
+      }
+    };
+    
+    updateVisibleCount();
+    window.addEventListener('resize', updateVisibleCount);
+    return () => window.removeEventListener('resize', updateVisibleCount);
+  }, []);
+
+  const nextTestimonials = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setStartIndex((prev) => {
+      const newIndex = prev + visibleCount;
+      return newIndex >= testimonials.length ? 0 : newIndex;
+    });
+    setTimeout(() => setIsAnimating(false), 400);
+  };
+
+  const prevTestimonials = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setStartIndex((prev) => {
+      const newIndex = prev - visibleCount;
+      return newIndex < 0 ? Math.max(0, testimonials.length - visibleCount) : newIndex;
+    });
+    setTimeout(() => setIsAnimating(false), 400);
+  };
+
+  const visibleTestimonials = testimonials.slice(startIndex, startIndex + visibleCount);
 
   return (
     <section 
@@ -91,7 +115,7 @@ export default function TestimonialsSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(239,68,68,0.08),transparent_50%)]" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-red-500/5 rounded-full blur-3xl" />
       
-      <div className="max-w-[90%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
+      <div className="max-w-[90%] md:max-w-[85%] lg:max-w-[90%] mx-auto px-4">
         
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
@@ -106,74 +130,74 @@ export default function TestimonialsSection() {
           </p>
         </div>
 
-        {/* Testimonial Slider */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative px-4 md:px-8">
-            
-            {/* Testimonial Card */}
-            <div 
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 transition-all duration-400"
-            >
-              {/* Quote Icon */}
-              <div className="text-4xl md:text-5xl text-red-500/40 mb-4 md:mb-6">"</div>
-              
-              {/* Testimony Text */}
-              <p className="text-base md:text-lg lg:text-xl text-zinc-200 leading-relaxed mb-6 md:mb-8">
-                {currentTestimonial.testimony}
-              </p>
-              
-              {/* Stars */}
-              <div className="flex gap-1 mb-4 md:mb-6">
-                {[...Array(currentTestimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-red-500 text-red-500" />
-                ))}
+        {/* Testimonial Grid - Multiple Cards */}
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {visibleTestimonials.map((testimonial, idx) => (
+              <div 
+                key={startIndex + idx}
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 transition-all duration-500 hover:transform hover:-translate-y-2 hover:border-red-500/30"
+              >
+                {/* Quote Icon */}
+                <div className="text-3xl md:text-4xl text-red-500/40 mb-4">"</div>
+                
+                {/* Testimony Text */}
+                <p className="text-sm md:text-base text-zinc-300 leading-relaxed mb-5 line-clamp-4">
+                  {testimonial.testimony}
+                </p>
+                
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-red-500 text-red-500" />
+                  ))}
+                </div>
+                
+                {/* Name and Role */}
+                <div>
+                  <h4 className="text-base md:text-lg font-bold text-white">{testimonial.name}</h4>
+                  <p className="text-xs md:text-sm text-zinc-400">{testimonial.role}</p>
+                </div>
               </div>
-              
-              {/* Name and Role */}
-              <div>
-                <h4 className="text-lg md:text-xl font-bold text-white">{currentTestimonial.name}</h4>
-                <p className="text-sm md:text-base text-zinc-400">{currentTestimonial.role}</p>
-              </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <button
-              onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
-            </button>
-            
-            <button
-              onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
-            </button>
-          </div>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-6 md:mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`transition-all duration-300 ${
-                  currentIndex === index 
-                    ? 'w-6 md:w-8 h-1.5 bg-red-500 rounded-full' 
-                    : 'w-1.5 h-1.5 bg-white/40 rounded-full hover:bg-white/60'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
             ))}
           </div>
 
-          {/* Counter */}
-          <div className="text-center mt-4 text-xs md:text-sm text-zinc-500">
-            {currentIndex + 1} / {testimonials.length}
-          </div>
+          {/* Navigation Buttons - Only show if more than visible count */}
+          {testimonials.length > visibleCount && (
+            <>
+              <button
+                onClick={prevTestimonials}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                aria-label="Previous testimonials"
+              >
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+              </button>
+              
+              <button
+                onClick={nextTestimonials}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                aria-label="Next testimonials"
+              >
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+              </button>
+            </>
+          )}
+        </div>
+
+        {/* Dots Indicator */}
+        <div className="flex justify-center gap-2 mt-8 md:mt-10">
+          {Array.from({ length: Math.ceil(testimonials.length / visibleCount) }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setStartIndex(index * visibleCount)}
+              className={`transition-all duration-300 ${
+                Math.floor(startIndex / visibleCount) === index 
+                  ? 'w-6 md:w-8 h-1.5 bg-red-500 rounded-full' 
+                  : 'w-1.5 h-1.5 bg-white/40 rounded-full hover:bg-white/60'
+              }`}
+              aria-label={`Go to testimonial group ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

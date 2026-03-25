@@ -3,14 +3,13 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
-import { Mail, ArrowRight, Award, Calendar, MapPin,  } from 'lucide-react';
+import { Mail, ArrowRight, Award, Calendar, MapPin } from 'lucide-react';
 
 const leaders = [
   {
     name: "Layo Obidike",
     role: "Founder & Creative Director",
-        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974",
-
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974",
     bio: "Former creative lead at top Nigerian advertising agencies. Oluwaseun built LOMEDIAHOUSE to bridge the gap between authentic African storytelling and global digital culture.",
     expertise: ["Creative Strategy", "Brand Direction", "Storytelling", "Cultural Insights"],
     social: { linkedin: "#", twitter: "#", email: "seun@lomediahouse.com" },
@@ -19,8 +18,7 @@ const leaders = [
   {
     name: "Kenny",
     role: "Head of Strategy",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974",
-
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974",
     bio: "Ex-strategy director at Lagos-based global agencies. Adaeze translates cultural insights into campaigns that resonate across Africa and beyond.",
     expertise: ["Brand Strategy", "Consumer Insights", "Growth Marketing", "Market Entry"],
     social: { linkedin: "#", twitter: "#", email: "adaeze@lomediahouse.com" },
@@ -167,53 +165,53 @@ export default function LeadershipPage() {
     <div ref={sectionRef} className="bg-white min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative text-center md:text-left  py-25 min-h-[100vh] flex items-center px-20 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070')] bg-cover bg-center " />
+      <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070')] bg-cover bg-center opacity-30" />
         
-        <div ref={heroRef} className="relative z-10 text-center md:text-left  max-w-4xl ">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 border border-gray-200 mb-8">
-            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-xs text-gray-600 tracking-wide">THE TEAM</span>
+        <div ref={heroRef} className="relative z-10 text-center max-w-4xl mx-auto px-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+            <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
+            <span className="text-[10px] text-white tracking-wide">THE TEAM</span>
           </div>
           
-          <h1 className="text-center md:text-left text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4">
             The minds behind
             <br />
             <span className="text-red-500">the movement.</span>
           </h1>
           
-          <p className="text-center md:text-left text-lg md:text-xl text-white leading-relaxed max-w-2xl ">
+          <p className="text-sm md:text-base text-gray-200 leading-relaxed max-w-2xl mx-auto">
             A collective of creators, strategists, and dreamers united by one mission: 
             building African brands that matter on the global stage.
           </p>
         </div>
         
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="text-xs text-gray-400 tracking-wider">SCROLL</span>
-          <div className="w-px h-12 bg-gradient-to-b from-red-500 to-transparent" />
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <span className="text-[10px] text-gray-400 tracking-wider">SCROLL</span>
+          <div className="w-px h-8 bg-gradient-to-b from-red-500 to-transparent" />
         </div>
       </section>
 
       {/* Leadership Grid */}
-      <section className="py-28 md:py-36">
-        <div className="max-w-[90%] mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-red-500 text-sm uppercase tracking-[4px] font-medium mb-4">LEADERSHIP</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+      <section className="py-16 md:py-20">
+        <div className="max-w-[90%] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 md:mb-12">
+            <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">LEADERSHIP</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Meet the
               <br />
               <span className="text-red-500">visionaries.</span>
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {leaders.map((leader, index) => {
               return (
                 <div
                   key={index}
                   ref={(el) => { if (el) leadersRef.current[index] = el; }}
-                  className="group relative bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+                  className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
                 >
                   <div className="flex flex-col md:flex-row">
                     {/* Image */}
@@ -227,33 +225,27 @@ export default function LeadershipPage() {
                     </div>
                     
                     {/* Content */}
-                    <div className="md:w-3/5 p-8">
-                      <div className="mb-4">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-1">{leader.name}</h3>
-                        <p className="text-red-500 text-sm tracking-wide font-medium">{leader.role}</p>
+                    <div className="md:w-3/5 p-5 md:p-6">
+                      <div className="mb-3">
+                        <h3 className="text-xl font-bold text-gray-900 mb-1">{leader.name}</h3>
+                        <p className="text-red-500 text-xs tracking-wide font-medium">{leader.role}</p>
                       </div>
                       
-                      <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                      <p className="text-gray-600 text-xs leading-relaxed mb-4">
                         {leader.bio}
                       </p>
                       
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-1.5 mb-4">
                         {leader.expertise.map((skill, i) => (
-                          <span key={i} className="text-xs px-3 py-1 rounded-full bg-gray-100 text-gray-700">
+                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-700">
                             {skill}
                           </span>
                         ))}
                       </div>
                       
-                      <div className="flex gap-3">
-                        {/* <a href={leader.social.linkedin} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all duration-300 hover:scale-110">
-                          <Linkedin className="w-4 h-4 text-gray-700" />
-                        </a>
-                        <a href={leader.social.twitter} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all duration-300 hover:scale-110">
-                          <Twitter className="w-4 h-4 text-gray-700" />
-                        </a> */}
-                        <a href={`mailto:${leader.social.email}`} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all duration-300 hover:scale-110">
-                          <Mail className="w-4 h-4 text-gray-700" />
+                      <div className="flex gap-2">
+                        <a href={`mailto:${leader.social.email}`} className="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-all duration-300 hover:scale-110">
+                          <Mail className="w-3.5 h-3.5 text-gray-700" />
                         </a>
                       </div>
                     </div>
@@ -266,34 +258,34 @@ export default function LeadershipPage() {
       </section>
 
       {/* Advisors Section */}
-      <section className="py-28 md:py-36 bg-gray-50">
-        <div className="max-w-[90%] mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-red-500 text-sm uppercase tracking-[4px] font-medium mb-4">ADVISORY BOARD</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+      <section className="py-16 md:py-20 bg-gray-50">
+        <div className="max-w-[90%] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 md:mb-12">
+            <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">ADVISORY BOARD</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Guided by
               <br />
               <span className="text-red-500">the best.</span>
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-3 gap-8">
             {advisors.map((advisor, index) => (
               <div
                 key={index}
                 ref={(el) => { if (el) advisorsRef.current[index] = el; }}
                 className="group text-center"
               >
-                <div className="relative w-40 h-40 mx-auto mb-6">
+                <div className="relative w-28 h-28 mx-auto mb-4">
                   <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-500 rounded-full blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-500" />
                   <img 
                     src={advisor.image}
                     alt={advisor.name}
-                    className="w-full h-full object-cover rounded-full border-4 border-gray-200 group-hover:border-red-500/50 transition-all duration-500"
+                    className="w-full h-full object-cover rounded-full border-2 border-gray-200 group-hover:border-red-500/50 transition-all duration-500"
                   />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{advisor.name}</h3>
-                <p className="text-gray-500 text-sm">{advisor.role}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">{advisor.name}</h3>
+                <p className="text-gray-500 text-xs">{advisor.role}</p>
               </div>
             ))}
           </div>
@@ -301,18 +293,18 @@ export default function LeadershipPage() {
       </section>
 
       {/* Core Values */}
-      <section className="py-28 md:py-36">
-        <div className="max-w-[90%] mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-red-500 text-sm uppercase tracking-[4px] font-medium mb-4">WHAT WE BELIEVE</p>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+      <section className="py-16 md:py-20">
+        <div className="max-w-[90%] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 md:mb-12">
+            <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">WHAT WE BELIEVE</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Our leadership
               <br />
               <span className="text-red-500">principles.</span>
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
             {[
               {
                 icon: Award,
@@ -335,13 +327,13 @@ export default function LeadershipPage() {
                 <div
                   key={index}
                   ref={(el) => { if (el) valuesRef.current[index] = el; }}
-                  className="group relative bg-white border border-gray-200 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                  className="group relative bg-white border border-gray-200 rounded-xl p-5 md:p-6 text-center hover:shadow-lg transition-all duration-500 hover:-translate-y-1"
                 >
-                  <div className="inline-flex p-3 rounded-xl bg-red-50 mb-6">
-                    <Icon className="w-6 h-6 text-red-500" />
+                  <div className="inline-flex p-2 rounded-lg bg-red-50 mb-4">
+                    <Icon className="w-5 h-5 text-red-500" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{principle.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{principle.desc}</p>
+                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-2">{principle.title}</h3>
+                  <p className="text-gray-600 text-xs leading-relaxed">{principle.desc}</p>
                 </div>
               );
             })}
@@ -350,22 +342,22 @@ export default function LeadershipPage() {
       </section>
 
       {/* Join the Team CTA */}
-      <section className="py-28 md:py-36 bg-gray-900">
-        <div className="max-w-[90%] mx-auto px-6">
-          <div className="relative bg-gradient-to-r from-red-600 to-purple-600 rounded-3xl p-12 md:p-16 text-center overflow-hidden">
+      <section className="py-16 md:py-20 bg-gray-900">
+        <div className="max-w-[90%] mx-auto px-4 sm:px-6">
+          <div className="relative bg-gradient-to-r from-red-600 to-purple-600 rounded-2xl p-8 md:p-10 text-center overflow-hidden">
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070')] bg-cover bg-center opacity-10" />
             <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Want to join
                 <br />
                 <span className="text-white/90">the movement?</span>
               </h2>
-              <p className="text-gray-200 text-lg max-w-2xl mx-auto mb-10">
+              <p className="text-gray-200 text-sm md:text-base max-w-2xl mx-auto mb-6">
                 We're always looking for exceptional talent. Let's create something amazing together.
               </p>
               <a 
                 href="#careers" 
-                className="inline-flex items-center gap-2 px-10 py-5 bg-white text-gray-900 rounded-full font-medium hover:scale-105 transition-all duration-300 group"
+                className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-gray-900 rounded-full font-medium text-sm hover:scale-105 transition-all duration-300 group"
               >
                 View Open Positions
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

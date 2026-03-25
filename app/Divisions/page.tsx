@@ -115,21 +115,21 @@ export default function DivisionsPage() {
     // Animate each division with unique entrance
     divisionRefs.current.forEach((div, i) => {
       if (div) {
-        const direction = i % 2 === 0 ? -200 : 200;
+        const direction = i % 2 === 0 ? -150 : 150;
         gsap.fromTo(div,
           { 
             opacity: 0, 
             x: direction,
-            rotation: i % 2 === 0 ? -5 : 5,
-            scale: 0.9
+            rotation: i % 2 === 0 ? -3 : 3,
+            scale: 0.95
           },
           {
             opacity: 1,
             x: 0,
             rotation: 0,
             scale: 1,
-            duration: 1,
-            delay: i * 0.2,
+            duration: 0.8,
+            delay: i * 0.15,
             ease: "back.out(1.2)",
             scrollTrigger: {
               trigger: div,
@@ -156,25 +156,25 @@ export default function DivisionsPage() {
     <div ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white min-h-screen overflow-hidden">
       
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden py-35">
+      <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden py-16">
         {/* Animated Background Shapes */}
         <div className="absolute inset-0">
-          <svg className="absolute top-20 left-10 w-72 h-72 text-red-500/5 animate-spin-slow" viewBox="0 0 200 200">
+          <svg className="absolute top-20 left-10 w-48 h-48 text-red-500/5 animate-spin-slow" viewBox="0 0 200 200">
             <path fill="currentColor" d="M100,20 L120,80 L180,80 L130,120 L150,180 L100,140 L50,180 L70,120 L20,80 L80,80 Z" />
           </svg>
-          <svg className="absolute bottom-20 right-10 w-96 h-96 text-purple-500/5 animate-pulse-slow" viewBox="0 0 200 200">
+          <svg className="absolute bottom-20 right-10 w-64 h-64 text-purple-500/5 animate-pulse-slow" viewBox="0 0 200 200">
             <circle cx="100" cy="100" r="80" fill="currentColor" />
           </svg>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-red-500/5 to-purple-500/5 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-red-500/5 to-purple-500/5 rounded-full blur-3xl" />
         </div>
 
         <div ref={heroRef} className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 border border-gray-200 mb-8 animate-float">
-            <Sparkles className="w-4 h-4 text-red-500" />
-            <span className="text-xs text-gray-600 tracking-wide">THE LO UNIVERSE</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 mb-6 animate-float">
+            <Sparkles className="w-3 h-3 text-red-500" />
+            <span className="text-[10px] text-gray-600 tracking-wide">THE LO UNIVERSE</span>
           </div>
           
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-4">
             One vision.
             <br />
             <span className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent">
@@ -182,15 +182,15 @@ export default function DivisionsPage() {
             </span>
           </h1>
           
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
             Explore our ecosystem of creative services — each division built to elevate your brand 
             in a unique way, united by a shared commitment to excellence.
           </p>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="text-xs text-gray-400 tracking-wider">DISCOVER</span>
-          <div className="w-px h-12 bg-gradient-to-b from-red-500 to-transparent" />
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <span className="text-[10px] text-gray-400 tracking-wider">DISCOVER</span>
+          <div className="w-px h-8 bg-gradient-to-b from-red-500 to-transparent" />
         </div>
       </section>
 
@@ -203,62 +203,62 @@ export default function DivisionsPage() {
             ref={(el: HTMLDivElement | null) => {
               divisionRefs.current[idx] = el;
             }}
-            className="py-26 md:py-26 border-t border-gray-200 first:border-t-0"
+            className="py-12 md:py-16 border-t border-gray-200 first:border-t-0"
           >
-            <div className="max-w-[90%] mx-auto px-6">
-              <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="max-w-[90%] mx-auto px-4 sm:px-6">
+              <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 {/* Left Content */}
                 <div className={`order-2 ${idx % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
-                  <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${division.color} bg-opacity-10 mb-6`}>
-                    <Icon className="w-4 h-4 text-red-500" />
-                    <span className="text-xs font-medium text-gray-700 tracking-wide">{division.name}</span>
+                  <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${division.color} bg-opacity-10 mb-4`}>
+                    <Icon className="w-3 h-3 text-red-500" />
+                    <span className="text-[10px] font-medium text-gray-700 tracking-wide">{division.name}</span>
                   </div>
                   
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
                     {division.tagline}
                   </h2>
                   
-                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
                     {division.description}
                   </p>
                   
-                  <p className="text-gray-500 leading-relaxed mb-8">
+                  <p className="text-xs text-gray-500 leading-relaxed mb-6">
                     {division.fullDescription}
                   </p>
                   
                   {/* Services List */}
-                  <div className="grid grid-cols-2 gap-3 mb-8">
+                  <div className="grid grid-cols-2 gap-2 mb-6">
                     {division.services.map((service, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm text-gray-600">
-                        <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${division.color}`} />
+                      <div key={i} className="flex items-center gap-2 text-xs text-gray-600">
+                        <div className={`w-1 h-1 rounded-full bg-gradient-to-r ${division.color}`} />
                         {service}
                       </div>
                     ))}
                   </div>
                   
                   {/* Stats */}
-                  <div className="flex gap-6 mb-8">
+                  <div className="flex gap-4 mb-6">
                     {Object.entries(division.stats).map(([key, value]) => (
                       <div key={key}>
-                        <div className="text-2xl font-bold text-gray-900">{value}</div>
-                        <div className="text-xs text-gray-500 uppercase tracking-wide">{key}</div>
+                        <div className="text-lg font-bold text-gray-900">{value}</div>
+                        <div className="text-[10px] text-gray-500 uppercase tracking-wide">{key}</div>
                       </div>
                     ))}
                   </div>
                   
                   <a 
                     href={`#${division.id}`} 
-                    className={`inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r ${division.color} text-white rounded-full font-medium hover:scale-105 transition-all duration-300 group`}
+                    className={`inline-flex items-center gap-2 px-5 py-2 text-sm bg-gradient-to-r ${division.color} text-white rounded-full font-medium hover:scale-105 transition-all duration-300 group`}
                   >
                     Explore {division.name}
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </a>
                 </div>
                 
                 {/* Right Image - Creative Shape */}
                 <div className={`order-1 ${idx % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                   <div className="relative group">
-                    <div className={`absolute inset-0 bg-gradient-to-r ${division.color} rounded-3xl blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`} />
+                    <div className={`absolute inset-0 bg-gradient-to-r ${division.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`} />
                     <div 
                       className="relative overflow-hidden"
                       style={{ clipPath: division.shape }}
@@ -266,17 +266,17 @@ export default function DivisionsPage() {
                       <img 
                         src={division.image}
                         alt={division.name}
-                        className="w-full h-[500px] object-cover group-hover:scale-110 transition-transform duration-1000"
+                        className="w-full h-[280px] md:h-[320px] object-cover group-hover:scale-110 transition-transform duration-1000"
                       />
                       <div className={`absolute inset-0 bg-gradient-to-t ${division.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
                     </div>
                     
                     {/* Floating Elements */}
-                    <div className="absolute -top-6 -right-6 w-24 h-24 bg-white rounded-full shadow-xl flex items-center justify-center animate-float-slow">
-                      <TrendingUp className="w-8 h-8 text-red-500" />
+                    <div className="absolute -top-4 -right-4 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center animate-float-slow">
+                      <TrendingUp className="w-5 h-5 text-red-500" />
                     </div>
-                    <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-white rounded-full shadow-xl flex items-center justify-center animate-float">
-                      <Play className="w-6 h-6 text-purple-500" />
+                    <div className="absolute -bottom-4 -left-4 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center animate-float">
+                      <Play className="w-4 h-4 text-purple-500" />
                     </div>
                   </div>
                 </div>
@@ -287,7 +287,7 @@ export default function DivisionsPage() {
       })}
 
       {/* Synergy Section */}
-      <section className="py-28 md:py-36 bg-gradient-to-r from-gray-900 to-black relative overflow-hidden">
+      <section className="py-16 md:py-20 bg-gradient-to-r from-gray-900 to-black relative overflow-hidden">
         <div className="absolute inset-0">
           <svg className="absolute top-0 left-0 w-full h-full opacity-10">
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -297,13 +297,13 @@ export default function DivisionsPage() {
           </svg>
         </div>
         
-        <div className="max-w-[90%] mx-auto px-6 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
-            <Layers className="w-4 h-4 text-red-500" />
-            <span className="text-xs text-white tracking-wide">THE SYNERGY</span>
+        <div className="max-w-[90%] mx-auto px-4 sm:px-6 text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+            <Layers className="w-3 h-3 text-red-500" />
+            <span className="text-[10px] text-white tracking-wide">THE SYNERGY</span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Four divisions.
             <br />
             <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
@@ -311,18 +311,18 @@ export default function DivisionsPage() {
             </span>
           </h2>
           
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+          <p className="text-sm text-gray-300 max-w-3xl mx-auto mb-8">
             Each division stands alone in its excellence, but together they form a powerful ecosystem 
             that can handle every aspect of your brand's creative journey.
           </p>
           
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-4 gap-4">
             {divisions.map((div, i) => (
               <div key={i} className="group">
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${div.color} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
-                  <div className="w-2 h-2 bg-white rounded-full" />
+                <div className={`w-10 h-10 rounded-full bg-gradient-to-r ${div.color} flex items-center justify-center mx-auto mb-2 group-hover:scale-110 transition-transform`}>
+                  <div className="w-1.5 h-1.5 bg-white rounded-full" />
                 </div>
-                <div className="text-white text-sm font-medium">{div.name}</div>
+                <div className="text-white text-xs font-medium">{div.name}</div>
               </div>
             ))}
           </div>
@@ -332,11 +332,11 @@ export default function DivisionsPage() {
       <style jsx>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
+          50% { transform: translateY(-8px); }
         }
         @keyframes float-slow {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
+          50% { transform: translateY(-10px); }
         }
         @keyframes spin-slow {
           from { transform: rotate(0deg); }
@@ -344,7 +344,7 @@ export default function DivisionsPage() {
         }
         @keyframes pulse-slow {
           0%, 100% { opacity: 0.05; transform: scale(1); }
-          50% { opacity: 0.1; transform: scale(1.1); }
+          50% { opacity: 0.1; transform: scale(1.05); }
         }
         .animate-float {
           animation: float 3s ease-in-out infinite;
