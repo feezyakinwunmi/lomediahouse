@@ -114,7 +114,7 @@ export default function NextSection() {
   return (
     <section 
       ref={sectionRef}
-      className="min-h-screen bg-transparent mt-25 relative overflow-hidden"
+      className="min-h-screen bg-white mt-25 relative overflow-hidden"
     >
       
       <div className="max-w-[95%] mx-auto px-4 sm:px-6 relative z-10">
