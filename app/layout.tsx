@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <Navbar/>
-      <body className="bg-black text-white overflow-x-hidden">{children}</body>
+      <body className="bg-white text-white overflow-x-hidden">{children}</body>
       <Footer/>
     </html>
   );
