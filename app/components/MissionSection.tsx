@@ -7,26 +7,26 @@ import { Sparkles, Target, Zap, Shield, Heart, TrendingUp, Users } from 'lucide-
 
 const coreValues = [
   {
-    title: "Radical Authenticity",
-    description: "No scripts. No filters. Just real stories that connect.",
+    title: "Direction Over Execution",
+    description: "Strategy comes first. We never hit record without a plan.",
     icon: Sparkles,
     gradient: "from-red-500 to-orange-500"
   },
   {
-    title: "Obsessive Craft",
-    description: "Every pixel, every frame, every word — perfected.",
+    title: "Platform-Specific Mastery",
+    description: "We don't recycle content. We optimize for the psychology of each platform.",
     icon: Target,
     gradient: "from-blue-500 to-cyan-500"
   },
   {
-    title: "Fearless Innovation",
-    description: "We don't follow trends. We set them.",
+    title: "Uncompromising Quality",
+    description: "A standard of excellence that reflects the value of your brand.",
     icon: Zap,
     gradient: "from-purple-500 to-pink-500"
   },
   {
-    title: "Unbreakable Trust",
-    description: "Your brand is our brand. We protect it like our own.",
+    title: "Precision Over Volume",
+    description: "Growth is not a byproduct of volume. It is a result of precision.",
     icon: Shield,
     gradient: "from-emerald-500 to-teal-500"
   }
@@ -183,10 +183,10 @@ export default function MissionSection() {
         
         {/* Section Header - Clean & Minimal */}
         <div className="text-center mb-12 md:mb-10">
-          <p className="text-transparent text-xs uppercase tracking-[3px] font-light mb-3">WHY WE EXIST</p>
+          <p className="text-transparent text-xs uppercase tracking-[3px] font-light mb-3">THE LO EDGE</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-zinc-700 to-black bg-clip-text text-transparent">
-            Purpose &
-            <span className="font-bold bg-gradient-to-r from-zinc-700 to-black bg-clip-text text-transparent">Principles</span>
+            Method &
+            <span className="font-bold bg-gradient-to-r from-zinc-700 to-black bg-clip-text text-transparent">Mastery</span>
           </h2>
           <div className="w-10 h-px bg-red-500 mx-auto mt-5" />
         </div>
@@ -201,9 +201,9 @@ export default function MissionSection() {
           >
             <div className="absolute -left-[1px] top-0 w-0 h-0 group-hover:w-full group-hover:h-full bg-gradient-to-r from-red-500/5 to-transparent transition-all duration-700" />
             <div className="text-red-500 text-xl mb-4">01</div>
-            <h3 className="text-2xl md:text-3xl font-light text-black mb-3">Mission</h3>
+            <h3 className="text-2xl md:text-3xl font-light text-black mb-3">From Content to Conversion</h3>
             <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
-              To build brands that matter through uncompromising creativity, authentic storytelling, and strategic excellence.
+              We move your audience from passive viewers to committed stakeholders. Every frame, caption, and edit is designed to trigger a specific result.
             </p>
           </div>
 
@@ -214,17 +214,17 @@ export default function MissionSection() {
           >
             <div className="absolute -left-[1px] top-0 w-0 h-0 group-hover:w-full group-hover:h-full bg-gradient-to-r from-purple-500/5 to-transparent transition-all duration-700" />
             <div className="text-purple-500 text-xl mb-4">02</div>
-            <h3 className="text-2xl md:text-3xl font-light text-black mb-3">Vision</h3>
+            <h3 className="text-2xl md:text-3xl font-light text-black mb-3">Digital Authority Engineering</h3>
             <p className="text-zinc-600 text-sm md:text-base leading-relaxed">
-              To become the definitive creative partner for visionaries who refuse to blend in.
+              We engineer digital authority through precision storytelling, creating the perception that commands respect and builds legacy.
             </p>
           </div>
         </div>
 
         {/* Core Values - Minimal Grid */}
         <div className="text-center mb-8">
-          <h3 className="text-2xl md:text-3xl font-light text-black">Core Values</h3>
-          <p className="text-zinc-500 mt-2 text-xs tracking-wide">The principles that define us</p>
+          <h3 className="text-2xl md:text-3xl font-light text-black">The LO Media Edge</h3>
+          <p className="text-zinc-500 mt-2 text-xs tracking-wide">Proven methods that deliver results</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 rounded-2xl overflow-hidden mb-16">

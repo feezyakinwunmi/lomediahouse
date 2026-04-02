@@ -10,35 +10,35 @@ import { ChevronUp, ChevronDown } from 'lucide-react';
 
 const cardsData = [
   {
-    title: "LOMedia House",
-    tag: "MAIN",
+    title: "LO Media Studio",
+    tag: "CORE",
     color: "from-red-500 to-orange-500",
     price: "$12,000",
-    desc: "Full media house partnership including strategy, shoots & social management",
+    desc: "Full-scale media partnership with strategy, cinematic production & authority engineering",
     button: "Start Partnership"
   },
   {
-    title: "LO Studio",
-    tag: "PRODUCTION",
+    title: "Cinematic Production",
+    tag: "VISUAL",
     color: "from-blue-500 to-cyan-500",
     price: "$8,500",
-    desc: "Premium photoshoots, video production & cinematic content creation",
+    desc: "High-octane video production, brand documentaries & scroll-stopping campaigns",
     button: "Book Studio"
   },
   {
-    title: "LO Publications",
-    tag: "EDITORIAL",
+    title: "Brand Storytelling",
+    tag: "STRATEGY",
     color: "from-purple-500 to-pink-500",
     price: "$6,000",
-    desc: "High-end magazine, lookbooks & brand publication design",
+    desc: "Narrative architecture, visual identity & content systems that build authority",
     button: "View Publications"
   },
   {
-    title: "LO Platform",
-    tag: "DIGITAL",
+    title: "Digital Authority",
+    tag: "GROWTH",
     color: "from-green-500 to-emerald-500",
     price: "$4,500",
-    desc: "Social media management platform & content scheduling tools",
+    desc: "Platform-specific optimization & engagement engines that drive conversion",
     button: "Explore Platform"
   }
 ];
@@ -46,23 +46,23 @@ const cardsData = [
 const slides = [
   {
     image: "/img2.png",
-    title: "Cinematic Photoshoots",
-    desc: "Premium studio & location shoots"
+    title: "Cinematic Storytelling",
+    desc: "Visual firepower that commands attention"
   },
   {
     image: "/img4.jpg",
-    title: "Editorial Publications",
-    desc: "High-end magazine & brand books"
+    title: "Brand Authority",
+    desc: "Engineering perception through premium content"
   },
   {
     image: "/img3.jpg",
-    title: "Social Media Campaigns",
-    desc: "Scroll-stopping content strategies"
+    title: "Strategic Campaigns",
+    desc: "From passive viewers to committed stakeholders"
   },
   {
     image: "/img2.png",
-    title: "Behind The Scenes",
-    desc: "Raw & authentic storytelling"
+    title: "Digital Legacy",
+    desc: "Content systems that scale with your vision"
   }
 ];
 
@@ -149,7 +149,7 @@ export default function Hero() {
           
           {/* LEFT COLUMN - Interactive Card Fan */}
           <div ref={leftRef} className="lg:col-span-5">
-            <div className="uppercase text-xs tracking-[2px] text-zinc-500 font-medium mt-3">OUR SERVICES</div>
+            <div className="uppercase text-xs tracking-[2px] text-zinc-500 font-medium mt-3">CORE CAPABILITIES</div>
 
             <div className="relative h-[280px] sm:h-[300px] md:h-[320px] flex justify-center items-center mt-2">
               {cardsData.map((card, index) => (
@@ -207,22 +207,21 @@ export default function Hero() {
                 ref={titleRef}
                 className="inline-block text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black tracking-[-1px] sm:tracking-[-2px] heading-font text-black animate-float"
               >
-                LOMEDIAHOUSE
+                LOMEDIASTUDIO
               </h1>
             </div>
 
             <div ref={headlineRef}>
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-tight font-bold tracking-[-0.5px] text-zinc-900">
-                WE ARE A NEW MEDIA HOUSE
+                BUILD A BRAND THAT COMMANDS ATTENTION.
               </h2>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 mt-2 sm:mt-3">
                 <h3 className="text-lg sm:text-xl md:text-2xl leading-tight font-bold text-zinc-800">
-                  THAT BUILDS MOVEMENTS
+                  High-Octane Media Production
                 </h3>
                 <p className="w-[300px] text-left sm:max-w-sm text-xs sm:text-sm text-zinc-600">
-                  We handle social pages, create premium publications, 
-                  and produce cinematic shoots that turn brands into movements.
+                  We engineer digital authority for visionaries, founders, leaders, and personal brands. Your message, unmissable.
                 </p>
               </div>
             </div>
@@ -232,10 +231,10 @@ export default function Hero() {
               className="flex flex-wrap gap-3 "
             >
               <a href="/Aboutus" className="px-5 sm:px-6 py-2 sm:py-2.5 border border-black rounded-full hover:bg-black hover:text-white transition text-sm">
-                Learn More
+                Own Your Narrative
               </a>
               <a href="/ContactUs" className="px-5 sm:px-6 py-2 sm:py-2.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition text-sm">
-                Let's Collaborate
+                Schedule Strategy Session
               </a>
             </div>
           </div>
@@ -248,7 +247,7 @@ export default function Hero() {
           <div className="md:col-span-5 relative aspect-[16/9] sm:aspect-[9/3] bg-zinc-100 rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-200">
             <img
               src="/img1.jpg"
-              alt="Creative Direction"
+              alt="Visual Firepower"
               className="h-full w-full object-cover"
             />
           </div>

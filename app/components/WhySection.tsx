@@ -7,29 +7,29 @@ import { ScrollTrigger } from '@/lib/gsap';
 const reasons = [
   {
     number: "01",
-    title: "We Obsess Over Story",
-    desc: "Every post, every shoot, every publication is crafted to tell a story that people feel — not just see.",
+    title: "Engineer Digital Authority",
+    desc: "We don't just 'make content.' We engineer your visual identity to command respect the moment it's seen.",
     image: "https://picsum.photos/id/20/800/600",
     width: "w-full sm:w-[48%] lg:w-[40%]",
   },
   {
     number: "02",
-    title: "Quality Without Compromise",
-    desc: "We don't do average. From lighting to typography to timing — we sweat every detail so your brand feels expensive.",
+    title: "Uncompromising Excellence",
+    desc: "We maintain a standard of excellence that reflects the value of your brand. From lighting to typography — we sweat every detail.",
     image: "https://picsum.photos/id/30/800/600",
     width: "w-full sm:w-[48%] lg:w-[28%]",
   },
   {
     number: "03",
     title: "Built for Movement",
-    desc: "We create content that doesn't just get likes — it gets shared, saved, and talked about for months.",
+    desc: "We move your audience from passive viewers to committed stakeholders. Every frame is designed to trigger a specific result.",
     image: "https://picsum.photos/id/40/800/600",
     width: "w-full sm:w-[48%] lg:w-[32%]",
   },
   {
     number: "04",
-    title: "We Think Like Partners",
-    desc: "You're not just a client. We treat your brand like our own and push it further than you expected.",
+    title: "Strategic Partnership",
+    desc: "We don't guess. We execute based on proven methods of what works. Your brand becomes our mission.",
     image: "https://picsum.photos/id/50/800/600",
     width: "w-full sm:w-[48%] lg:w-[45%]",
   }
@@ -179,7 +179,7 @@ export default function WhySection() {
               WHY <span className="text-red-500 inline-block">Choose Us</span>
             </h2>
             <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-zinc-600 text-left">
-              We don't just make content.<br />We build brands that move culture.
+              We don't just make content.<br />We engineer digital authority.
             </p>
             <div className="mt-4 sm:mt-5 w-12 sm:w-16 h-0.5 bg-red-500 rounded-full animate-pulse" />
             
@@ -189,7 +189,7 @@ export default function WhySection() {
                 href="#contact"
                 className="inline-block px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 bg-black text-white rounded-lg text-sm sm:text-base font-semibold hover:bg-zinc-800 transition-all hover:scale-105 hover:shadow-xl transform duration-300"
               >
-                Let's Build Something Legendary →
+                Build Your Legacy →
               </a>
             </div>
           </div>

@@ -7,26 +7,26 @@ import { ScrollTrigger } from '@/lib/gsap';
 const services = [
   {
     number: "01",
-    title: "LOMedia House",
-    desc: "Full-service media partnership. Strategy, content, shoots & social domination.",
+    title: "LO Media Studio",
+    desc: "Full-scale media partnership. Strategy, cinematic production, social domination & authority engineering.",
     color: "red",
   },
   {
     number: "02",
-    title: "LO Studio",
-    desc: "Premium photoshoots, cinematic videos, and high-production creative work.",
+    title: "Cinematic Production",
+    desc: "High-octane video production, brand documentaries & scroll-stopping campaigns that leave a mark.",
     color: "blue",
   },
   {
     number: "03",
-    title: "LO Publications",
-    desc: "Editorial design, lookbooks, magazines & premium brand storytelling.",
+    title: "Brand Storytelling",
+    desc: "Narrative architecture, visual identity & content systems that build trust and drive action.",
     color: "purple",
   },
   {
     number: "04",
-    title: "LO Platform",
-    desc: "Smart social tools, scheduling, analytics & content performance platform.",
+    title: "Digital Authority",
+    desc: "Platform-specific optimization, engagement engines & content systems that scale with your vision.",
     color: "emerald",
   }
 ];

@@ -124,19 +124,19 @@ export default function AboutPage() {
         <div ref={heroRef} className="relative z-10 w-full max-w-[90%] mx-auto px-4 md:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
             <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-xs text-white tracking-wide">EST. 2020</span>
+            <span className="text-xs text-white tracking-wide">ENGINEERING DIGITAL AUTHORITY</span>
           </div>
 
           <div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4">
-              We create
+              We engineer
               <br />
-              <span className="text-red-500">cultural movements.</span>
+              <span className="text-red-500">digital authority.</span>
             </h1>
 
             <p className="text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl">
-              LOMEDIAHOUSE is a creative agency built at the intersection of premium storytelling, 
-              strategic thinking, and cultural relevance.
+              LO Media Studio is a high-octane media production agency built at the intersection of cinematic storytelling, 
+              strategic precision, and cultural relevance.
             </p>
             
             {/* <div className="mt-6">
@@ -164,30 +164,30 @@ export default function AboutPage() {
           <div ref={storyRef} className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             {/* Left - Text */}
             <div>
-              <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">OUR STORY</p>
+              <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">OUR ORIGIN</p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Born from a
                 <br />
-                <span className="text-red-500">simple belief.</span>
+                <span className="text-red-500">simple observation.</span>
               </h2>
               <div className="space-y-3 text-gray-600 text-sm md:text-base leading-relaxed">
                 <p>
-                  In 2020, we noticed a gap in the market. Brands were creating content, but they weren't creating 
-                  movements. They were following trends, not setting them.
+                  In 2020, we noticed a gap. Brands were creating content, but they weren't engineering authority. 
+                  They were following trends, not commanding attention.
                 </p>
                 <p>
-                  So we built LOMEDIAHOUSE — a space where creativity meets strategy, where every frame tells a story, 
-                  and where brands become unforgettable.
+                  So we built LO Media Studio — a space where cinematic production meets strategic precision, 
+                  where every frame is designed to trigger a specific result, and where brands become unmissable.
                 </p>
                 <p>
-                  Today, we're proud to partner with visionaries across fashion, tech, and culture, helping them 
-                  build legacies that last.
+                  Today, we're proud to partner with visionaries, founders, and leaders across industries, helping them 
+                  build digital legacies that command respect.
                 </p>
               </div>
               
               <div className="mt-6 flex items-center gap-3">
                 <div className="w-10 h-px bg-red-500" />
-                <span className="text-xs text-gray-500">From 1 to 50+ brands in 4 years</span>
+                <span className="text-xs text-gray-500">From movement to authority in 4 years</span>
               </div>
             </div>
             
@@ -201,8 +201,8 @@ export default function AboutPage() {
               />
               <div className="absolute -bottom-4 -left-4 bg-white shadow-lg rounded-xl p-4 max-w-[200px]">
                 <div className="text-2xl font-bold text-gray-900">50+</div>
-                <div className="text-xs text-gray-600">Brands partnered</div>
-                <div className="mt-1 text-[10px] text-gray-400">and counting</div>
+                <div className="text-xs text-gray-600">Visionaries partnered</div>
+                <div className="mt-1 text-[10px] text-gray-400">and scaling</div>
               </div>
             </div>
           </div>
@@ -213,11 +213,11 @@ export default function AboutPage() {
       <section ref={approachRef} className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 md:mb-12">
-            <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">OUR APPROACH</p>
+            <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">OUR METHOD</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
-              How we create
+              How we engineer
               <br />
-              <span className="text-red-500">unforgettable work.</span>
+              <span className="text-red-500">digital authority.</span>
             </h2>
           </div>
           
@@ -225,20 +225,20 @@ export default function AboutPage() {
             {[
               {
                 icon: Camera,
-                title: "Authentic Storytelling",
-                desc: "We find the real narrative beneath the surface and bring it to life through powerful visuals.",
+                title: "Create the Perception",
+                desc: "We ensure your visual identity commands respect the moment it's seen through cinematic production.",
                 image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070"
               },
               {
                 icon: PenTool,
-                title: "Strategic Precision",
-                desc: "Every creative decision is backed by research, insights, and a clear path to results.",
+                title: "Build Trust",
+                desc: "We translate your expertise into high-fidelity storytelling that resonates with your audience.",
                 image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070"
               },
               {
                 icon: Zap,
-                title: "Fearless Execution",
-                desc: "Ideas are nothing without action. We move fast, iterate, and deliver excellence.",
+                title: "Drive Action",
+                desc: "Every frame, caption, and edit is designed to trigger a specific result — from passive viewer to committed stakeholder.",
                 image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074"
               }
             ].map((item, index) => {
@@ -273,20 +273,20 @@ export default function AboutPage() {
       <section className="py-16 md:py-20">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 md:mb-12">
-            <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">BY THE NUMBERS</p>
+            <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">THE IMPACT</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
-              The impact we've
+              The authority we've
               <br />
-              <span className="text-red-500">created together.</span>
+              <span className="text-red-500">engineered together.</span>
             </h2>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
             {[
-              { value: "50+", label: "Brands", icon: Award, desc: "Global partners" },
-              { value: "250+", label: "Campaigns", icon: Globe, desc: "Successfully delivered" },
-              { value: "98%", label: "Retention", icon: Heart, desc: "Client satisfaction" },
-              { value: "4.9", label: "Rating", icon: Coffee, desc: "Average score" }
+              { value: "50+", label: "Visionaries", icon: Award, desc: "Leaders & founders" },
+              { value: "250+", label: "Campaigns", icon: Globe, desc: "Strategically delivered" },
+              { value: "98%", label: "Retention", icon: Heart, desc: "Client commitment" },
+              { value: "4.9", label: "Authority", icon: Coffee, desc: "Trust score" }
             ].map((item, index) => {
               const Icon = item.icon;
               return (
@@ -313,21 +313,21 @@ export default function AboutPage() {
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">THE TEAM</p>
+              <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">THE FORCE</p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Creative minds.
+                Creative firepower.
                 <br />
                 <span className="text-red-500">One mission.</span>
               </h2>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
-                We're a collective of strategists, storytellers, and designers united by a shared passion for 
-                building brands that matter.
+                We're a collective of strategists, storytellers, and visual architects united by a shared passion for 
+                engineering digital authority that commands attention.
               </p>
               <a 
                 href="/leadership" 
                 className="inline-flex items-center gap-2 px-6 py-2.5 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300 group text-sm"
               >
-                Meet the Leadership
+                Meet the Architects
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
@@ -359,18 +359,18 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071')] bg-cover bg-center opacity-10" />
             <div className="relative z-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                Ready to create something
+                Ready to engineer
                 <br />
-                <span className="text-red-500">unforgettable?</span>
+                <span className="text-red-500">your digital authority?</span>
               </h2>
               <p className="text-gray-300 text-sm md:text-base max-w-2xl mx-auto mb-6">
-                Let's build a brand that moves culture together.
+                Let's build a brand that commands attention together.
               </p>
               <a 
                 href="#contact" 
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-gray-900 rounded-full font-medium hover:scale-105 transition-all duration-300 group text-sm"
               >
-                Start the Conversation
+                Schedule Your Strategy Session
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
