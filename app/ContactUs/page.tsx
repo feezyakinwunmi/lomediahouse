@@ -227,23 +227,36 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Section */}
-      {/* <section className="py-12">
+     {/* Map Section */}
+      <section className="py-16">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
-          <div className="relative h-[280px] md:h-[320px] rounded-xl overflow-hidden shadow-lg">
-            <iframe 
-              src="https://www.google.com/search?q=1551+Lycee+Place%2C+Ottawa%2C+K1G4B5&sca_esv=a8881eab68290456&sxsrf=ANbL-n6PA0cz-DKGlSXFsntSSuTyaF021A%3A1775729985679&ei=QX3XaYmVKd7BhbIPmP_HgQk&biw=1366&bih=607&ved=0ahUKEwjJuY3YxeCTAxXeYEEAHZj_MZAQ4dUDCBE&uact=5&oq=1551+Lycee+Place%2C+Ottawa%2C+K1G4B5&gs_lp=Egxnd3Mtd2l6LXNlcnAiIDE1NTEgTHljZWUgUGxhY2UsIE90dGF3YSwgSzFHNEI1SKoEUNkBWNkBcAB4AJABAJgBAKABAKoBALgBA8gBAPgBAZgCAKACAJgDAIgGAZIHAKAHALIHALgHAMIHAMgHAIAIAQ&sclient=gws-wiz-serphttps://www.google.com/maps/place/1551+Lyc%C3%A9e+Place,+Ottawa,+ON+K1G+4B5,+Canada/data=!4m2!3m1!1s0x4cce05832e6c179d:0xdb17b20827fef7a8?sa=X&ved=1t:242&ictx=111"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              className="grayscale hover:grayscale-0 transition-all duration-500"
-              title="Office Location Map"
-            />
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-white border border-gray-200 rounded-2xl overflow-hidden"
+          >
+            <div className="h-[400px] relative">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2800.678912345678!2d-75.660123456789!3d45.400123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cce05b3c8b5e5e5%3A0x123456789abcdef!2s1551%20Lycee%20Pl%2C%20Ottawa%2C%20ON%20K1G4B5!5e0!3m2!1sen!2sca!4v1641234567890!5m2!1sen!2sca"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="grayscale hover:grayscale-0 transition-all duration-500"
+              />
+            </div>
+            <div className="p-5 text-center border-t border-gray-200">
+              <p className="text-gray-600 text-sm">
+                1551 Lycee Place, Ottawa, ON K1G4B5, Canada
+              </p>
+            </div>
+          </motion.div>
         </div>
-      </section> */}
+      </section>
     </div>
   );
 }
