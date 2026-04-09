@@ -30,8 +30,8 @@ const divisions = [
     name: "LO Studio",
     tagline: "Premium Creative Production",
     description: "Where cinematic storytelling meets commercial excellence. We produce visuals that don't just catch eyes — they capture hearts and minds.",
-    fullDescription: "LO Studio is our creative powerhouse. We produce everything from high-end photoshoots to cinematic video campaigns. Our team of award-winning directors, photographers, and editors work tirelessly to create visuals that stand out in a crowded digital landscape. Whether it's a luxury fashion campaign or a documentary-style brand story, we bring unparalleled craftsmanship to every frame.",
-    services: [
+    fullDescription: "A brand is more than a logo; it is the story it tells, the connections it builds, and the impact it creates. LO Media Studio brings brands to life through creative content, social media strategy, SEO, photography, video production, and visual identity design. Every project is crafted to communicate clearly, engage deeply, and leave a lasting impression.",
+     services: [
       "Cinematic Video Production",
       "High-End Photography",
       "Motion Graphics & Animation",
@@ -49,8 +49,8 @@ const divisions = [
     name: "LO Publications",
     tagline: "Editorial & Print Excellence",
     description: "We create beautiful, tactile publications that tell stories worth keeping. From lookbooks to magazines, we craft experiences that last.",
-    fullDescription: "LO Publications celebrates the art of print. In a digital-first world, we believe there's still magic in holding something beautiful. We design and produce premium publications — from fashion lookbooks to corporate magazines — that capture the essence of your brand. Every page is a canvas, every detail matters, and every publication becomes a collector's item.",
-    services: [
+    fullDescription: "Our publishing arm is dedicated to the creation, development, and distribution of written content. Whether you’re a first-time author navigating the publishing process or an experienced writer looking to publish your fifth book, we support authors, organisations, and thought leaders in bringing ideas to life through structured, high-quality publications. From writing and editing to production and distribution, we ensure every project reaches its full potential.",
+      services: [
       "Magazine & Editorial Design",
       "Lookbooks & Catalogs",
       "Brand Guidelines & Identity",
@@ -68,8 +68,8 @@ const divisions = [
     name: "LO Platform",
     tagline: "Smart Content Technology",
     description: "The tools you need to scale your content operation. Analytics, scheduling, and insights — all in one powerful platform.",
-    fullDescription: "LO Platform is our technology arm — a powerful suite of tools designed to help brands manage, optimize, and scale their content operations. From intelligent scheduling to deep analytics, our platform gives you the insights you need to make data-driven creative decisions. Built by creators, for creators, LO Platform makes content management effortless.",
-    services: [
+    fullDescription: "Our technology division creates digital solutions that go beyond quick fixes. From launching your first website, developing a custom web or mobile application, to building the technical backbone of your organisation, brand or ministry, we combine strategy, design, and scalability to ensure your platform does more than just exist: it performs, grows, and delivers real value. With LO Platform, your technology is designed with purpose, reliability, and the needs of your community in mind.",
+     services: [
       "Content Scheduling & Publishing",
       "Advanced Analytics & Insights",
       "Competitor Tracking",
@@ -183,8 +183,7 @@ export default function DivisionsPage() {
           </h1>
           
           <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
-            Explore our ecosystem of creative services — each division built to elevate your brand 
-            in a unique way, united by a shared commitment to excellence.
+          LO Media House operates through three core divisions, each designed to address a critical aspect of modern brand and organisational development.
           </p>
         </div>
 

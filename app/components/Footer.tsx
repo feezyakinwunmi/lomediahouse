@@ -146,7 +146,8 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3 text-zinc-400 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>123 Creative District, New York, NY 10001</span>
+                <span>1551 Lycee Place, Ottawa, K1G4B5
+Canada</span>
               </li>
             </ul>
           </div>
@@ -178,9 +179,9 @@ export default function Footer() {
             © {currentYear} LOMEDIAHOUSE. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs">
-            <a href="#" className="text-zinc-500 hover:text-red-500 transition-colors">Privacy Policy</a>
-            <a href="#" className="text-zinc-500 hover:text-red-500 transition-colors">Terms of Service</a>
-            <a href="#" className="text-zinc-500 hover:text-red-500 transition-colors">Cookie Policy</a>
+            <a href="/privacy" className="text-zinc-500 hover:text-red-500 transition-colors">Privacy Policy</a>
+            <a href="/terms" className="text-zinc-500 hover:text-red-500 transition-colors">Terms of Service</a>
+            <a href="/cookies" className="text-zinc-500 hover:text-red-500 transition-colors">Cookie Policy</a>
           </div>
         </div>
       </div>

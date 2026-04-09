@@ -190,11 +190,9 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Email Us</h3>
                     <a href="mailto:hello@lomediahouse.com" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
-                      hello@lomediahouse.com
+                      info@lopublications.com
                     </a>
-                    <a href="mailto:press@lomediahouse.com" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
-                      press@lomediahouse.com
-                    </a>
+                  
                   </div>
                 </div>
                 
@@ -204,10 +202,10 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Call Us</h3>
-                    <a href="tel:+2341234567890" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
-                      +234 123 456 7890
+                    <a href="tel:+5142192987" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
+                      +514 219 2987
                     </a>
-                    <span className="text-[10px] text-gray-400">Mon-Fri, 9am - 6pm WAT</span>
+                    <span className="text-[10px] text-gray-400">Mon-Fri, 9am - 6pm EST</span>
                   </div>
                 </div>
                 
@@ -218,8 +216,8 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Visit Us</h3>
                     <p className="text-gray-600 text-xs">
-                      123 Creative Avenue, Victoria Island,<br />
-                      Lagos, Nigeria
+                     1551 Lycee Place, Ottawa, K1G4B5<br />
+                      Canada
                     </p>
                   </div>
                 </div>
@@ -230,11 +228,11 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-12">
+      {/* <section className="py-12">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="relative h-[280px] md:h-[320px] rounded-xl overflow-hidden shadow-lg">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.637492415626!2d3.420286!3d6.429417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2f2f2f2f2f%3A0x2f2f2f2f2f2f2f2f!2sVictoria%20Island%2C%20Lagos!5e0!3m2!1sen!2sng!4v1234567890"
+              src="https://www.google.com/search?q=1551+Lycee+Place%2C+Ottawa%2C+K1G4B5&sca_esv=a8881eab68290456&sxsrf=ANbL-n6PA0cz-DKGlSXFsntSSuTyaF021A%3A1775729985679&ei=QX3XaYmVKd7BhbIPmP_HgQk&biw=1366&bih=607&ved=0ahUKEwjJuY3YxeCTAxXeYEEAHZj_MZAQ4dUDCBE&uact=5&oq=1551+Lycee+Place%2C+Ottawa%2C+K1G4B5&gs_lp=Egxnd3Mtd2l6LXNlcnAiIDE1NTEgTHljZWUgUGxhY2UsIE90dGF3YSwgSzFHNEI1SKoEUNkBWNkBcAB4AJABAJgBAKABAKoBALgBA8gBAPgBAZgCAKACAJgDAIgGAZIHAKAHALIHALgHAMIHAMgHAIAIAQ&sclient=gws-wiz-serphttps://www.google.com/maps/place/1551+Lyc%C3%A9e+Place,+Ottawa,+ON+K1G+4B5,+Canada/data=!4m2!3m1!1s0x4cce05832e6c179d:0xdb17b20827fef7a8?sa=X&ved=1t:242&ictx=111"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -245,7 +243,7 @@ export default function ContactPage() {
             />
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -34,10 +34,10 @@ export default function Navbar() {
 
         <div className="hidden md:block">
           <a 
-            href="tel:+12125550123" 
+            href="tel:+5142192987" 
             className="px-5 py-2.5 bg-black/90 backdrop-blur-sm text-white rounded-full font-medium text-sm hover:bg-black transition-all duration-300 hover:scale-105 inline-block shadow-lg"
           >
-            Call Us: +1 (212) 555-0123
+            Call Us: +1 (514) 219 2987
           </a>
         </div>
 
