@@ -298,7 +298,7 @@ export default function LeadershipPage() {
                       <img 
                         src={leader.image}
                         alt={leader.name}
-                        className="w-full h-full object-cover aspect-square md:aspect-auto group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-fit aspect-square md:aspect-auto group-hover:scale-105 transition-transform duration-700"
                       />
                     </div>
                     

@@ -372,7 +372,7 @@ export default function AboutPage() {
                   <img 
                     src={img}
                     alt="Team member"
-                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                    className="w-[90%] h-full object-fit rounded-2xl hover:scale-110 transition-transform duration-500"
                   />
                 </div>
               ))}
