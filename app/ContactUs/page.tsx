@@ -113,7 +113,7 @@ export default function ContactPage() {
                       type="text"
                       required
                       className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                      placeholder="Oluwaseun Adebayo"
+                      placeholder="Full Name"
                     />
                   </div>
                   <div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
                       type="email"
                       required
                       className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                      placeholder="hello@lomediahouse.com"
+                      placeholder="example@gmail.com"
                     />
                   </div>
                 </div>
@@ -132,7 +132,7 @@ export default function ContactPage() {
                   <input 
                     type="tel"
                     className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                    placeholder="+234 123 456 7890"
+                    placeholder="Enter your Number"
                   />
                 </div>
                 
@@ -190,8 +190,9 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Email Us</h3>
-                    <a href="mailto:hello@lomediahouse.com" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
-                      info@lopublications.com
+                    <a href="mailto:layoobidikepublications@gmail.com" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
+                      layoobidikepublications@gmail.com
+
                     </a>
                   
                   </div>
@@ -204,7 +205,7 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Call Us</h3>
                     <a href="tel:+5142192987" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
-                      +514 219 2987
+                      +1 514 219 2987
                     </a>
                     <span className="text-[10px] text-gray-400">Mon-Fri, 9am - 6pm EST</span>
                   </div>
@@ -229,7 +230,7 @@ export default function ContactPage() {
       </section>
 
      {/* Map Section */}
-      <section className="py-16">
+      {/* <section className="py-16">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -257,7 +258,7 @@ export default function ContactPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

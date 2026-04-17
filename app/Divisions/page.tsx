@@ -23,7 +23,8 @@ const divisions = [
     image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074",
     shape: "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)",
     color: "from-red-500 to-orange-500",
-    icon: Globe
+    icon: Globe,
+    url: "https://lomediahouse.com"
   },
   {
     id: "studio",
@@ -42,7 +43,8 @@ const divisions = [
     image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071",
     shape: "polygon(0% 0%, 100% 0%, 100% 75%, 75% 100%, 0% 100%)",
     color: "from-blue-500 to-cyan-500",
-    icon: Camera
+    icon: Camera,
+    url: 'https://lomediastudio.com'
   },
   {
     id: "publications",
@@ -61,7 +63,8 @@ const divisions = [
     image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1974",
     shape: "polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%)",
     color: "from-purple-500 to-pink-500",
-    icon: BookOpen
+    icon: BookOpen,
+    url: 'https://lopublications.com'
   },
   {
     id: "platform",
@@ -80,7 +83,8 @@ const divisions = [
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070",
     shape: "polygon(10% 0%, 100% 0%, 100% 80%, 90% 100%, 0% 100%)",
     color: "from-emerald-500 to-teal-500",
-    icon: Zap
+    icon: Zap,
+    url: 'https://loplatform.com'
   }
 ];
 
@@ -244,9 +248,11 @@ export default function DivisionsPage() {
                       </div>
                     ))}
                   </div>
-                  
+                  {/* to open in another tab */}
                   <a 
-                    href={`#${division.id}`} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={`${division.url}`} 
                     className={`inline-flex items-center gap-2 px-5 py-2 text-sm bg-gradient-to-r ${division.color} text-white rounded-full font-medium hover:scale-105 transition-all duration-300 group`}
                   >
                     Explore {division.name}
