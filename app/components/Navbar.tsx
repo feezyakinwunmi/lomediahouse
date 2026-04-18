@@ -59,7 +59,7 @@ export default function Navbar() {
             
             {/* Mobile Call Button */}
             <a 
-              href="tel:+12125550123" 
+              href="tel:+15142192987" 
               onClick={() => setOpen(false)}
               className="mt-2 px-6 py-2.5 bg-black text-white rounded-full font-medium text-sm hover:bg-zinc-800 transition-all inline-block"
             >
