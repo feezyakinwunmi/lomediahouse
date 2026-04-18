@@ -63,7 +63,7 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className="mt-2 px-6 py-2.5 bg-black text-white rounded-full font-medium text-sm hover:bg-zinc-800 transition-all inline-block"
             >
-              Call Us: +1 (212) 555-0123
+              Call Us: +1 (514) 219 2987
             </a>
           </div>
         </div>
