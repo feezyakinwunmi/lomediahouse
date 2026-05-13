@@ -176,7 +176,7 @@ Canada</span>
         {/* Bottom Bar */}
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-zinc-500 text-xs">
-            © {currentYear} LOMEDIAHOUSE. All rights reserved.
+            © {currentYear} LOMEDIAHOUSE. All rights reserved. <br/>Powered by LO Platforms
           </p>
           <div className="flex gap-6 text-xs">
             <a href="/privacy" className="text-zinc-500 hover:text-red-500 transition-colors">Privacy Policy</a>
