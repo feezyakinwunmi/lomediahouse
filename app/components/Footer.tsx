@@ -135,13 +135,13 @@ export default function Footer() {
               <li className="flex items-start gap-3 text-zinc-400 text-sm">
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 <a href="mailto:hello@lomediahouse.com" className="hover:text-red-500 transition-colors">
-                  layoobidikepublications@gmail.com
+                  layo@lomediahouse.com
                 </a>
               </li>
               <li className="flex items-start gap-3 text-zinc-400 text-sm">
                 <Phone className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <a href="tel:+15142192987" className="hover:text-red-500 transition-colors">
-                  +1 514 219 2987
+                <a href="tel:+1 (905) 922-4471" className="hover:text-red-500 transition-colors">
+                  +1 (905) 922-4471
                 </a>
               </li>
               <li className="flex items-start gap-3 text-zinc-400 text-sm">

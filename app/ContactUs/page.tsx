@@ -190,8 +190,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Email Us</h3>
-                    <a href="mailto:layoobidikepublications@gmail.com" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
-                      layoobidikepublications@gmail.com
+                    <a href="mailto:layo@lomediahouse.com" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
+                      layo@lomediahouse.com
 
                     </a>
                   
@@ -204,8 +204,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Call Us</h3>
-                    <a href="tel:+5142192987" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
-                      +1 514 219 2987
+                    <a href="tel:+1 (905) 922-4471" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
+                      +1 (905) 922-4471
                     </a>
                     <span className="text-[10px] text-gray-400">Mon-Fri, 9am - 6pm EST</span>
                   </div>
