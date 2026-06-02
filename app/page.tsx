@@ -10,7 +10,6 @@ import MissionSection from './components/MissionSection';
 export default function Home() {
   return (
     <>
-     
       <Hero />
       <ServicesSection/>
       <MissionSection/>
@@ -18,8 +17,6 @@ export default function Home() {
       <NextSection/>
       <StatsSection/>
       <TestimonialsSection/>
-
-     
     </>
   );
 }

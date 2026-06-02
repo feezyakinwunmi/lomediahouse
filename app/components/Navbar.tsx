@@ -29,6 +29,7 @@ export default function Navbar() {
           <a href="/Aboutus" className="hover:text-red-500 transition-colors">About us</a>
           <a href="/Divisions" className="hover:text-red-500 transition-colors">Divisions</a>
           <a href="/Leadership" className="hover:text-red-500 transition-colors">Leadership</a>
+          <a href="/courses" className="hover:text-red-500 transition-colors">Courses</a>
           <a href="/ContactUs" className="hover:text-red-500 transition-colors">Contact Us</a>
         </div>
 
@@ -55,6 +56,7 @@ export default function Navbar() {
             <a href="/Aboutus" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">About Us</a>
             <a href="/Divisions" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Divisions</a>
             <a href="/Leadership" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Leadership</a>
+            <a href="/courses" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Courses</a>
             <a href="/ContactUs" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Contact Us</a>
             
             {/* Mobile Call Button */}
