@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Points, PointMaterial } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -11,7 +11,9 @@ interface ParticlesProps {
 
 export function Particles({ count }: ParticlesProps) {
   const pointsRef = useRef<THREE.Group>(null!);
-
+  const [mounted, setMounted] = useState(false);
+  
+  // Generate random positions only on the client
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -30,6 +32,11 @@ export function Particles({ count }: ParticlesProps) {
     return { pos, colors };
   }, [count]);
 
+  // Set mounted state on client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useFrame(({ clock }) => {
     if (pointsRef.current) {
       pointsRef.current.rotation.y = clock.getElapsedTime() * 0.05;
@@ -37,6 +44,11 @@ export function Particles({ count }: ParticlesProps) {
       pointsRef.current.children[0].position.y = Math.sin(clock.getElapsedTime() * 0.2) * 0.3;
     }
   });
+
+  // Don't render on server to avoid hydration mismatches
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <group ref={pointsRef}>

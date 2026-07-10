@@ -16,9 +16,11 @@ export default function RootLayout({
 }) { 
   return (
     <html lang="en" className="dark scroll-smooth">
-      <Navbar/>
-      <body className="bg-white text-white overflow-x-hidden">{children}</body>
-      <Footer/>
+      <body className="bg-white text-white overflow-x-hidden">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

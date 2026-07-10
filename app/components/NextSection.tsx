@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
 import Image from 'next/image';
@@ -24,6 +24,21 @@ export default function NextSection() {
   const centerImageRef = useRef<HTMLDivElement>(null);
   const iconsRef = useRef<HTMLDivElement[]>([]);
   const orbitsRef = useRef<HTMLDivElement[]>([]);
+  
+  // State for sparkles to avoid hydration mismatch
+  const [sparkles, setSparkles] = useState<{ top: string; left: string; delay: string }[]>([]);
+  const [mounted, setMounted] = useState(false);
+
+  // Generate sparkles on client only
+  useEffect(() => {
+    setMounted(true);
+    const newSparkles = Array.from({ length: 8 }, (_, i) => ({
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      delay: `${i * 0.5}s`
+    }));
+    setSparkles(newSparkles);
+  }, []);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -247,21 +262,23 @@ export default function NextSection() {
               );
             })}
 
-            {/* Decorative sparkles */}
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(8)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-0.5 h-0.5 bg-white/30 rounded-full animate-ping"
-                  style={{
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
-                    animationDelay: `${i * 0.5}s`,
-                    animationDuration: '2s'
-                  }}
-                />
-              ))}
-            </div>
+            {/* Decorative sparkles - Only render on client */}
+            {mounted && sparkles.length > 0 && (
+              <div className="absolute inset-0 pointer-events-none">
+                {sparkles.map((sparkle, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-0.5 h-0.5 bg-white/30 rounded-full animate-ping"
+                    style={{
+                      top: sparkle.top,
+                      left: sparkle.left,
+                      animationDelay: sparkle.delay,
+                      animationDuration: '2s'
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
