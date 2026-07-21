@@ -176,7 +176,7 @@ export default function WhySection() {
               ref={titleRef}
               className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-black tracking-[-1px] sm:tracking-[-2px] text-left"
             >
-              WHY <span className="text-red-500 inline-block">Choose Us</span>
+              Why <span className="text-red-500 inline-block">Choose Us</span>
             </h2>
             <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-zinc-600 text-left">
               We don't just make content.<br />We engineer digital authority.

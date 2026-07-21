@@ -202,7 +202,7 @@ export default function Navbar() {
               />
             </div>
             <div className="text-xl font-bold tracking-tighter heading-font text-black">
-              lo<span className="text-red-500">MediaHouse</span>
+              Lo<span className="text-red-500">MediaHouse</span>
             </div>
           </div>
 

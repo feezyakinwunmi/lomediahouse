@@ -353,7 +353,7 @@ export default function AboutPage() {
                 lasting impact.
               </p>
               <a 
-                href="/leadership" 
+                href="/Leadership" 
                 className="inline-flex items-center gap-2 px-6 py-2.5 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300 group text-sm"
               >
                 Meet Our Team
