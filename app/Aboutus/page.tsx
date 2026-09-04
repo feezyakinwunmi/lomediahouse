@@ -191,7 +191,7 @@ export default function AboutPage() {
                 className="relative rounded-2xl shadow-xl w-full h-[350px] md:h-[400px] object-cover"
               />
               <div className="absolute -bottom-4 -left-4 bg-white shadow-lg rounded-xl p-4 max-w-[200px]">
-                <div className="text-2xl font-bold text-gray-900">8 Values</div>
+                <div className="text-2xl font-bold text-gray-900">6 Values</div>
                 <div className="text-xs text-gray-600">Guiding everything we do</div>
                 <div className="mt-1 text-[10px] text-gray-400">Love • Excellence • Integrity</div>
               </div>
