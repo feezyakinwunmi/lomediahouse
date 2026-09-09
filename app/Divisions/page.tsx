@@ -84,7 +84,7 @@ const divisions = [
     shape: "polygon(10% 0%, 100% 0%, 100% 80%, 90% 100%, 0% 100%)",
     color: "from-emerald-500 to-teal-500",
     icon: Zap,
-    url: 'https://loplatform.com'
+    url: 'https://loplatforms.com'
   }
 ];
 
