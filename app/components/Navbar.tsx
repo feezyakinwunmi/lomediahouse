@@ -1,65 +1,30 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, Search, Globe, Camera, Book, Zap } from 'lucide-react';
+import { Menu, X, Search, Globe, Camera, Book, Zap, ChevronDown, FileText, TrendingUp, PenTool, DollarSign } from 'lucide-react';
 import ModalPortal from './ModalPortal';
 
-// Division data
-const divisions = [
-  {
-    id: "mediahouse",
-    name: "LO Media House",
-    tagline: "Full-Service Media Agency",
-    description: "We don't just manage social media — we build digital empires.",
-    slug: "mediahouse",
-    url: "https://lomediahouse.com",
-    icon: Globe,
-    category: "Division"
-  },
-  {
-    id: "studio",
-    name: "LO Studio",
-    tagline: "Premium Creative Production",
-    description: "Where cinematic storytelling meets commercial excellence.",
-    slug: "studio",
-    url: "https://lomediastudio.com",
-    icon: Camera,
-    category: "Division"
-  },
-  {
-    id: "publications",
-    name: "LO Publications",
-    tagline: "Editorial & Print Excellence",
-    description: "We create beautiful, tactile publications that tell stories worth keeping.",
-    slug: "publications",
-    url: "https://lopublications.com",
-    icon: Book,
-    category: "Division"
-  },
-  {
-    id: "platform",
-    name: "LO Platform",
-    tagline: "Smart Content Technology",
-    description: "The tools you need to scale your content operation.",
-    slug: "platform",
-    url: "https://loplatform.com",
-    icon: Zap,
-    category: "Division"
-  }
-];
+
 
 // Course data
-const courses = [
+
+// Blog posts data (for dropdown + search)
+const blogPosts = [
   {
     id: 1,
-    title: "New Partner Onboarding Course",
-    description: "Mandatory onboarding course covering culture, policies, structure, and expectations at LO Media House.",
-    category: "ONBOARDING",
-    duration: "2–3 hours",
-    audience: "All New Partners",
-    type: "Interactive",
-    slug: "new-partner-onboarding",
-    link: "/courses/new-partner-onboarding"
+    title: "Top Marketing Services for Ottawa Authors",
+    slug: "top-marketing-services-ottawa-authors",
+    excerpt: "Discover the top marketing services for Ottawa authors, from book launch campaigns and author branding to SEO, social media, publicity, and local community engagement.",
+    category: "Book Marketing",
+    icon: Book
+  },
+  {
+    id: 2,
+    title: "Digital Marketing Services for Ottawa Realtors",
+    slug: "digital-marketing-services-ottawa-realtors",
+    excerpt: "Learn how Ottawa realtors can use local SEO, content marketing, social media, and paid advertising to attract more buyers and sellers.",
+    category: "Digital Marketing",
+    icon: TrendingUp
   }
 ];
 
@@ -78,33 +43,25 @@ export default function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<SearchItem[]>([]);
   const [allContent, setAllContent] = useState<SearchItem[]>([]);
+  const [blogDropdownOpen, setBlogDropdownOpen] = useState(false);
+  const [mobileBlogOpen, setMobileBlogOpen] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Load all content on mount
   useEffect(() => {
     const items: SearchItem[] = [];
 
-    // Add divisions
-    divisions.forEach(div => {
+   
+    // Add blog posts
+    blogPosts.forEach(post => {
       items.push({
-        title: div.name,
-        href: `/Divisions#${div.id}`,
-        type: "Division",
-        description: div.description,
-        category: div.category,
-        icon: div.icon
-      });
-    });
-
-    // Add courses
-    courses.forEach(course => {
-      items.push({
-        title: course.title,
-        href: course.link,
-        type: "Course",
-        description: course.description,
-        category: course.category,
-        icon: null
+        title: post.title,
+        href: `/blog/${post.slug}`,
+        type: "Blog Post",
+        description: post.excerpt,
+        category: post.category,
+        icon: post.icon
       });
     });
 
@@ -115,6 +72,7 @@ export default function Navbar() {
       { title: "Divisions", href: "/Divisions", type: "Page" },
       { title: "Leadership", href: "/Leadership", type: "Page" },
       { title: "Courses", href: "/courses", type: "Page" },
+      { title: "Blog", href: "/blog", type: "Page" },
       { title: "Contact Us", href: "/ContactUs", type: "Page" }
     ];
 
@@ -125,6 +83,17 @@ export default function Navbar() {
     });
 
     setAllContent(items);
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setBlogDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Handle search
@@ -152,6 +121,17 @@ export default function Navbar() {
     }
   }, [searchOpen]);
 
+  // Handle ESC key to close search
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && searchOpen) {
+        handleSearchClose();
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [searchOpen]);
+
   const handleSearchOpen = () => {
     setSearchOpen(true);
     setSearchQuery("");
@@ -174,6 +154,7 @@ export default function Navbar() {
     switch(type) {
       case "Division": return "bg-purple-100 text-purple-800";
       case "Course": return "bg-blue-100 text-blue-800";
+      case "Blog Post": return "bg-red-100 text-red-800";
       case "Page": return "bg-gray-100 text-gray-800";
       default: return "bg-gray-100 text-gray-800";
     }
@@ -183,6 +164,7 @@ export default function Navbar() {
     switch(type) {
       case "Division": return "🏢";
       case "Course": return "📚";
+      case "Blog Post": return "📝";
       case "Page": return "📄";
       default: return "🔗";
     }
@@ -222,6 +204,63 @@ export default function Navbar() {
             <a href="/Divisions" className="hover:text-red-500 transition-colors">Divisions</a>
             <a href="/Leadership" className="hover:text-red-500 transition-colors">Leadership</a>
             <a href="/courses" className="hover:text-red-500 transition-colors">Courses</a>
+
+            {/* Blog Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setBlogDropdownOpen(!blogDropdownOpen)}
+                onMouseEnter={() => setBlogDropdownOpen(true)}
+                className="hover:text-red-500 transition-colors flex items-center gap-1"
+              >
+                Blog
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${blogDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {blogDropdownOpen && (
+                <div
+                  onMouseLeave={() => setBlogDropdownOpen(false)}
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-80 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden"
+                >
+                  {/* Dropdown Header */}
+                  <div className="px-5 py-3 bg-gray-50 border-b border-gray-100">
+                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Latest Articles</p>
+                  </div>
+
+                  {/* Blog Posts */}
+                  <div className="divide-y divide-gray-100">
+                    {blogPosts.map((post) => (
+                      <a
+                        key={post.id}
+                        href={`/blog/${post.slug}`}
+                        onClick={() => setBlogDropdownOpen(false)}
+                        className="group flex gap-3 p-4 hover:bg-red-50/50 transition"
+                      >
+                        <div className="w-10 h-10 flex-shrink-0 rounded-lg bg-red-50 flex items-center justify-center">
+                          <post.icon className="w-5 h-5 text-red-500" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="text-sm font-medium text-black group-hover:text-red-500 transition line-clamp-1">
+                            {post.title}
+                          </h4>
+                          <p className="text-xs text-gray-500 mt-0.5">{post.category}</p>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+
+                  {/* Dropdown Footer */}
+                  <a
+                    href="/blog"
+                    onClick={() => setBlogDropdownOpen(false)}
+                    className="flex items-center justify-between px-5 py-3 bg-gray-50 hover:bg-red-50 transition text-sm font-medium text-red-500"
+                  >
+                    <span>View All Articles</span>
+                    <span>→</span>
+                  </a>
+                </div>
+              )}
+            </div>
+
             <a href="/ContactUs" className="hover:text-red-500 transition-colors">Contact Us</a>
           </div>
 
@@ -242,7 +281,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {open && (
-          <div className="md:hidden bg-white/95 backdrop-blur-lg border-t border-white/20 py-5">
+          <div className="md:hidden bg-white/95 backdrop-blur-lg border-t border-white/20 py-5 max-h-[80vh] overflow-y-auto">
             <div className="flex flex-col items-center gap-5 text-base text-zinc-700">
               {/* Search in mobile */}
               <button 
@@ -261,6 +300,47 @@ export default function Navbar() {
               <a href="/Divisions" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Divisions</a>
               <a href="/Leadership" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Leadership</a>
               <a href="/courses" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Courses</a>
+
+              {/* Mobile Blog Accordion */}
+              <div className="w-full">
+                <button
+                  onClick={() => setMobileBlogOpen(!mobileBlogOpen)}
+                  className="w-full flex items-center justify-center gap-2 hover:text-red-500 transition-colors"
+                >
+                  <span>Blog</span>
+                  <ChevronDown className={`w-4 h-4 transition-transform ${mobileBlogOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {mobileBlogOpen && (
+                  <div className="mt-4 flex flex-col items-center gap-3 border-l-2 border-red-100 pl-4">
+                    {blogPosts.map((post) => (
+                      <a
+                        key={post.id}
+                        href={`/blog/${post.slug}`}
+                        onClick={() => {
+                          setOpen(false);
+                          setMobileBlogOpen(false);
+                        }}
+                        className="flex items-center gap-2 text-sm text-gray-600 hover:text-red-500 transition text-center"
+                      >
+                        <post.icon className="w-4 h-4 flex-shrink-0" />
+                        <span className="line-clamp-1">{post.title}</span>
+                      </a>
+                    ))}
+                    <a
+                      href="/blog"
+                      onClick={() => {
+                        setOpen(false);
+                        setMobileBlogOpen(false);
+                      }}
+                      className="text-sm font-medium text-red-500 hover:text-red-600 transition"
+                    >
+                      View All Articles →
+                    </a>
+                  </div>
+                )}
+              </div>
+
               <a href="/ContactUs" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Contact Us</a>
               
               {/* Mobile Call Button */}
@@ -285,7 +365,7 @@ export default function Navbar() {
             <input
               ref={searchInputRef}
               type="text"
-              placeholder="Search divisions, courses, pages..."
+              placeholder="Search divisions, courses, blog posts, pages..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-12 py-5 text-black text-lg outline-none border-b border-gray-200"
@@ -305,11 +385,12 @@ export default function Navbar() {
             {searchQuery.trim() === "" ? (
               <div className="p-8 text-center text-gray-500">
                 <Search className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-                <p className="text-lg">Search divisions, courses, and more</p>
-                <p className="text-sm mt-1">Try searching for "media" or "onboarding"</p>
+                <p className="text-lg">Search divisions, courses, blog posts, and more</p>
+                <p className="text-sm mt-1">Try searching for "marketing" or "onboarding"</p>
                 <div className="mt-4 flex flex-wrap gap-2 justify-center">
                   <span className="text-xs bg-gray-100 px-3 py-1 rounded-full">Divisions</span>
                   <span className="text-xs bg-gray-100 px-3 py-1 rounded-full">Courses</span>
+                  <span className="text-xs bg-gray-100 px-3 py-1 rounded-full">Blog</span>
                   <span className="text-xs bg-gray-100 px-3 py-1 rounded-full">About</span>
                 </div>
               </div>
