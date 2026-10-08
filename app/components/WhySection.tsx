@@ -3,6 +3,7 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
+import {sendGAEvent} from '@next/third-parties/google'
 
 const reasons = [
   {
@@ -187,6 +188,12 @@ export default function WhySection() {
             <div className="text-start mt-5 sm:mt-6">
               <a
                 href="#contact"
+                onClick={() =>
+                  sendGAEvent('event', 'button_click', {
+                    value: 'Build Your Legacy',
+                    // any other parameters
+                  })
+                }
                 className="inline-block px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 bg-black text-white rounded-lg text-sm sm:text-base font-semibold hover:bg-zinc-800 transition-all hover:scale-105 hover:shadow-xl transform duration-300"
               >
                 Build Your Legacy →

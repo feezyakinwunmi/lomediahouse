@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-
+import { GoogleAnalytics } from '@next/third-parties/google'
 export const metadata: Metadata = {
   title: 'Lomediahouse | Media That Moves',
   description: 'Premium Media House • Social Pages • Publications • Photoshoots',
@@ -19,6 +19,9 @@ export default function RootLayout({
       <body className="bg-white text-white overflow-x-hidden">
         <Navbar />
         {children}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
         <Footer />
       </body>
     </html>

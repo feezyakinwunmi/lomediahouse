@@ -7,6 +7,7 @@ import Lenis from 'lenis';
 import { Canvas } from '@react-three/fiber';
 import { Particles } from './Particles';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { sendGAEvent } from '@next/third-parties/google'
 
 const cardsData = [
   {
@@ -230,10 +231,26 @@ export default function Hero() {
               ref={buttonRef}
               className="flex flex-wrap gap-3 "
             >
-              <a href="/Aboutus" className="px-5 sm:px-6 py-2 sm:py-2.5 border border-black rounded-full hover:bg-black hover:text-white transition text-sm">
+              <a
+               href="/Aboutus"
+               onClick={() =>
+                  sendGAEvent('event', 'button_click', {
+                    value: 'Own Your Narrative',
+                    // any other parameters
+                  })
+                }
+              className="px-5 sm:px-6 py-2 sm:py-2.5 border border-black rounded-full hover:bg-black hover:text-white transition text-sm">
                 Own Your Narrative
               </a>
-              <a href="/ContactUs" className="px-5 sm:px-6 py-2 sm:py-2.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition text-sm">
+              <a 
+              href="/ContactUs"
+               onClick={() =>
+                  sendGAEvent('event', 'button_click', {
+                    value: 'Schedule Strategy Session',
+                    // any other parameters
+                  })
+                }
+              className="px-5 sm:px-6 py-2 sm:py-2.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition text-sm">
                 Schedule Strategy Session
               </a>
             </div>
