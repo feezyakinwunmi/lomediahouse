@@ -121,6 +121,7 @@ export default function Footer() {
                 { name: 'About', path: '/Aboutus' },
                 { name: 'Leadership', path: '/Leadership' },
                 { name: 'Divisions', path: '/Divisions' },
+                { name: 'Websites & Apps', path: '/websites-apps-tech-platforms' },
                 { name: 'Contact', path: '/ContactUs' },
               ].map((item) => (
                 <li key={item.name}>

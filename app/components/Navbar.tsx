@@ -72,6 +72,7 @@ export default function Navbar() {
       { title: "Divisions", href: "/Divisions", type: "Page" },
       { title: "Leadership", href: "/Leadership", type: "Page" },
       { title: "Courses", href: "/courses", type: "Page" },
+      { title: "Websites, Apps & Tech Platforms", href: "/websites-apps-tech-platforms", type: "Page" },
       { title: "Blog", href: "/blog", type: "Page" },
       { title: "Contact Us", href: "/ContactUs", type: "Page" }
     ];
@@ -204,6 +205,7 @@ export default function Navbar() {
             <a href="/Divisions" className="hover:text-red-500 transition-colors">Divisions</a>
             <a href="/Leadership" className="hover:text-red-500 transition-colors">Leadership</a>
             <a href="/courses" className="hover:text-red-500 transition-colors">Courses</a>
+            <a href="/websites-apps-tech-platforms" className="hover:text-red-500 transition-colors">Web &amp; Apps</a>
 
             {/* Blog Dropdown */}
             <div className="relative" ref={dropdownRef}>
@@ -300,6 +302,7 @@ export default function Navbar() {
               <a href="/Divisions" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Divisions</a>
               <a href="/Leadership" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Leadership</a>
               <a href="/courses" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Courses</a>
+              <a href="/websites-apps-tech-platforms" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Web &amp; Apps</a>
 
               {/* Mobile Blog Accordion */}
               <div className="w-full">

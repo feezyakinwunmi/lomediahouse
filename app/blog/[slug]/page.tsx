@@ -7,6 +7,10 @@ import { allBlogPosts } from '@/data/blog';
 // ========== NEW POSTS ==========
 import TopMarketingServicesOttawaAuthors from './posts/TopMarketingServicesOttawaAuthors';
 import DigitalMarketingServicesOttawaRealtors from './posts/DigitalMarketingServicesOttawaRealtors';
+import CustomWebAndMobileAppDevelopment from './posts/CustomWebAndMobileAppDevelopment';
+import BestContentSchedulingPublishingTools2026 from './posts/BestContentSchedulingPublishingTools2026';
+import LaunchingYourFirstWebsite from './posts/LaunchingYourFirstWebsite';
+import WebsitesAndAppsForChurchesAndMinistries from './posts/WebsitesAndAppsForChurchesAndMinistries';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -16,6 +20,10 @@ const PostComponents: Record<string, React.ComponentType> = {
   // ========== NEW POSTS ==========
   "top-marketing-services-ottawa-authors": TopMarketingServicesOttawaAuthors,
   "digital-marketing-services-ottawa-realtors": DigitalMarketingServicesOttawaRealtors,
+  "custom-web-and-mobile-app-development": CustomWebAndMobileAppDevelopment,
+  "best-content-scheduling-publishing-tools-2026": BestContentSchedulingPublishingTools2026,
+  "launching-your-first-website": LaunchingYourFirstWebsite,
+  "websites-and-apps-for-churches-and-ministries": WebsitesAndAppsForChurchesAndMinistries,
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
