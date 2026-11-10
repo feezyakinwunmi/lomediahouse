@@ -6,7 +6,9 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "i18n:generate": "node scripts/generate-french-dictionary.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.4.0",

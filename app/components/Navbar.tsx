@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Search, Globe, Camera, Book, Zap, ChevronDown, FileText, TrendingUp, PenTool, DollarSign } from 'lucide-react';
 import ModalPortal from './ModalPortal';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/lib/i18n/LanguageProvider';
 
 
 
@@ -38,6 +40,7 @@ interface SearchItem {
 }
 
 export default function Navbar() {
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -108,12 +111,15 @@ export default function Navbar() {
     const results = allContent.filter(
       (item) =>
         item.title.toLowerCase().includes(query) ||
+        t(item.title).toLowerCase().includes(query) ||
         (item.description && item.description.toLowerCase().includes(query)) ||
+        (item.description && t(item.description).toLowerCase().includes(query)) ||
         (item.category && item.category.toLowerCase().includes(query)) ||
-        item.type.toLowerCase().includes(query)
+        item.type.toLowerCase().includes(query) ||
+        t(item.type).toLowerCase().includes(query)
     );
     setSearchResults(results.slice(0, 15));
-  }, [searchQuery, allContent]);
+  }, [searchQuery, allContent, t]);
 
   // Focus search input when modal opens
   useEffect(() => {
@@ -266,7 +272,8 @@ export default function Navbar() {
             <a href="/ContactUs" className="hover:text-red-500 transition-colors">Contact Us</a>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
             <a 
               href="tel:+19059224471" 
               className="px-5 py-2.5 bg-black/90 backdrop-blur-sm text-white rounded-full font-medium text-sm hover:bg-black transition-all duration-300 hover:scale-105 inline-block shadow-lg"
@@ -303,6 +310,8 @@ export default function Navbar() {
               <a href="/Leadership" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Leadership</a>
               <a href="/courses" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Courses</a>
               <a href="/websites-apps-tech-platforms" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Web &amp; Apps</a>
+
+              <LanguageSwitcher variant="mobile" />
 
               {/* Mobile Blog Accordion */}
               <div className="w-full">
