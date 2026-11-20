@@ -1,5 +1,3 @@
-'use client';
-import { motion } from 'framer-motion';
 import { BarChart3, Church, CheckCircle, Compass, Heart, HelpCircle, Palette, Search, Smartphone, Sparkles, SlidersHorizontal } from 'lucide-react';
 import Link from 'next/link';
 
@@ -15,9 +13,7 @@ const faqs = [
 
 export default function WebsitesAndAppsForChurchesAndMinistries() {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <article
       className="bg-white rounded-2xl shadow-lg overflow-hidden"
     >
       <div className="p-6 md:p-10">
@@ -304,6 +300,6 @@ export default function WebsitesAndAppsForChurchesAndMinistries() {
           </Link>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

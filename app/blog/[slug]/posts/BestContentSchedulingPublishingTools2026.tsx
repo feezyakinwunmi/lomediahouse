@@ -1,5 +1,3 @@
-'use client';
-import { motion } from 'framer-motion';
 import { CalendarIcon, CheckCircle, ClipboardList, ExternalLink, HelpCircle, Layers, Lightbulb, Scale, Wallet, Workflow, XCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -137,9 +135,7 @@ const faqs = [
 
 export default function BestContentSchedulingPublishingTools2026() {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <article
       className="bg-white rounded-2xl shadow-lg overflow-hidden"
     >
       <div className="p-6 md:p-10">
@@ -452,6 +448,6 @@ export default function BestContentSchedulingPublishingTools2026() {
           </Link>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

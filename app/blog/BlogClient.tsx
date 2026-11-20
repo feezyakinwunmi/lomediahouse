@@ -5,7 +5,7 @@ import { useRef, useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, Clock, Calendar, User, TrendingUp, X } from 'lucide-react';
-import { gsap } from 'gsap';
+import { runDesktopAnimations } from '@/lib/desktopAnimations';
 import { formatBlogDate, type BlogPost } from '@/data/blog';
 
 const POSTS_PER_PAGE = 12;
@@ -17,11 +17,13 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
 
   useEffect(() => {
     if (!sectionRef.current) return;
-    gsap.fromTo(
-      sectionRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
-    );
+    return runDesktopAnimations(({ gsap }) => {
+      gsap.fromTo(
+        sectionRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+      );
+    });
   }, []);
 
   // Sort newest → oldest so the featured post is the most recent

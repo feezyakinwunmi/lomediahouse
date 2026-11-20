@@ -1,8 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '../../lib/gsap';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 const testimonials = [
@@ -39,33 +37,9 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const [startIndex, setStartIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [visibleCount, setVisibleCount] = useState(1);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    gsap.fromTo(sectionRef.current,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "top 60%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
 
   // Update visible count based on screen size
   useEffect(() => {
@@ -108,7 +82,6 @@ export default function TestimonialsSection() {
 
   return (
     <section 
-      ref={sectionRef}
       className="bg-black text-white py-20 md:py-28 lg:py-32 relative overflow-hidden"
     >
       {/* Background Effects */}

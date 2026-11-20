@@ -1,8 +1,3 @@
-'use client';
-
-import { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
 import Image from 'next/image';
 
 // Social Icons and Apps
@@ -18,117 +13,8 @@ const socialIcons = [
 ];
 
 export default function NextSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const descRef = useRef<HTMLDivElement>(null);
-  const centerImageRef = useRef<HTMLDivElement>(null);
-  const iconsRef = useRef<HTMLDivElement[]>([]);
-  const orbitsRef = useRef<HTMLDivElement[]>([]);
-  
-  // State for sparkles to avoid hydration mismatch
-  const [sparkles, setSparkles] = useState<{ top: string; left: string; delay: string }[]>([]);
-  const [mounted, setMounted] = useState(false);
-
-  // Generate sparkles on client only
-  useEffect(() => {
-    setMounted(true);
-    const newSparkles = Array.from({ length: 8 }, (_, i) => ({
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      delay: `${i * 0.5}s`
-    }));
-    setSparkles(newSparkles);
-  }, []);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    // Main timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        end: "bottom top",
-        scrub: 1.5,
-      },
-    });
-
-    // Title animation - fades in and scales
-    tl.fromTo(titleRef.current,
-      { opacity: 0, y: 80, scale: 0.8 },
-      { opacity: 1, y: 0, scale: 1, duration: 1.2, ease: "power3.out" },
-      0
-    );
-
-    // Description animation
-    tl.fromTo(descRef.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 1 },
-      0.3
-    );
-
-    // Center image pulses and scales
-    tl.fromTo(centerImageRef.current,
-      { scale: 0.7, opacity: 0, rotate: -10 },
-      { scale: 1, opacity: 1, rotate: 0, duration: 1.5, ease: "elastic.out(1, 0.6)" },
-      0.2
-    );
-
-    // Animate icons to orbit and pulse
-    iconsRef.current.forEach((icon, i) => {
-      if (icon) {
-        // Entrance animation
-        gsap.fromTo(icon,
-          { opacity: 0, scale: 0, rotation: -180 },
-          {
-            opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 0.8,
-            delay: i * 0.1,
-            ease: "back.out(1.2)",
-            scrollTrigger: {
-              trigger: icon,
-              start: "top 85%",
-              end: "top 70%",
-              scrub: 0.5,
-            }
-          }
-        );
-
-        // Continuous floating animation
-        gsap.to(icon, {
-          y: -8,
-          duration: 2,
-          repeat: -1,
-          yoyo: true,
-          ease: "power1.inOut",
-          delay: i * 0.2
-        });
-      }
-    });
-
-    // Animate orbital rings
-    orbitsRef.current.forEach((orbit, i) => {
-      if (orbit) {
-        gsap.to(orbit, {
-          rotation: 360,
-          duration: 20 + i * 5,
-          repeat: -1,
-          ease: "none",
-          transformOrigin: "center center"
-        });
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
-
   return (
     <section 
-      ref={sectionRef}
       className="min-h-screen bg-white mt-25 relative overflow-hidden"
     >
       
@@ -138,7 +24,6 @@ export default function NextSection() {
           {/* Left Content - Professional Copy */}
           <div className="lg:col-span-5">
             <h2 
-              ref={titleRef}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-black tracking-[-1px] text-black"
             >
               DIGITAL<br />
@@ -147,7 +32,7 @@ export default function NextSection() {
               </span>
             </h2>
 
-            <div ref={descRef} className="mt-5 sm:mt-6 max-w-md">
+            <div className="mt-5 sm:mt-6 max-w-md">
               <p className="text-sm sm:text-base md:text-lg text-black leading-relaxed">
                 Integrated social media management, content strategy, and cross-platform 
                 distribution that amplifies your brand voice across every digital touchpoint.
@@ -181,7 +66,6 @@ export default function NextSection() {
             
             {/* Orbital Ring 1 - Outer */}
             <div 
-              ref={(el) => { if (el) orbitsRef.current[0] = el; }}
               className="absolute w-[320px] sm:w-[380px] md:w-[420px] h-[320px] sm:h-[380px] md:h-[420px] rounded-full border border-red-500/20"
               style={{ 
                 borderWidth: '1px',
@@ -191,7 +75,6 @@ export default function NextSection() {
             
             {/* Orbital Ring 2 - Inner */}
             <div 
-              ref={(el) => { if (el) orbitsRef.current[1] = el; }}
               className="absolute w-[220px] sm:w-[260px] md:w-[300px] h-[220px] sm:h-[260px] md:h-[300px] rounded-full border border-purple-500/20"
               style={{ 
                 borderWidth: '1px',
@@ -201,7 +84,6 @@ export default function NextSection() {
 
             {/* Orbital Ring 3 - Middle */}
             <div 
-              ref={(el) => { if (el) orbitsRef.current[2] = el; }}
               className="absolute w-[270px] sm:w-[320px] md:w-[360px] h-[270px] sm:h-[320px] md:h-[360px] rounded-full border border-blue-500/20"
               style={{ 
                 borderWidth: '1px',
@@ -211,7 +93,6 @@ export default function NextSection() {
 
             {/* Center Image */}
             <div 
-              ref={centerImageRef}
               className="relative z-20"
             >
               <div className="relative w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] rounded-full overflow-hidden shadow-xl shadow-red-500/20 ring-2 ring-white/10">
@@ -221,7 +102,6 @@ export default function NextSection() {
                   width={800}
                   height={800}
                   className="object-cover w-full h-full scale-110 hover:scale-125 transition-transform duration-700"
-                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 to-purple-500/20 mix-blend-overlay" />
               </div>
@@ -240,7 +120,6 @@ export default function NextSection() {
               return (
                 <div
                   key={index}
-                  ref={(el) => { if (el) iconsRef.current[index] = el; }}
                   className="absolute z-30 cursor-pointer group"
                   style={{
                     transform: `translate(${x}px, ${y}px)`,
@@ -262,23 +141,6 @@ export default function NextSection() {
               );
             })}
 
-            {/* Decorative sparkles - Only render on client */}
-            {mounted && sparkles.length > 0 && (
-              <div className="absolute inset-0 pointer-events-none">
-                {sparkles.map((sparkle, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-0.5 h-0.5 bg-white/30 rounded-full animate-ping"
-                    style={{
-                      top: sparkle.top,
-                      left: sparkle.left,
-                      animationDelay: sparkle.delay,
-                      animationDuration: '2s'
-                    }}
-                  />
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </div>

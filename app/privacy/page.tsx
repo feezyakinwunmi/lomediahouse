@@ -2,8 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
+import { runDesktopAnimations } from '@/lib/desktopAnimations';
 import { Shield, Eye, Lock, Database, Globe, Mail, ArrowRight } from 'lucide-react';
 
 export default function PrivacyPolicyPage() {
@@ -14,6 +13,7 @@ export default function PrivacyPolicyPage() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
     gsap.fromTo(heroRef.current,
       { opacity: 0, y: 30 },
       {
@@ -50,6 +50,7 @@ export default function PrivacyPolicyPage() {
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
+    });
   }, []);
 
   return (

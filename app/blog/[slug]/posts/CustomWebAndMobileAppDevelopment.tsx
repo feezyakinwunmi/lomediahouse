@@ -1,13 +1,9 @@
-'use client';
-import { motion } from 'framer-motion';
 import { CheckCircle, Target, Users, Clock, TrendingUp, Star, Lightbulb, Smartphone, Monitor, Building2, ListChecks, Handshake, Rocket } from 'lucide-react';
 import Link from 'next/link';
 
 export default function CustomWebAndMobileAppDevelopment() {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <article
       className="bg-white rounded-2xl shadow-lg overflow-hidden"
     >
       <div className="p-6 md:p-10">
@@ -317,6 +313,6 @@ export default function CustomWebAndMobileAppDevelopment() {
           </Link>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

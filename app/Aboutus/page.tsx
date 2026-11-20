@@ -2,8 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
+import { runDesktopAnimations } from '@/lib/desktopAnimations';
 import { ArrowRight, Award, Globe, Zap, Heart, Coffee, Camera, PenTool, BookOpen, Layout, Mic, Users, Target, Shield } from 'lucide-react';
 
 export default function AboutPage() {
@@ -17,6 +16,7 @@ export default function AboutPage() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
     // Hero fade in
     gsap.fromTo(heroRef.current,
       { opacity: 0, y: 30 },
@@ -113,6 +113,7 @@ export default function AboutPage() {
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
+    });
   }, []);
 
   return (

@@ -1,9 +1,6 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
 import {sendGAEvent} from '@next/third-parties/google'
 
 const reasons = [
@@ -38,134 +35,8 @@ const reasons = [
 ];
 
 export default function WhySection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const cardsRef = useRef<HTMLDivElement[]>([]);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    gsap.fromTo(titleRef.current,
-      { 
-        scale: 2.5, 
-        opacity: 0, 
-        y: 200,
-        rotationX: 90,
-        rotationY: 45,
-        filter: "blur(30px)",
-        skewX: 20
-      },
-      {
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        rotationX: 0,
-        rotationY: 0,
-        filter: "blur(0px)",
-        skewX: 0,
-        duration: 1.5,
-        ease: "elastic.out(1.2, 0.4)",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-          end: "top 45%",
-          scrub: 1,
-        }
-      }
-    );
-
-    cardsRef.current.forEach((card, i) => {
-      if (card) {
-        const animations = [
-          { x: -300, rotation: -25, scale: 0.3, skew: 15 },
-          { x: 400, rotation: 35, scale: 0.2, skew: -20 },
-          { y: -250, rotation: 180, scale: 0.4, skew: 10 },
-          { y: 300, rotation: -45, scale: 0.25, skew: -15 }
-        ];
-        
-        gsap.fromTo(card,
-          {
-            opacity: 0,
-            x: animations[i].x,
-            y: animations[i].y || 0,
-            rotation: animations[i].rotation,
-            scale: animations[i].scale,
-            skewX: animations[i].skew,
-            filter: "blur(20px)"
-          },
-          {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            rotation: 0,
-            scale: 1,
-            skewX: 0,
-            filter: "blur(0px)",
-            duration: 1,
-            delay: i * 0.12,
-            ease: "back.out(1.8)",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              end: "top 70%",
-              scrub: 0.8,
-            }
-          }
-        );
-      }
-    });
-
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 2.5,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        if (progress > 0.6) {
-          const intensity = (progress - 0.6) / 0.4;
-          
-          cardsRef.current.forEach((card, i) => {
-            if (card) {
-              const directions = [
-                { x: -500, y: -200, rot: -120 },
-                { x: 600, y: -150, rot: 90 },
-                { x: -400, y: 300, rot: 150 },
-                { x: 550, y: 250, rot: -90 }
-              ];
-              
-              gsap.set(card, {
-                x: directions[i].x * intensity,
-                y: directions[i].y * intensity,
-                rotation: directions[i].rot * intensity,
-                scale: 1 - intensity * 1.2,
-                opacity: 1 - intensity * 2,
-                filter: `blur(${intensity * 50}px)`,
-                skewX: intensity * 30
-              });
-            }
-          });
-          
-          gsap.set(titleRef.current, {
-            scale: 1 - intensity * 1.8,
-            rotation: intensity * 45,
-            rotationX: intensity * 60,
-            opacity: 1 - intensity * 2,
-            filter: `blur(${intensity * 60}px)`,
-            skewX: intensity * 40
-          });
-        }
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       className="text-white py-10 sm:py-12 md:py-16 relative overflow-hidden bg-gradient-to-b from-zinc-50 to-white"
     >
       <div className="max-w-[95%] sm:max-w-[92%] md:max-w-[90%] lg:max-w-[96%] mx-auto px-3 sm:px-4">
@@ -175,7 +46,6 @@ export default function WhySection() {
           {/* LEFT COLUMN - Title */}
           <div className="lg:w-[35%] w-full lg:sticky lg:top-32 lg:self-start">
             <h2
-              ref={titleRef}
               className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-black tracking-[-1px] sm:tracking-[-2px] text-left"
             >
               Why <span className="text-red-500 inline-block">Choose Us</span>
@@ -208,7 +78,6 @@ export default function WhySection() {
               
               {/* Card 1 */}
               <div
-                ref={(el) => { if (el) cardsRef.current[0] = el; }}
                 className={`${reasons[0].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[160px] sm:h-[180px] md:h-[200px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">
@@ -237,7 +106,6 @@ export default function WhySection() {
 
               {/* Card 2 */}
               <div
-                ref={(el) => { if (el) cardsRef.current[1] = el; }}
                 className={`${reasons[1].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">
@@ -266,7 +134,6 @@ export default function WhySection() {
 
               {/* Card 3 */}
               <div
-                ref={(el) => { if (el) cardsRef.current[2] = el; }}
                 className={`${reasons[2].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">
@@ -295,7 +162,6 @@ export default function WhySection() {
 
               {/* Card 4 */}
               <div
-                ref={(el) => { if (el) cardsRef.current[3] = el; }}
                 className={`${reasons[3].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[160px] sm:h-[180px] md:h-[200px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">

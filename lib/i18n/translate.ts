@@ -1,23 +1,4 @@
-import type { Locale } from './config';
-import frAuto from './translations/fr.json';
-import frOverrides from './translations/fr.overrides.json';
-
 export type Dictionary = Record<string, string>;
-
-/**
- * The French dictionary is generated from the English copy used across the site
- * (`npm run i18n:generate`) and then layered with hand-written overrides for the
- * copy that matters most (navigation, hero, footer, legal links...).
- */
-export const frenchDictionary: Dictionary = {
-  ...(frAuto as Dictionary),
-  ...(frOverrides as Dictionary),
-};
-
-export const dictionaries: Record<Locale, Dictionary> = {
-  en: {},
-  fr: frenchDictionary,
-};
 
 /** Collapse the whitespace that JSX formatting adds around text. */
 export function normalizeKey(value: string): string {

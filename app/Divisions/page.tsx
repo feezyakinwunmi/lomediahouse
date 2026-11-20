@@ -2,8 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
+import { runDesktopAnimations } from '@/lib/desktopAnimations';
 import { ArrowRight, Sparkles, Camera, Zap, BookOpen, Globe, Play, Layers, TrendingUp } from 'lucide-react';
 
 const divisions = [
@@ -97,6 +96,7 @@ export default function DivisionsPage() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
     // Hero animation
     if (heroRef.current) {
       gsap.fromTo(heroRef.current,
@@ -150,11 +150,7 @@ export default function DivisionsPage() {
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
-  }, []);
-
-  // Create refs array after render
-  useEffect(() => {
-    divisionRefs.current = divisionRefs.current.slice(0, divisions.length);
+    });
   }, []);
 
   return (

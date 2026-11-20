@@ -10,7 +10,6 @@ import {
   translateSubtree,
   translateTextNode,
 } from './domTranslator';
-import { translateText } from './translate';
 
 /** Title of the current page in English, so it can be restored on the way back. */
 let englishTitle: string | null = null;
@@ -21,7 +20,7 @@ let englishTitle: string | null = null;
  * later — search results, carousels, menus...
  */
 export default function TranslationEngine() {
-  const { language, dictionary } = useLanguage();
+  const { language, dictionary, t } = useLanguage();
   const translatedValues = useMemo(() => new Set(Object.values(dictionary)), [dictionary]);
 
   useEffect(() => {
@@ -42,8 +41,8 @@ export default function TranslationEngine() {
       const current = document.title;
       if (!current) return;
 
-      const translation = translateText(current, dictionary);
-      if (translation === null || translation === current) return;
+      const translation = t(current);
+      if (translation === current) return;
 
       englishTitle = current;
       document.title = translation;
@@ -90,7 +89,7 @@ export default function TranslationEngine() {
       bodyObserver.disconnect();
       headObserver.disconnect();
     };
-  }, [language, dictionary, translatedValues]);
+  }, [language, dictionary, t, translatedValues]);
 
   return null;
 }

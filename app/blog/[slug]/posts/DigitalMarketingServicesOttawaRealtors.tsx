@@ -1,5 +1,3 @@
-'use client';
-import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Building2, Calendar, CalendarIcon, CheckCircle, Eye, Globe, Globe2, MapPin, MessageCircle, Share2, Sparkles, Target, TrendingUp, Users, Laptop, Search, Mail, PenTool, Star, DollarSign, Video, Home, Phone } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -15,9 +13,7 @@ export default function DigitalMarketingServicesOttawaRealtors() {
           Back to all articles
         </Link>
 
-        <motion.article
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <article
           className="bg-white rounded-2xl shadow-lg overflow-hidden"
         >
           {/* Hero Image */}
@@ -357,7 +353,7 @@ export default function DigitalMarketingServicesOttawaRealtors() {
               </div>
             </div>
           </div>
-        </motion.article>
+        </article>
       </div>
     </main>
     </article>

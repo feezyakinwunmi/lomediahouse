@@ -1,8 +1,3 @@
-'use client';
-
-import { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
 import { Sparkles, Target, Zap, Shield, Heart, TrendingUp, Users } from 'lucide-react';
 
 const coreValues = [
@@ -40,141 +35,8 @@ const stats = [
 ];
 
 export default function MissionSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const missionRef = useRef<HTMLDivElement>(null);
-  const visionRef = useRef<HTMLDivElement>(null);
-  const valuesRef = useRef<HTMLDivElement[]>([]);
-  const statsRef = useRef<HTMLDivElement[]>([]);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    // Elegant mission entrance
-    gsap.fromTo(missionRef.current,
-      { opacity: 0, y: 50, filter: "blur(10px)" },
-      {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: missionRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    // Elegant vision entrance
-    gsap.fromTo(visionRef.current,
-      { opacity: 0, y: 50, filter: "blur(10px)" },
-      {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.8,
-        delay: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: visionRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    // Values cards - staggered fade up
-    valuesRef.current.forEach((card, i) => {
-      if (card) {
-        gsap.fromTo(card,
-          { opacity: 0, y: 40, scale: 0.95 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.6,
-            delay: i * 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              end: "top 75%",
-              scrub: 0.5,
-            }
-          }
-        );
-      }
-    });
-
-    // Stats - fade up with stagger
-    statsRef.current.forEach((stat, i) => {
-      if (stat) {
-        gsap.fromTo(stat,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            delay: i * 0.08,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: stat,
-              start: "top 90%",
-              end: "top 75%",
-              scrub: 0.5,
-            }
-          }
-        );
-      }
-    });
-
-    // Subtle scatter when scrolling out
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 1.5,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        if (progress > 0.7) {
-          const intensity = (progress - 0.7) / 0.3;
-          
-          gsap.set(missionRef.current, {
-            y: -50 * intensity,
-            opacity: 1 - intensity,
-            filter: `blur(${intensity * 15}px)`
-          });
-          
-          gsap.set(visionRef.current, {
-            y: -50 * intensity,
-            opacity: 1 - intensity,
-            filter: `blur(${intensity * 15}px)`
-          });
-          
-          valuesRef.current.forEach((card) => {
-            if (card) {
-              gsap.set(card, {
-                y: 40 * intensity,
-                opacity: 1 - intensity * 1.2,
-                filter: `blur(${intensity * 10}px)`
-              });
-            }
-          });
-        }
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
-
   return (
     <section
-      ref={sectionRef}
       className="relative py-16 md:py-12 overflow-hidden bg-gray-100"
     >
      
@@ -196,7 +58,6 @@ export default function MissionSection() {
           
           {/* Mission */}
           <div
-            ref={missionRef}
             className="group relative border-l-2 border-red-500 pl-6 md:pl-8 hover:border-red-400 transition-all duration-500"
           >
             <div className="absolute -left-[1px] top-0 w-0 h-0 group-hover:w-full group-hover:h-full bg-gradient-to-r from-red-500/5 to-transparent transition-all duration-700" />
@@ -209,7 +70,6 @@ export default function MissionSection() {
 
           {/* Vision */}
           <div
-            ref={visionRef}
             className="group relative border-l-2 border-zinc-300 pl-6 md:pl-8 hover:border-purple-500 transition-all duration-500"
           >
             <div className="absolute -left-[1px] top-0 w-0 h-0 group-hover:w-full group-hover:h-full bg-gradient-to-r from-purple-500/5 to-transparent transition-all duration-700" />
@@ -233,7 +93,6 @@ export default function MissionSection() {
             return (
               <div
                 key={index}
-                ref={(el) => { if (el) valuesRef.current[index] = el; }}
                 className="group bg-white hover:bg-gray-50 transition-all duration-500 p-5 md:p-6 text-center rounded-xl shadow-sm"
               >
                 <div className={`inline-flex p-2 rounded-full bg-gradient-to-br ${value.gradient} bg-opacity-10 mb-4 group-hover:scale-110 transition-transform duration-500`}>

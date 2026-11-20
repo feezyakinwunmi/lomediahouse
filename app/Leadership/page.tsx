@@ -2,8 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
+import { runDesktopAnimations } from '@/lib/desktopAnimations';
 import { Mail, ArrowRight, Award, Briefcase, Users, TrendingUp, Phone, Globe } from 'lucide-react';
 
 // Custom social icons as simple SVG components (Lucide doesn't have these)
@@ -173,6 +172,7 @@ export default function LeadershipPage() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
     gsap.fromTo(heroRef.current,
       { opacity: 0, y: 30 },
       {
@@ -235,6 +235,7 @@ export default function LeadershipPage() {
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
+    });
   }, []);
 
   return (

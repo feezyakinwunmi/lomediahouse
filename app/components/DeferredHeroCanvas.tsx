@@ -11,7 +11,13 @@ export default function DeferredHeroCanvas() {
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setShouldLoad(true), 2500);
+    if (
+      window.matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => setShouldLoad(true), 5000);
     return () => window.clearTimeout(timer);
   }, []);
 

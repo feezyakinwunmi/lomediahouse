@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from 'react';
@@ -17,13 +18,13 @@ import {
   isLocale,
   type Locale,
 } from './config';
-import { dictionaries, translateText, type Dictionary } from './translate';
+import { translateText, type Dictionary } from './translate';
 
 type LanguageContextValue = {
   /** Currently selected language. */
   language: Locale;
   /** Change the language for the whole site. */
-  setLanguage: (locale: Locale) => void;
+  setLanguage: (locale: Locale) => Promise<void>;
   /** Translate a single string (useful for dynamic values such as search results). */
   t: (text: string) => string;
   /** Active dictionary, empty for English. */
@@ -33,6 +34,7 @@ type LanguageContextValue = {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 const ONE_YEAR_IN_SECONDS = 60 * 60 * 24 * 365;
+const EMPTY_DICTIONARY: Dictionary = {};
 
 function readCookieLocale(): Locale | null {
   const cookies = document.cookie ? document.cookie.split('; ') : [];
@@ -57,17 +59,50 @@ function readStoredLocale(): Locale | null {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Locale>(DEFAULT_LOCALE);
+  const [dictionary, setDictionary] = useState<Dictionary>(EMPTY_DICTIONARY);
   const [hydrated, setHydrated] = useState(false);
+  const languageRequest = useRef(0);
+
+  const setLanguage = useCallback(async (locale: Locale) => {
+    if (!isLocale(locale)) return;
+
+    const request = ++languageRequest.current;
+    if (locale === DEFAULT_LOCALE) {
+      setDictionary(EMPTY_DICTIONARY);
+      setLanguageState(locale);
+      return;
+    }
+
+    try {
+      const { dictionaries } = await import('./dictionaries');
+      if (request !== languageRequest.current) return;
+      setDictionary(dictionaries[locale]);
+      setLanguageState(locale);
+    } catch (error) {
+      if (request !== languageRequest.current) return;
+      console.error(`Failed to load the ${locale} translation dictionary.`, error);
+    }
+  }, []);
 
   // Restore the visitor's previous choice once we are on the client. The choice
   // only exists in localStorage/cookies, so it cannot be read during SSR and
   // must be applied after hydration (otherwise the markup would mismatch).
   /* eslint-disable react-hooks/set-state-in-effect -- client-only state restored after hydration */
   useEffect(() => {
+    let active = true;
     const stored = readStoredLocale();
-    if (stored && stored !== DEFAULT_LOCALE) setLanguageState(stored);
-    setHydrated(true);
-  }, []);
+    if (stored) {
+      void setLanguage(stored).finally(() => {
+        if (active) setHydrated(true);
+      });
+    } else {
+      setHydrated(true);
+    }
+
+    return () => {
+      active = false;
+    };
+  }, [setLanguage]);
   /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
@@ -84,22 +119,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.cookie = `${LOCALE_COOKIE_NAME}=${language}; path=/; max-age=${ONE_YEAR_IN_SECONDS}; samesite=lax`;
   }, [language, hydrated]);
 
-  const setLanguage = useCallback((locale: Locale) => {
-    if (!isLocale(locale)) return;
-    setLanguageState(locale);
-  }, []);
-
   const t = useCallback(
     (text: string) => {
       if (language === DEFAULT_LOCALE) return text;
-      return translateText(text, dictionaries[language]) ?? text;
+      return translateText(text, dictionary) ?? text;
     },
-    [language],
+    [language, dictionary],
   );
 
   const value = useMemo<LanguageContextValue>(
-    () => ({ language, setLanguage, t, dictionary: dictionaries[language] }),
-    [language, setLanguage, t],
+    () => ({ language, setLanguage, t, dictionary }),
+    [language, setLanguage, t, dictionary],
   );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

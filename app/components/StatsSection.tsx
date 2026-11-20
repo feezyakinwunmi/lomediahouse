@@ -1,9 +1,3 @@
-'use client';
-
-import { useRef, useEffect, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
-
 const stats = [
   {
     number: 30,
@@ -40,99 +34,8 @@ const stats = [
 ];
 
 export default function StatsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement[]>([]);
-  const numbersRef = useRef<HTMLSpanElement[]>([]);
-  const [counts, setCounts] = useState(stats.map(() => 0));
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    // Entrance animation for the whole section
-    gsap.fromTo(sectionRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "top 60%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    // Animate each stat card with stagger
-    statsRef.current.forEach((stat, i) => {
-      if (stat) {
-        gsap.fromTo(stat,
-          { 
-            opacity: 0, 
-            y: 60,
-            scale: 0.8,
-            rotation: i % 2 === 0 ? -5 : 5
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotation: 0,
-            duration: 0.8,
-            delay: i * 0.15,
-            ease: "back.out(1.2)",
-            scrollTrigger: {
-              trigger: stat,
-              start: "top 85%",
-              end: "top 70%",
-              scrub: 0.5,
-            }
-          }
-        );
-      }
-    });
-
-    // Count animation trigger
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          stats.forEach((stat, index) => {
-            let start = 0;
-            const end = stat.number;
-            const duration = 2000;
-            const step = Math.ceil(end / (duration / 16));
-            
-            const counter = setInterval(() => {
-              start += step;
-              if (start >= end) {
-                start = end;
-                clearInterval(counter);
-              }
-              setCounts(prev => {
-                const newCounts = [...prev];
-                newCounts[index] = start;
-                return newCounts;
-              });
-            }, 16);
-          });
-          observer.disconnect();
-        }
-      });
-    });
-
-    const statElements = statsRef.current.filter(el => el);
-    statElements.forEach(el => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, []);
-
   return (
     <section 
-      ref={sectionRef}
       className="bg-gradient-to-b mt-[-60px] rounded-t-3xl from-zinc-900 to-black py-16 md:py-20 relative overflow-hidden"
     >
       {/* Background Effects */}
@@ -158,7 +61,6 @@ export default function StatsSection() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              ref={(el) => { if (el) statsRef.current[index] = el; }}
               className="relative group"
             >
               <div className="text-center p-5 md:p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-red-500/30 transition-all duration-500 hover:transform hover:-translate-y-1">
@@ -167,11 +69,9 @@ export default function StatsSection() {
                   {stat.icon}
                 </div>
                 
-                {/* Number with Count Animation */}
+                {/* Number */}
                 <div className="text-3xl md:text-4xl font-black text-white mb-2">
-                  <span ref={(el) => { if (el) numbersRef.current[index] = el; }}>
-                    {counts[index]}
-                  </span>
+                  {stat.number}
                   {stat.suffix}
                 </div>
                 

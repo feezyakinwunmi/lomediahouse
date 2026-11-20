@@ -1,9 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
+import { runDesktopAnimations } from '@/lib/desktopAnimations';
 import { 
   Mail, 
   Phone, 
@@ -21,6 +19,7 @@ export default function ContactPage() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
     if (formContainerRef.current) {
       gsap.fromTo(formContainerRef.current,
         { opacity: 0, x: -30 },
@@ -61,6 +60,7 @@ export default function ContactPage() {
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
+    });
   }, []);
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -2,8 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
+import { runDesktopAnimations } from '@/lib/desktopAnimations';
 import { Cookie, Settings, Globe, Shield, Mail, ArrowRight, X, Check } from 'lucide-react';
 
 export default function CookiePolicyPage() {
@@ -20,6 +19,7 @@ export default function CookiePolicyPage() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
+    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
     gsap.fromTo(heroRef.current,
       { opacity: 0, y: 30 },
       {
@@ -56,6 +56,7 @@ export default function CookiePolicyPage() {
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
+    });
   }, []);
 
   const handlePreferenceChange = (type: keyof typeof preferences) => {

@@ -1,8 +1,5 @@
 'use client';
 
-import { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
 import {
   Mail,
   Phone,
@@ -12,32 +9,6 @@ import {
 } from 'lucide-react';
 
 export default function Footer() {
-  const footerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    if (!footerRef.current) return;
-
-    gsap.fromTo(
-      footerRef.current,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: 'top 90%',
-          end: 'top 70%',
-          scrub: 0.5,
-        },
-      }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -46,7 +17,6 @@ export default function Footer() {
 
   return (
     <footer
-      ref={footerRef}
       className="bg-black text-white relative overflow-hidden"
     >
       {/* Gradient Top Border */}

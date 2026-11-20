@@ -2,9 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from '@/lib/gsap';
-import Lenis from 'lenis';
 import DeferredHeroCanvas from './DeferredHeroCanvas';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { sendGAEvent } from '@next/third-parties/google'
@@ -80,8 +77,13 @@ export default function Hero() {
 
   const startAutoSlide = () => {
     if (slideInterval.current) clearInterval(slideInterval.current);
+    if (
+      window.matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
     slideInterval.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 4);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 3000);
   };
 
@@ -97,39 +99,60 @@ export default function Hero() {
     startAutoSlide();
   };
 
-  // GSAP Dissolve Animation
   useEffect(() => {
-    const lenis = new Lenis({ duration: 1.5 });
-    let animationFrameId = 0;
-
-    function raf(time: number) {
-      lenis.raf(time);
-      animationFrameId = requestAnimationFrame(raf);
+    if (
+      window.matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
     }
-    animationFrameId = requestAnimationFrame(raf);
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.6,
-        pin: true,
-        pinSpacing: false,
-      },
+    let cancelled = false;
+    let cleanupAnimation: (() => void) | undefined;
+
+    void Promise.all([
+      import('@/lib/gsap'),
+      import('lenis'),
+    ]).then(([{ gsap }, { default: Lenis }]) => {
+      if (cancelled || !heroRef.current) return;
+
+      const lenis = new Lenis({ duration: 1.5 });
+      let animationFrameId = 0;
+      const raf = (time: number) => {
+        lenis.raf(time);
+        animationFrameId = requestAnimationFrame(raf);
+      };
+      animationFrameId = requestAnimationFrame(raf);
+
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1.6,
+          pin: true,
+          pinSpacing: false,
+        },
+      });
+
+      timeline
+        .to(titleRef.current, { y: -140, scale: 0.8, opacity: 0, rotation: -5, filter: 'blur(12px)', duration: 1.3 }, 0)
+        .to(headlineRef.current, { y: -100, opacity: 0, duration: 1.2 }, 0.1)
+        .to(leftRef.current, { y: 120, opacity: 0, duration: 1.1 }, 0.2)
+        .to(bottomRef.current, { y: 200, opacity: 0, duration: 1.4 }, 0.5)
+        .to(buttonRef.current, { y: 200, opacity: 0, duration: 1.4 }, 0.5)
+        .to(heroRef.current, { backgroundColor: '#f5f5f5', duration: 2 }, 0);
+
+      cleanupAnimation = () => {
+        cancelAnimationFrame(animationFrameId);
+        timeline.scrollTrigger?.kill();
+        timeline.kill();
+        lenis.destroy();
+      };
     });
 
-    tl.to(titleRef.current, { y: -140, scale: 0.8, opacity: 0, rotation: -5, filter: "blur(12px)", duration: 1.3 }, 0)
-      .to(headlineRef.current, { y: -100, opacity: 0, duration: 1.2 }, 0.1)
-      .to(leftRef.current, { y: 120, opacity: 0, duration: 1.1 }, 0.2)
-      .to(bottomRef.current, { y: 200, opacity: 0, duration: 1.4 }, 0.5)
-      .to(buttonRef.current,{ y: 200, opacity: 0, duration: 1.4 }, 0.5)
-      .to(heroRef.current, { backgroundColor: "#f5f5f5", duration: 2 }, 0);
-
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      lenis.destroy();
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      cancelled = true;
+      cleanupAnimation?.();
       if (slideInterval.current) clearInterval(slideInterval.current);
     };
   }, []);
@@ -160,24 +183,12 @@ export default function Hero() {
                     zIndex: index + 1,
                   }}
                   onMouseEnter={(e) => {
-                    gsap.to(e.currentTarget, {
-                      scale: 1.1,
-                      rotate: 0,
-                      y: -20,
-                      zIndex: 50,
-                      duration: 0.4,
-                      ease: "power2.out"
-                    });
+                    e.currentTarget.style.transform = `rotate(0deg) translateX(${index * 8 - 12}px) translateY(-20px) scale(1.1)`;
+                    e.currentTarget.style.zIndex = '50';
                   }}
                   onMouseLeave={(e) => {
-                    gsap.to(e.currentTarget, {
-                      scale: 1,
-                      rotate: index * 6 - 9,
-                      y: index * 4 - 6,
-                      zIndex: index + 1,
-                      duration: 0.5,
-                      ease: "power2.out"
-                    });
+                    e.currentTarget.style.transform = `rotate(${index * 6 - 9}deg) translateX(${index * 8 - 12}px) translateY(${index * 4 - 6}px)`;
+                    e.currentTarget.style.zIndex = String(index + 1);
                   }}
                 >
                   <div className={`absolute -top-2 left-4 bg-gradient-to-r ${card.color} text-white px-2.5 py-0.5 text-[9px] sm:text-xs font-medium rounded-full`}>
@@ -271,24 +282,16 @@ export default function Hero() {
 
           {/* Right Slider */}
           <div className="md:col-span-7 relative rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-200 h-[140px] sm:h-[160px] md:h-[160px] bg-zinc-900 group">
-            <div 
-              className="relative w-full transition-all duration-700 ease-out"
-              style={{ 
-                height: `${slides.length * 100}%`,
-                transform: `translateY(-${currentSlide * (100 / slides.length)}%)` 
-              }}
-            >
-              {slides.map((slide, index) => (
+            <div className="relative w-full h-full transition-all duration-700 ease-out">
+              {[slides[currentSlide]].map((slide) => (
                 <div 
-                  key={index} 
+                  key={slide.title}
                   className="relative w-full h-full overflow-hidden"
-                  style={{ height: `${100 / slides.length}%` }}
                 >
                   <Image
                     src={slide.image} 
                     alt={slide.title}
                     fill
-                    priority={index === 0}
                     sizes="(max-width: 768px) 100vw, 58vw"
                     className="object-cover"
                   />
