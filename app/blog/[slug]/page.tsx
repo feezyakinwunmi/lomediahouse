@@ -1,39 +1,40 @@
 // app/blog/[slug]/page.tsx
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { ArrowLeft, Clock, Calendar, User, TrendingUp } from 'lucide-react';
-import { allBlogPosts } from '@/data/blog';
+import { allBlogPosts, formatBlogDate } from '@/data/blog';
 
 // ========== NEW POSTS ==========
-import TopMarketingServicesOttawaAuthors from './posts/TopMarketingServicesOttawaAuthors';
-import DigitalMarketingServicesOttawaRealtors from './posts/DigitalMarketingServicesOttawaRealtors';
-import CustomWebAndMobileAppDevelopment from './posts/CustomWebAndMobileAppDevelopment';
-import BestContentSchedulingPublishingTools2026 from './posts/BestContentSchedulingPublishingTools2026';
-import LaunchingYourFirstWebsite from './posts/LaunchingYourFirstWebsite';
-import WebsitesAndAppsForChurchesAndMinistries from './posts/WebsitesAndAppsForChurchesAndMinistries';
-
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 const PostComponents: Record<string, React.ComponentType> = {
   // ========== NEW POSTS ==========
-  "top-marketing-services-ottawa-authors": TopMarketingServicesOttawaAuthors,
-  "digital-marketing-services-ottawa-realtors": DigitalMarketingServicesOttawaRealtors,
-  "custom-web-and-mobile-app-development": CustomWebAndMobileAppDevelopment,
-  "best-content-scheduling-publishing-tools-2026": BestContentSchedulingPublishingTools2026,
-  "launching-your-first-website": LaunchingYourFirstWebsite,
-  "websites-and-apps-for-churches-and-ministries": WebsitesAndAppsForChurchesAndMinistries,
+  "top-marketing-services-ottawa-authors": dynamic(() => import('./posts/TopMarketingServicesOttawaAuthors')),
+  "digital-marketing-services-ottawa-realtors": dynamic(() => import('./posts/DigitalMarketingServicesOttawaRealtors')),
+  "custom-web-and-mobile-app-development": dynamic(() => import('./posts/CustomWebAndMobileAppDevelopment')),
+  "best-content-scheduling-publishing-tools-2026": dynamic(() => import('./posts/BestContentSchedulingPublishingTools2026')),
+  "launching-your-first-website": dynamic(() => import('./posts/LaunchingYourFirstWebsite')),
+  "websites-and-apps-for-churches-and-ministries": dynamic(() => import('./posts/WebsitesAndAppsForChurchesAndMinistries')),
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = allBlogPosts.find(p => p.slug === slug);
 
-  if (!post) return { title: "Post Not Found | LO Media House" };
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+      robots: { index: false, follow: true },
+    };
+  }
 
   return {
-    title: `${post.title} | LO Media House`,
+    title: post.title,
     description: post.excerpt,
     keywords: [
       "book marketing", "digital marketing", "Ottawa realtors", "author marketing",
@@ -45,9 +46,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      url: `/blog/${post.slug}`,
       images: [{ url: post.image }],
       locale: "en_CA",
       type: "article",
+      publishedTime: `${post.date}T00:00:00.000Z`,
+      authors: [post.author],
     },
     twitter: {
       card: "summary_large_image",
@@ -66,7 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
   const post = allBlogPosts.find(p => p.slug === slug);
 
   if (!post) {
-    return <div className="pt-40 text-center">Post not found</div>;
+    notFound();
   }
 
   const recommended = allBlogPosts
@@ -74,9 +78,32 @@ export default async function BlogPostPage({ params }: Props) {
     .slice(0, 3);
 
   const PostComponent = PostComponents[slug];
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    image: [post.image],
+    datePublished: `${post.date}T00:00:00.000Z`,
+    dateModified: `${post.date}T00:00:00.000Z`,
+    author: { '@type': 'Organization', name: post.author },
+    publisher: {
+      '@type': 'Organization',
+      name: 'LO Media House',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.lomediahouse.com/logo.png',
+      },
+    },
+    mainEntityOfPage: `https://www.lomediahouse.com/blog/${post.slug}`,
+  };
 
   return (
-    <div className="bg-gray-50 text-black min-h-screen pt-20">
+    <div className="bg-gray-50 text-black min-h-screen pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <div className="max-w-[90%] mx-auto px-6 py-8">
         <Link href="/blog" className="inline-flex items-center gap-2 text-gray-500 hover:text-red-600 mb-8">
           <ArrowLeft className="w-5 h-5" /> Back to All Articles
@@ -88,10 +115,13 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="lg:col-span-8">
             {/* Hero Image */}
             <div className="relative h-[520px] rounded-3xl overflow-hidden mb-12 shadow-2xl">
-              <img
+              <Image
                 src={post.image}
                 alt={post.title}
-                className="w-full h-full object-cover"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 65vw"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent" />
 
@@ -111,7 +141,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <User className="w-4 h-4" /> {post.author}
               </div>
               <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" /> {post.date}
+                <Calendar className="w-4 h-4" /> {formatBlogDate(post.date)}
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4" /> {post.readTime}
@@ -154,16 +184,19 @@ export default async function BlogPostPage({ params }: Props) {
                       href={`/blog/${item.slug}`}
                       className="group flex gap-4 mb-6 last:mb-0"
                     >
-                      <img
+                      <Image
                         src={item.image}
                         alt={item.title}
+                        width={80}
+                        height={64}
+                        sizes="80px"
                         className="w-20 h-16 object-cover rounded-xl"
                       />
                       <div>
                         <p className="line-clamp-2 text-sm font-medium group-hover:text-red-600 transition">
                           {item.title}
                         </p>
-                        <p className="text-xs text-gray-500 mt-1">{item.date}</p>
+                        <p className="text-xs text-gray-500 mt-1">{formatBlogDate(item.date)}</p>
                       </div>
                     </Link>
                   ))

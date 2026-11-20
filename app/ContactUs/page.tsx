@@ -73,7 +73,7 @@ export default function ContactPage() {
     <div ref={sectionRef} className="bg-white min-h-screen ">
       
       {/* Hero Section */}
-      <section className="relative  py-16 md:py-40 bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative pt-24 pb-16 md:pt-28 md:pb-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 mb-5">
             <Mail className="w-3 h-3 text-red-500" />

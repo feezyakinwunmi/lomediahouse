@@ -2,11 +2,12 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Building2, Calendar, CalendarIcon, CheckCircle, Eye, Globe, Globe2, MapPin, MessageCircle, Share2, Sparkles, Target, TrendingUp, Users, Laptop, Search, Mail, PenTool, Star, DollarSign, Video, Home, Phone } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function DigitalMarketingServicesOttawaRealtors() {
   return (
     <article className="max-w-3xl mx-auto space-y-10">
-     <main className="min-h-screen bg-gray-50 mt-20 md:mt-0 py-20 md:py-32">
+     <main className="min-h-screen bg-gray-50 mt-8 md:mt-0 py-8 md:py-12">
       <div className="max-w-4xl mx-auto px-6">
         {/* Back Button */}
         <Link href="/blog" className="inline-flex items-center gap-2 text-gray-600 hover:text-red-900 mb-8 transition group">
@@ -21,10 +22,13 @@ export default function DigitalMarketingServicesOttawaRealtors() {
         >
           {/* Hero Image */}
           <div className="relative h-96">
-            <img
+            <Image
               src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=500&fit=crop"
               alt="Digital marketing services for Ottawa realtors"
-              className="w-full h-full object-cover"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end">
               <div className="p-8 text-white">
@@ -317,11 +321,13 @@ export default function DigitalMarketingServicesOttawaRealtors() {
               <h3 className="text-xl font-bold text-black text-center mb-6">You Might Also Like</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Link href="/blog/top-marketing-services-ottawa-authors" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
-                  <div className="h-48 overflow-hidden">
-                    <img 
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" 
                       alt="Top marketing services for Ottawa authors" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-105 transition duration-300"
                     />
                   </div>
                   <div className="p-4">
@@ -332,11 +338,13 @@ export default function DigitalMarketingServicesOttawaRealtors() {
                   </div>
                 </Link>
                 <Link href="/blog/web-design-services-ottawa-authors" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
-                  <div className="h-48 overflow-hidden">
-                    <img 
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
                       src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop" 
                       alt="Web design services for Ottawa authors" 
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover group-hover:scale-105 transition duration-300"
                     />
                   </div>
                   <div className="p-4">

@@ -1,5 +1,6 @@
 // app/websites-apps-tech-platforms/page.tsx
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   ArrowRight, BookOpen, Briefcase, Building2, CheckCircle, Church, ClipboardList, Code2, Compass,
@@ -12,7 +13,7 @@ const PAGE_TITLE = "Websites, Apps, and Tech Platforms for Brands and Ministries
 const PAGE_DESCRIPTION = "LO Media House builds professional websites, mobile apps, and custom tech platforms for businesses, personal brands, churches, ministries, non-profits, and organisations.";
 
 export const metadata: Metadata = {
-  title: `${PAGE_TITLE} | LO Media House`,
+  title: PAGE_TITLE,
   description: PAGE_DESCRIPTION,
   keywords: [
     "website development", "mobile app development", "custom tech platforms",
@@ -240,7 +241,7 @@ export default function WebsitesAppsTechPlatformsPage() {
     .filter((p) => p !== undefined);
 
   return (
-    <main className="bg-gray-50 text-black min-h-screen pt-20">
+    <main className="bg-gray-50 text-black min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
@@ -248,13 +249,16 @@ export default function WebsitesAppsTechPlatformsPage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1920&h=900&fit=crop"
           alt="Website and app development workspace"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-red-950/70" />
-        <div className="relative max-w-6xl mx-auto px-6 py-24 md:py-36 text-white">
+        <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-16 md:pt-28 md:pb-20 text-white">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 rounded-2xl text-sm font-medium mb-6">
             <Code2 size={16} /> Websites • Apps • Tech Platforms
           </div>
@@ -533,11 +537,13 @@ export default function WebsitesAppsTechPlatformsPage() {
                 href={`/blog/${post.slug}`}
                 className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition"
               >
-                <div className="h-44 overflow-hidden">
-                  <img
+                <div className="relative h-44 overflow-hidden">
+                  <Image
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover group-hover:scale-105 transition duration-300"
                   />
                 </div>
                 <div className="p-5">

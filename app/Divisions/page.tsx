@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
 import { ArrowRight, Sparkles, Camera, Zap, BookOpen, Globe, Play, Layers, TrendingUp } from 'lucide-react';
@@ -265,13 +266,15 @@ export default function DivisionsPage() {
                   <div className="relative group">
                     <div className={`absolute inset-0 bg-gradient-to-r ${division.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-700`} />
                     <div 
-                      className="relative overflow-hidden"
+                      className="relative h-[280px] md:h-[320px] overflow-hidden"
                       style={{ clipPath: division.shape }}
                     >
-                      <img 
+                      <Image
                         src={division.image}
                         alt={division.name}
-                        className="w-full h-[280px] md:h-[320px] object-cover group-hover:scale-110 transition-transform duration-1000"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-1000"
                       />
                       <div className={`absolute inset-0 bg-gradient-to-t ${division.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
                     </div>

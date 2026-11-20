@@ -5,7 +5,7 @@ import { allBlogPosts as blogPosts } from '@/data/blog';
 
 export const generateMetadata = (): Metadata => {
   return {
-    title: "Blog | Marketing & Digital Strategy Insights | LO Media House",
+    title: "Blog | Marketing & Digital Strategy Insights",
     description: "Practical guides on book marketing, digital marketing, web and app development, content marketing, local SEO, and growth strategies for authors, realtors, churches, and businesses in Ottawa and beyond.",
     keywords: [
       "book marketing", "digital marketing", "Ottawa realtors",

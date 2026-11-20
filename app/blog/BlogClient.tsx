@@ -3,9 +3,10 @@
 
 import { useRef, useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Clock, Calendar, User, TrendingUp, X } from 'lucide-react';
 import { gsap } from 'gsap';
-import type { BlogPost } from '@/data/blog';
+import { formatBlogDate, type BlogPost } from '@/data/blog';
 
 const POSTS_PER_PAGE = 12;
 
@@ -73,16 +74,18 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
     <div ref={sectionRef} className="bg-gray-100 text-black min-h-screen">
 
       {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center bg-gray-900 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2070')`,
-          }}
+      <section className="relative h-[42vh] min-h-[320px] flex items-center bg-gray-900 overflow-hidden">
+        <Image
+          src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2070"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/80" />
 
-        <div className="relative z-10 max-w-[90%] mx-auto px-4 sm:px-6 pt-10 text-center">
+        <div className="relative z-10 max-w-[90%] mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex text-white items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-xs font-medium tracking-widest mb-4">
             LO MEDIAHOUSE BLOG
           </div>
@@ -96,7 +99,7 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
       </section>
 
       {/* Main Content + Sidebar */}
-      <div className="max-w-[90%] mx-auto px-4 sm:px-6 py-16">
+      <div className="max-w-[90%] mx-auto px-4 sm:px-6 py-10 md:py-12">
         <div className="grid lg:grid-cols-12 gap-10">
 
           {/* Main Content */}
@@ -121,10 +124,13 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
               <div className="mb-12">
                 <Link href={`/blog/${featured.slug}`} className="group block">
                   <div className="relative h-[380px] rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500">
-                    <img
+                    <Image
                       src={featured.image}
                       alt={featured.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent md:opacity-0 group-hover:opacity-100 transition-all duration-500" />
@@ -143,7 +149,7 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
                           <User className="w-4 h-4" /> {featured.author}
                         </div>
                         <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" /> {featured.date}
+                          <Calendar className="w-4 h-4" /> {formatBlogDate(featured.date)}
                         </div>
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4" /> {featured.readTime}
@@ -280,10 +286,12 @@ function BlogCard({ post }: { post: BlogPost }) {
     <Link href={`/blog/${post.slug}`} className="group">
       <div className="bg-white text-black rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 h-full flex flex-col">
         <div className="relative h-56 overflow-hidden">
-          <img
+          <Image
             src={post.image}
             alt={post.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            fill
+            sizes="(max-width: 768px) 100vw, 40vw"
+            className="object-cover group-hover:scale-110 transition-transform duration-700"
           />
           <div className="absolute top-4 left-4 px-3 py-1 text-xs font-medium bg-white/95 rounded-lg">
             {post.category}
@@ -298,7 +306,7 @@ function BlogCard({ post }: { post: BlogPost }) {
             {post.excerpt}
           </p>
           <div className="text-xs text-gray-500 flex items-center justify-between mt-auto pt-4 border-t">
-            <span>{post.date}</span>
+            <span>{formatBlogDate(post.date)}</span>
             <span className="flex items-center gap-1">
               <Clock className="w-3.5 h-3.5" /> {post.readTime}
             </span>
@@ -312,11 +320,13 @@ function BlogCard({ post }: { post: BlogPost }) {
 function TrendingItem({ post }: { post: BlogPost }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group flex gap-4 mb-6 last:mb-0">
-      <div className="w-20 h-16 rounded-xl overflow-hidden flex-shrink-0">
-        <img
+      <div className="relative w-20 h-16 rounded-xl overflow-hidden flex-shrink-0">
+        <Image
           src={post.image}
           alt=""
-          className="w-full h-full object-cover group-hover:scale-105 transition"
+          fill
+          sizes="80px"
+          className="object-cover group-hover:scale-105 transition"
         />
       </div>
       <div>
@@ -324,7 +334,7 @@ function TrendingItem({ post }: { post: BlogPost }) {
           {post.title}
         </h4>
         <p className="text-[10px] text-gray-500 mt-1.5">
-          {post.date} &bull; {post.readTime}
+          {formatBlogDate(post.date)} &bull; {post.readTime}
         </p>
       </div>
     </Link>

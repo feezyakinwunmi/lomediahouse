@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
 import {sendGAEvent} from '@next/third-parties/google'
@@ -211,10 +212,12 @@ export default function WhySection() {
                 className={`${reasons[0].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[160px] sm:h-[180px] md:h-[200px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">
-                  <img 
+                  <Image
                     src={reasons[0].image} 
                     alt={reasons[0].title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 32vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
                   
@@ -238,10 +241,12 @@ export default function WhySection() {
                 className={`${reasons[1].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">
-                  <img 
+                  <Image
                     src={reasons[1].image} 
                     alt={reasons[1].title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 32vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
                   
@@ -265,10 +270,12 @@ export default function WhySection() {
                 className={`${reasons[2].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[180px] sm:h-[200px] md:h-[220px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">
-                  <img 
+                  <Image
                     src={reasons[2].image} 
                     alt={reasons[2].title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 32vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
                   
@@ -292,10 +299,12 @@ export default function WhySection() {
                 className={`${reasons[3].width} group cursor-pointer`}
               >
                 <div className="relative w-full h-[160px] sm:h-[180px] md:h-[200px] rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-red-500/20 transition-all duration-500">
-                  <img 
+                  <Image
                     src={reasons[3].image} 
                     alt={reasons[3].title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 32vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500" />
                   

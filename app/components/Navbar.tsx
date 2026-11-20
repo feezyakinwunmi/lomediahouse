@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { Menu, X, Search, Globe, Camera, Book, Zap, ChevronDown, FileText, TrendingUp, PenTool, DollarSign } from 'lucide-react';
 import ModalPortal from './ModalPortal';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -184,9 +185,11 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white font-bold text-xl">
-              <img
+              <Image
                 src="/logo.png"
-                className="object-cover w-full h-full"
+                width={32}
+                height={32}
+                className="object-cover"
                 alt="Logo"
               />
             </div>

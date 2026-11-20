@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
 import { Mail, ArrowRight, Award, Briefcase, Users, TrendingUp, Phone, Globe } from 'lucide-react';
@@ -240,8 +241,15 @@ export default function LeadershipPage() {
     <div ref={sectionRef} className="bg-white min-h-screen">
       
       {/* Hero Section */}
-      <section className="pt-20 relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070')] bg-cover bg-center opacity-30" />
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
+        <Image
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
+        />
         
         <div ref={heroRef} className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
@@ -293,12 +301,14 @@ export default function LeadershipPage() {
                   className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
                 >
                   <div className="flex flex-col h-70 md:flex-row">
-                    <div className="md:w-2/5 relative overflow-hidden">
+                    <div className="md:w-2/5 relative aspect-square md:aspect-auto md:h-full overflow-hidden">
                       <div className={`absolute inset-0 bg-gradient-to-br ${leader.color} opacity-10 z-10`} />
-                      <img 
+                      <Image
                         src={leader.image}
                         alt={leader.name}
-                        className="w-full h-full object-fit aspect-square md:aspect-auto group-hover:scale-105 transition-transform duration-700"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 30vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                     </div>
                     
@@ -386,7 +396,13 @@ export default function LeadershipPage() {
       <section className="py-16 md:py-20 bg-gray-900">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="relative bg-gradient-to-r from-red-600 to-purple-600 rounded-2xl p-8 md:p-10 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070')] bg-cover bg-center opacity-10" />
+            <Image
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover opacity-10"
+            />
             <div className="relative z-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Ready to work

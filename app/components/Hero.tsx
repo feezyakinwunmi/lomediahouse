@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
 import Lenis from 'lenis';
-import { Canvas } from '@react-three/fiber';
-import { Particles } from './Particles';
+import DeferredHeroCanvas from './DeferredHeroCanvas';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { sendGAEvent } from '@next/third-parties/google'
 
@@ -100,12 +100,13 @@ export default function Hero() {
   // GSAP Dissolve Animation
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.5 });
+    let animationFrameId = 0;
 
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      animationFrameId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    animationFrameId = requestAnimationFrame(raf);
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -126,6 +127,7 @@ export default function Hero() {
       .to(heroRef.current, { backgroundColor: "#f5f5f5", duration: 2 }, 0);
 
     return () => {
+      cancelAnimationFrame(animationFrameId);
       lenis.destroy();
       ScrollTrigger.getAll().forEach(t => t.kill());
       if (slideInterval.current) clearInterval(slideInterval.current);
@@ -135,17 +137,13 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen bg-white text-black overflow-hidden pt-12 sm:pt-16"
+      className="relative min-h-screen bg-white text-black overflow-hidden pt-10"
     >
       <div className="absolute inset-0 z-0 opacity-20">
-        <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-          <Particles count={350} />
-          <ambientLight intensity={1.3} />
-          <pointLight position={[10, 10, 10]} color="#c4b5fd" />
-        </Canvas>
+        <DeferredHeroCanvas />
       </div>
 
-      <div className="relative z-10 max-w-[95%] mx-auto px-4 sm:px-6 md:px-8 pt-6 sm:pt-8 md:pt-10">
+      <div className="relative z-10 max-w-[95%] mx-auto px-4 sm:px-6 md:px-8 pt-4">
         <div className="grid lg:grid-cols-12 gap-8 md:gap-10 items-start">
           
           {/* LEFT COLUMN - Interactive Card Fan */}
@@ -262,10 +260,12 @@ export default function Hero() {
           
           {/* Left Image */}
           <div className="md:col-span-5 relative aspect-[16/9] sm:aspect-[9/3] bg-zinc-100 rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-200">
-            <img
+            <Image
               src="/img1.jpg"
               alt="Visual Firepower"
-              className="h-full w-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 42vw"
+              className="object-cover"
             />
           </div>
 
@@ -284,10 +284,13 @@ export default function Hero() {
                   className="relative w-full h-full overflow-hidden"
                   style={{ height: `${100 / slides.length}%` }}
                 >
-                  <img 
+                  <Image
                     src={slide.image} 
                     alt={slide.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    priority={index === 0}
+                    sizes="(max-width: 768px) 100vw, 58vw"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 text-white">

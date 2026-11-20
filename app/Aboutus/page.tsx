@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
 import { ArrowRight, Award, Globe, Zap, Heart, Coffee, Camera, PenTool, BookOpen, Layout, Mic, Users, Target, Shield } from 'lucide-react';
@@ -115,11 +116,18 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="bg-white mt-16 min-h-screen">
+    <div ref={sectionRef} className="bg-white min-h-screen">
       
       {/* Hero Section - Updated for LO Media House */}
       <section className="relative min-h-[100vh] flex items-center justify-center md:justify-start overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071')] bg-cover bg-center opacity-30" />
+        <Image
+          src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
+        />
         
         <div ref={heroRef} className="relative z-10 w-full max-w-[90%] mx-auto px-4 md:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
@@ -183,12 +191,14 @@ export default function AboutPage() {
             </div>
             
             {/* Right - Image */}
-            <div className="relative">
+            <div className="relative h-[350px] md:h-[400px]">
               <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-2xl blur-xl" />
-              <img 
+              <Image
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070"
                 alt="Team collaboration"
-                className="relative rounded-2xl shadow-xl w-full h-[350px] md:h-[400px] object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="rounded-2xl shadow-xl object-cover"
               />
               <div className="absolute -bottom-4 -left-4 bg-white shadow-lg rounded-xl p-4 max-w-[200px]">
                 <div className="text-2xl font-bold text-gray-900">6 Values</div>
@@ -275,11 +285,13 @@ export default function AboutPage() {
                   key={index}
                   className="group relative bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
                 >
-                  <div className="h-36 overflow-hidden">
-                    <img 
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                   </div>
                   <div className="p-5">
@@ -369,10 +381,13 @@ export default function AboutPage() {
 "/julius.jpg",
               ].map((img, i) => (
                 <div key={i} className="relative rounded-xl overflow-hidden aspect-square">
-                  <img 
+                  <Image
                     src={img}
                     alt="Team member"
-                    className="w-[80%]  h-full object-contain rounded-2xl hover:scale-110 transition-transform duration-500"
+                    width={300}
+                    height={300}
+                    sizes="(max-width: 768px) 40vw, 20vw"
+                    className="w-[80%] h-full object-contain rounded-2xl hover:scale-110 transition-transform duration-500"
                   />
                 </div>
               ))}
@@ -385,7 +400,13 @@ export default function AboutPage() {
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="relative bg-gray-900 rounded-2xl p-8 md:p-12 text-center overflow-hidden">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071')] bg-cover bg-center opacity-10" />
+            <Image
+              src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover opacity-10"
+            />
             <div className="relative z-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Ready to turn your

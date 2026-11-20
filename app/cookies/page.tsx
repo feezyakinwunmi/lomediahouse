@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from '@/lib/gsap';
 import { Cookie, Settings, Globe, Shield, Mail, ArrowRight, X, Check } from 'lucide-react';
@@ -68,11 +69,18 @@ export default function CookiePolicyPage() {
   };
 
   return (
-    <div ref={sectionRef} className="bg-white min-h-screen pt-20">
+    <div ref={sectionRef} className="bg-white min-h-screen">
       
       {/* Hero Section */}
-      <section className="relative py-16 md:py-20 bg-gradient-to-b from-gray-900 to-gray-800">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070')] bg-cover bg-center opacity-20" />
+      <section className="relative pt-24 pb-12 md:pt-28 md:pb-14 bg-gradient-to-b from-gray-900 to-gray-800">
+        <Image
+          src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2070"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-20"
+        />
         
         <div ref={heroRef} className="relative z-10 max-w-[90%] mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">

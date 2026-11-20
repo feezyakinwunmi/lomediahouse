@@ -32,8 +32,8 @@ export default function CoursesPage() {
   );
 
   return (
-    <div className="bg-gray-100 min-h-screen pt-20">
-      <div className="max-w-[90%] mx-auto px-6 py-16">
+    <div className="bg-gray-100 min-h-screen pt-16">
+      <div className="max-w-[90%] mx-auto px-6 py-8 md:py-10">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-gray-900 mb-4">LO Media House Courses</h1>
           <p className="text-xl text-gray-600">Professional development for partners, team members & collaborators</p>

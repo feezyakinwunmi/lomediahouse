@@ -66,7 +66,7 @@ export default function OnboardingCourse() {
     const passed = totalScore >= 70;
 
     return (
-      <div className="bg-gray-50 min-h-screen pt-20 flex items-center justify-center px-4">
+      <div className="bg-gray-50 min-h-screen pt-16 flex items-center justify-center px-4">
         <div className="max-w-lg text-center px-4 sm:px-6">
           <Trophy className={`w-16 h-16 sm:w-24 sm:h-24 mx-auto mb-4 sm:mb-6 ${passed ? 'text-emerald-600' : 'text-amber-600'}`} />
           
@@ -108,7 +108,7 @@ export default function OnboardingCourse() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen pt-20">
+    <div className="bg-gray-50 min-h-screen pt-16">
       {/* Progress Bar at the top */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <div className="w-full h-1 bg-gray-200">

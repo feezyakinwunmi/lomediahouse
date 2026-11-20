@@ -21,7 +21,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=500&fit=crop",
     category: "Book Marketing",
     readTime: "14 min read",
-    date: "October 20, 2026",
+    date: "2026-10-20",
     author: "LOPublications"
 },
 {
@@ -32,7 +32,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=500&fit=crop",
     category: "Digital Marketing",
     readTime: "12 min read",
-    date: "October 20, 2026",
+    date: "2026-10-21",
     author: "LOPublications"
 },
 {
@@ -43,7 +43,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&h=500&fit=crop",
     category: "Web Development",
     readTime: "11 min read",
-    date: "October 27, 2026",
+    date: "2026-10-22",
     author: "LOPublications"
 },
 {
@@ -54,7 +54,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=1200&h=500&fit=crop",
     category: "Content Marketing",
     readTime: "15 min read",
-    date: "October 27, 2026",
+    date: "2026-10-23",
     author: "LOPublications"
 },
 {
@@ -65,7 +65,7 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1200&h=500&fit=crop",
     category: "Web Development",
     readTime: "5 min read",
-    date: "October 27, 2026",
+    date: "2026-10-24",
     author: "LOPublications"
 },
 {
@@ -76,7 +76,34 @@ export const allBlogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1200&h=500&fit=crop",
     category: "Web Development",
     readTime: "12 min read",
-    date: "October 27, 2026",
+    date: "2026-10-25",
     author: "LOPublications"
 }
 ];
+
+const publishedDays = new Set<string>();
+
+for (const post of allBlogPosts) {
+  const timestamp = Date.parse(`${post.date}T00:00:00.000Z`);
+  if (
+    !/^\d{4}-\d{2}-\d{2}$/.test(post.date) ||
+    !Number.isFinite(timestamp) ||
+    new Date(timestamp).toISOString().slice(0, 10) !== post.date
+  ) {
+    throw new Error(`Invalid publication date for blog post "${post.slug}": ${post.date}`);
+  }
+
+  if (publishedDays.has(post.date)) {
+    throw new Error(`Only one blog post may be published per day (${post.date}).`);
+  }
+  publishedDays.add(post.date);
+}
+
+export function formatBlogDate(date: string): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00.000Z`));
+}
