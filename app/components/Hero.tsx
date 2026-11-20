@@ -73,6 +73,7 @@ export default function Hero() {
   const buttonRef = useRef<HTMLDivElement>(null);
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showAllSlides, setShowAllSlides] = useState(false);
   const slideInterval = useRef<NodeJS.Timeout | null>(null);
 
   const startAutoSlide = () => {
@@ -92,6 +93,15 @@ export default function Hero() {
     return () => {
       if (slideInterval.current) clearInterval(slideInterval.current);
     };
+  }, []);
+
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 768px)');
+    const updateSlideRendering = () => setShowAllSlides(desktopQuery.matches);
+
+    updateSlideRendering();
+    desktopQuery.addEventListener('change', updateSlideRendering);
+    return () => desktopQuery.removeEventListener('change', updateSlideRendering);
   }, []);
 
   const goToSlide = (index: number) => {
@@ -160,7 +170,7 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen bg-white text-black overflow-hidden pt-10"
+      className="relative min-h-screen bg-white text-black overflow-hidden pt-24 md:pt-28"
     >
       <div className="absolute inset-0 z-0 opacity-20">
         <DeferredHeroCanvas />
@@ -282,16 +292,29 @@ export default function Hero() {
 
           {/* Right Slider */}
           <div className="md:col-span-7 relative rounded-xl sm:rounded-2xl overflow-hidden border border-zinc-200 h-[140px] sm:h-[160px] md:h-[160px] bg-zinc-900 group">
-            <div className="relative w-full h-full transition-all duration-700 ease-out">
-              {[slides[currentSlide]].map((slide) => (
+            <div
+              className="relative w-full transition-all duration-700 ease-out"
+              style={{
+                height: `${showAllSlides ? slides.length * 100 : 100}%`,
+                transform: showAllSlides
+                  ? `translateY(-${currentSlide * (100 / slides.length)}%)`
+                  : undefined,
+              }}
+            >
+              {(showAllSlides ? slides : [slides[currentSlide]]).map((slide, renderedIndex) => {
+                const index = showAllSlides ? renderedIndex : currentSlide;
+
+                return (
                 <div 
-                  key={slide.title}
+                  key={`${index}-${slide.title}`}
                   className="relative w-full h-full overflow-hidden"
+                  style={{ height: `${100 / (showAllSlides ? slides.length : 1)}%` }}
                 >
                   <Image
                     src={slide.image} 
                     alt={slide.title}
                     fill
+                    priority={index === 0}
                     sizes="(max-width: 768px) 100vw, 58vw"
                     className="object-cover"
                   />
@@ -301,7 +324,8 @@ export default function Hero() {
                     <div className="text-xs sm:text-sm mt-0.5 opacity-90">{slide.desc}</div>
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Navigation Arrows */}
