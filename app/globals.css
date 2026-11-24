@@ -82,3 +82,22 @@ body {
   animation: float 4s ease-in-out infinite;
 }
 
+/* Hero card fan: fanned at rest, lifts and straightens on hover/focus. */
+.hero-card {
+  transform: rotate(var(--r)) translateX(var(--x)) translateY(var(--y));
+}
+
+.hero-card:hover,
+.hero-card:focus-within {
+  transform: rotate(0deg) translateX(var(--x)) translateY(-20px) scale(1.1);
+  z-index: 50 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse,
+  .animate-spin-slow {
+    animation: none;
+  }
+}
+

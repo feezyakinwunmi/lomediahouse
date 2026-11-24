@@ -1,76 +1,11 @@
-'use client';
-
-import { useRef, useEffect, useState } from 'react';
-import { runDesktopAnimations } from '@/lib/desktopAnimations';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle,
-} from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import ScrollReveal from '@/app/components/ScrollReveal';
+import ContactForm from './ContactForm';
 
 export default function ContactPage() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const formContainerRef = useRef<HTMLDivElement>(null);
-  const infoContainerRef = useRef<HTMLDivElement>(null);
-  const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
-    if (formContainerRef.current) {
-      gsap.fromTo(formContainerRef.current,
-        { opacity: 0, x: -30 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: formContainerRef.current,
-            start: "top 85%",
-            end: "top 70%",
-            scrub: 0.5,
-          }
-        }
-      );
-    }
-
-    if (infoContainerRef.current) {
-      gsap.fromTo(infoContainerRef.current,
-        { opacity: 0, x: 30 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.8,
-          delay: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: infoContainerRef.current,
-            start: "top 85%",
-            end: "top 70%",
-            scrub: 0.5,
-          }
-        }
-      );
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-    });
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
   return (
-    <div ref={sectionRef} className="bg-white min-h-screen ">
+    <div className="bg-white min-h-screen">
+      <ScrollReveal />
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 md:pt-28 md:pb-20 bg-gradient-to-b from-gray-50 to-white">
@@ -83,7 +18,7 @@ export default function ContactPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4">
             Let's create
             <br />
-            <span className="text-red-500">something amazing.</span>
+            <span className="text-red-500">something amazing</span>
           </h1>
           
           <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
@@ -99,85 +34,17 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             
             {/* Contact Form Container */}
-            <div ref={formContainerRef}>
+            <div data-reveal="up">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Send us a message</h2>
               <p className="text-gray-600 text-sm mb-6">
                 Fill out the form below and we'll get back to you within 24 hours.
               </p>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Full Name</label>
-                    <input 
-                      type="text"
-                      required
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                      placeholder="Full Name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">Email Address</label>
-                    <input 
-                      type="email"
-                      required
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                      placeholder="example@gmail.com"
-                    />
-                  </div>
-                </div>
-                
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">Phone Number</label>
-                  <input 
-                    type="tel"
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                    placeholder="Enter your Number"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">Subject</label>
-                  <select className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all">
-                    <option>General Inquiry</option>
-                    <option>Project Collaboration</option>
-                    <option>Media Partnership</option>
-                    <option>Careers</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">Message</label>
-                  <textarea 
-                    rows={4}
-                    required
-                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
-                    placeholder="Tell us about your project or idea..."
-                  />
-                </div>
-                
-                <button 
-                  type="submit"
-                  className="w-full py-2.5 bg-gray-900 text-white rounded-lg font-medium text-sm hover:bg-gray-800 transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group"
-                >
-                  {submitted ? (
-                    <>
-                      <CheckCircle className="w-4 h-4" />
-                      Message Sent!
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-                    </>
-                  )}
-                </button>
-              </form>
+              <ContactForm />
             </div>
             
             {/* Contact Info Container */}
-            <div ref={infoContainerRef}>
+            <div data-reveal="up" data-reveal-delay={0.1}>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Information</h2>
               <p className="text-gray-600 text-sm mb-6">
                 Prefer to reach us directly? Here are all the ways you can connect with the team.
@@ -204,10 +71,10 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 text-sm mb-0.5">Call Us</h3>
-                    <a href="tel:+1 (905) 922-4471" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
+                    <a href="tel:+19059224471" className="text-gray-600 hover:text-red-500 transition-colors text-xs block">
                       +1 (905) 922-4471
                     </a>
-                    <span className="text-[10px] text-gray-400">Mon-Fri, 9am - 6pm EST</span>
+                    <span className="text-[10px] text-gray-400">Mon–Fri, 9 a.m.–6 p.m. ET</span>
                   </div>
                 </div>
                 

@@ -92,10 +92,10 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
             LO MEDIAHOUSE BLOG
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-4">
-            Insights for Authors &amp; Publishers
+            Insights on Marketing, Media &amp; Technology
           </h1>
           <p className="text-gray-200 max-w-2xl mx-auto">
-            Practical guides on book marketing, self-publishing, writing craft, and building a long-term career as an author.
+            Practical guides on book marketing, digital marketing, websites, apps, and content strategy for authors, businesses, and ministries.
           </p>
         </div>
       </section>
@@ -261,14 +261,18 @@ export default function BlogClient({ blogPosts }: { blogPosts: BlogPost[] }) {
               <div className="bg-gradient-to-br from-gray-900 to-black text-white rounded-2xl p-8">
                 <h3 className="text-2xl font-bold mb-3">Never Miss an Insight</h3>
                 <p className="text-gray-400 mb-6 text-sm">
-                  Weekly guides on publishing, book marketing &amp; writing craft.
+                  Practical guides on marketing, publishing &amp; technology.
                 </p>
+                <label htmlFor="blog-newsletter-email" className="sr-only">Email address</label>
                 <input
+                  id="blog-newsletter-email"
+                  name="email"
+                  autoComplete="email"
                   type="email"
                   placeholder="Your email"
                   className="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-3.5 mb-3 focus:outline-none focus:border-red-500"
                 />
-                <button className="w-full bg-red-600 hover:bg-red-700 py-3.5 rounded-2xl font-medium transition">
+                <button type="button" className="w-full bg-red-600 hover:bg-red-700 py-3.5 rounded-2xl font-medium transition">
                   Subscribe
                 </button>
               </div>

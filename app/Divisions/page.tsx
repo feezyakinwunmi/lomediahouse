@@ -1,8 +1,5 @@
-'use client';
-
-import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { runDesktopAnimations } from '@/lib/desktopAnimations';
+import ScrollReveal from '@/app/components/ScrollReveal';
 import { ArrowRight, Sparkles, Camera, Zap, BookOpen, Globe, Play, Layers, TrendingUp } from 'lucide-react';
 
 const divisions = [
@@ -54,7 +51,7 @@ const divisions = [
     fullDescription: "Our publishing arm is dedicated to the creation, development, and distribution of written content. Whether you’re a first-time author navigating the publishing process or an experienced writer looking to publish your fifth book, we support authors, organisations, and thought leaders in bringing ideas to life through structured, high-quality publications. From writing and editing to production and distribution, we ensure every project reaches its full potential.",
       services: [
       "Magazine & Editorial Design",
-      "Lookbooks & Catalogs",
+      "Lookbooks & Catalogues",
       "Brand Guidelines & Identity",
       "Packaging Design",
       "Annual Reports & Corporate Publications"
@@ -89,72 +86,10 @@ const divisions = [
 ];
 
 export default function DivisionsPage() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const divisionRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
-    // Hero animation
-    if (heroRef.current) {
-      gsap.fromTo(heroRef.current,
-        { opacity: 0, y: 50, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top 85%",
-            end: "top 60%",
-            scrub: 0.5,
-          }
-        }
-      );
-    }
-
-    // Animate each division with unique entrance
-    divisionRefs.current.forEach((div, i) => {
-      if (div) {
-        const direction = i % 2 === 0 ? -150 : 150;
-        gsap.fromTo(div,
-          { 
-            opacity: 0, 
-            x: direction,
-            rotation: i % 2 === 0 ? -3 : 3,
-            scale: 0.95
-          },
-          {
-            opacity: 1,
-            x: 0,
-            rotation: 0,
-            scale: 1,
-            duration: 0.8,
-            delay: i * 0.15,
-            ease: "back.out(1.2)",
-            scrollTrigger: {
-              trigger: div,
-              start: "top 85%",
-              end: "top 65%",
-              scrub: 0.8,
-            }
-          }
-        );
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-    });
-  }, []);
 
   return (
-    <div ref={sectionRef} className="bg-gradient-to-b from-gray-50 to-white min-h-screen overflow-hidden">
+    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen overflow-hidden">
+      <ScrollReveal />
       
       {/* Hero Section */}
       <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden py-16">
@@ -169,22 +104,22 @@ export default function DivisionsPage() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-red-500/5 to-purple-500/5 rounded-full blur-3xl" />
         </div>
 
-        <div ref={heroRef} className="relative z-10 text-center max-w-4xl mx-auto px-6">
+        <div data-reveal="up" className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 border border-gray-200 mb-6 animate-float">
             <Sparkles className="w-3 h-3 text-red-500" />
             <span className="text-[10px] text-gray-600 tracking-wide">THE LO UNIVERSE</span>
           </div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-gray-900 mb-4">
-            One vision.
+            One vision
             <br />
             <span className="bg-gradient-to-r from-red-500 to-purple-500 bg-clip-text text-transparent">
-              Four pillars.
+              Four pillars
             </span>
           </h1>
           
           <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">
-          LO Media House operates through three core divisions, each designed to address a critical aspect of modern brand and organisational development.
+          LO Media House operates through four core divisions, each designed to address a critical aspect of modern brand and organisational development.
           </p>
         </div>
 
@@ -200,9 +135,9 @@ export default function DivisionsPage() {
         return (
           <section
             key={division.id}
-            ref={(el: HTMLDivElement | null) => {
-              divisionRefs.current[idx] = el;
-            }}
+            id={division.id}
+            data-reveal={idx % 2 === 0 ? 'left' : 'right'}
+            data-reveal-delay={idx * 0.15}
             className="py-12 md:py-16 border-t border-gray-200 first:border-t-0"
           >
             <div className="max-w-[90%] mx-auto px-4 sm:px-6">
@@ -308,10 +243,10 @@ export default function DivisionsPage() {
           </div>
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Four divisions.
+            Four divisions
             <br />
             <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
-              One ecosystem.
+              One ecosystem
             </span>
           </h2>
           

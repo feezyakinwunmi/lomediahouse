@@ -1,60 +1,12 @@
-'use client';
-
-import { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { runDesktopAnimations } from '@/lib/desktopAnimations';
+import ScrollReveal from '@/app/components/ScrollReveal';
 import { FileText, Scale, Clock, CreditCard, AlertCircle, Mail, ArrowRight } from 'lucide-react';
 
 export default function TermsPage() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
-    gsap.fromTo(heroRef.current,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    gsap.fromTo(contentRef.current,
-      { opacity: 0, y: 20 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        delay: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: contentRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-    });
-  }, []);
 
   return (
-    <div ref={sectionRef} className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen">
+      <ScrollReveal />
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-12 md:pt-28 md:pb-14 bg-gradient-to-b from-gray-900 to-gray-800">
@@ -67,7 +19,7 @@ export default function TermsPage() {
           className="object-cover opacity-20"
         />
         
-        <div ref={heroRef} className="relative z-10 max-w-[90%] mx-auto px-4 sm:px-6 text-center">
+        <div data-reveal="up" className="relative z-10 max-w-[90%] mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
             <FileText className="w-3.5 h-3.5 text-white" />
             <span className="text-[10px] text-white tracking-wide">LEGAL</span>
@@ -89,7 +41,7 @@ export default function TermsPage() {
 
       {/* Content Section */}
       <section className="py-12 md:py-16">
-        <div ref={contentRef} className="max-w-4xl mx-auto px-4 sm:px-6">
+        <div data-reveal="up" className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="prose prose-sm md:prose-base max-w-none">
             
             {/* Agreement */}

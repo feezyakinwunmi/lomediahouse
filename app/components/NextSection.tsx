@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 // Social Icons and Apps
 const socialIcons = [
@@ -39,12 +40,12 @@ export default function NextSection() {
               </p>
 
               <div className="mt-6 sm:mt-7 flex flex-wrap gap-3">
-                <a href="#work" className="px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-red-500 to-purple-500 text-white rounded-full font-medium text-sm hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25">
+                <Link href="/ContactUs" className="px-5 sm:px-6 py-2.5 sm:py-3 bg-gradient-to-r from-red-500 to-purple-500 text-white rounded-full font-medium text-sm hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-red-500/25">
                   Launch Campaign →
-                </a>
-                <a href="#contact" className="px-5 sm:px-6 py-2.5 sm:py-3 border border-zinc-600 text-black rounded-full font-medium text-sm hover:bg-zinc-50 transition-all duration-300">
+                </Link>
+                <Link href="/ContactUs" className="px-5 sm:px-6 py-2.5 sm:py-3 border border-zinc-600 text-black rounded-full font-medium text-sm hover:bg-zinc-50 transition-all duration-300">
                   Strategy Call
-                </a>
+                </Link>
               </div>
 
               {/* Stats */}
@@ -98,9 +99,10 @@ export default function NextSection() {
               <div className="relative w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] rounded-full overflow-hidden shadow-xl shadow-red-500/20 ring-2 ring-white/10">
                 <Image
                   src="/imagegirl.png"
-                  alt="Digital Ecosystem"
-                  width={800}
-                  height={800}
+                  alt="Digital ecosystem across social platforms"
+                  width={280}
+                  height={280}
+                  sizes="(max-width: 640px) 200px, (max-width: 768px) 240px, 280px"
                   className="object-cover w-full h-full scale-110 hover:scale-125 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-red-500/20 to-purple-500/20 mix-blend-overlay" />
@@ -120,7 +122,9 @@ export default function NextSection() {
               return (
                 <div
                   key={index}
-                  className="absolute z-30 cursor-pointer group"
+                  className="absolute z-30 group"
+                  role="img"
+                  aria-label={social.name}
                   style={{
                     transform: `translate(${x}px, ${y}px)`,
                     transition: 'transform 0.3s ease'

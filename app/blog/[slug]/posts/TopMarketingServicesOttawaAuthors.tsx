@@ -32,9 +32,9 @@ export default function TopMarketingServicesOttawaAuthors() {
                   <Megaphone size={16} className="text-amber-300" />
                   <span className="text-amber-300 text-sm">Book Marketing • Ottawa, Canada</span>
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold max-w-3xl">
+                <h2 className="text-3xl md:text-4xl font-bold max-w-3xl">
                   Top Marketing Services for Ottawa Authors: A Complete Guide
-                </h1>
+                </h2>
               </div>
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function TopMarketingServicesOttawaAuthors() {
             <div className="bg-gradient-to-r from-red-900 to-amber-800 rounded-2xl p-8 text-center text-white mt-10">
               <h2 className="text-2xl font-bold mb-4">Let LO Media House Handle the Rest</h2>
               <p className="mb-6">Get expert guidance on book marketing strategy, author branding, and promotional services tailored for Ottawa authors.</p>
-              <Link href="/contact" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
+              <Link href="/ContactUs" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Start Marketing Your Book Today →
               </Link>
             </div>
@@ -235,11 +235,11 @@ export default function TopMarketingServicesOttawaAuthors() {
             <div className="mt-12 border-t border-gray-200 pt-8">
               <h3 className="text-xl font-bold text-black text-center mb-6">You Might Also Like</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Link href="/blog/author-branding-book-marketing-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                <Link href="/blog/digital-marketing-services-ottawa-realtors" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&h=400&fit=crop" 
-                      alt="Author branding and book marketing in Ottawa" 
+                      alt="Digital marketing for Ottawa realtors" 
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover group-hover:scale-105 transition duration-300"
@@ -247,16 +247,16 @@ export default function TopMarketingServicesOttawaAuthors() {
                   </div>
                   <div className="p-4">
                     <h4 className="font-bold text-black group-hover:text-red-900 transition">
-                      Author Branding & Book Marketing in Ottawa
+                      Digital Marketing Services for Ottawa Realtors
                     </h4>
-                    <p className="text-gray-500 text-sm mt-1">How local authors build visibility and grow their readership.</p>
+                    <p className="text-gray-500 text-sm mt-1">Local SEO, content, social media, and ads for Ottawa real estate.</p>
                   </div>
                 </Link>
-                <Link href="/blog/book-marketing-web-design-ottawa" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                <Link href="/blog/launching-your-first-website" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src="https://images.unsplash.com/photo-1554774853-aae0a22c8aa4?w=600&h=400&fit=crop" 
-                      alt="Book marketing and web design for Ottawa authors" 
+                      alt="Launching your first website" 
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover group-hover:scale-105 transition duration-300"
@@ -264,9 +264,9 @@ export default function TopMarketingServicesOttawaAuthors() {
                   </div>
                   <div className="p-4">
                     <h4 className="font-bold text-black group-hover:text-red-900 transition">
-                      The Ultimate Guide to Book Marketing & Web Design for Ottawa Authors
+                      Launching Your First Website: A Simple Guide
                     </h4>
-                    <p className="text-gray-500 text-sm mt-1">A comprehensive guide to marketing and web design for Ottawa authors.</p>
+                    <p className="text-gray-500 text-sm mt-1">Plan, build, and launch an author or business website step by step.</p>
                   </div>
                 </Link>
               </div>

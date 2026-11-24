@@ -32,9 +32,9 @@ export default function DigitalMarketingServicesOttawaRealtors() {
                   <Home size={16} className="text-amber-300" />
                   <span className="text-amber-300 text-sm">Digital Marketing • Ottawa, Canada</span>
                 </div>
-                <h1 className="text-3xl md:text-4xl font-bold max-w-3xl">
+                <h2 className="text-3xl md:text-4xl font-bold max-w-3xl">
                   Digital Marketing Services for Ottawa Realtors: Build a Stronger Online Presence
-                </h1>
+                </h2>
               </div>
             </div>
           </div>
@@ -307,7 +307,7 @@ export default function DigitalMarketingServicesOttawaRealtors() {
               <h2 className="text-2xl font-bold mb-4">Ready to Grow Your Real Estate Business Online?</h2>
               <p className="mb-6">If you are an Ottawa realtor looking to attract more buyers and sellers, strengthen your online presence, and turn your digital channels into a consistent source of potential clients, LO Media House can help.</p>
               <p className="mb-6 text-sm text-white/80">We can help you develop a digital marketing strategy tailored to your real estate business, including SEO, social media marketing, content creation, paid advertising, website optimisation, and lead-generation strategies.</p>
-              <Link href="/contact" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
+              <Link href="/ContactUs" className="inline-block bg-white text-red-900 px-8 py-3 rounded-full font-semibold hover:shadow-lg transition">
                 Contact LO Media House Today →
               </Link>
             </div>
@@ -333,11 +333,11 @@ export default function DigitalMarketingServicesOttawaRealtors() {
                     <p className="text-gray-500 text-sm mt-1">Discover the top marketing services for Ottawa authors.</p>
                   </div>
                 </Link>
-                <Link href="/blog/web-design-services-ottawa-authors" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
+                <Link href="/blog/launching-your-first-website" className="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition">
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop" 
-                      alt="Web design services for Ottawa authors" 
+                      alt="Launching your first website" 
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover group-hover:scale-105 transition duration-300"
@@ -345,9 +345,9 @@ export default function DigitalMarketingServicesOttawaRealtors() {
                   </div>
                   <div className="p-4">
                     <h4 className="font-bold text-black group-hover:text-red-900 transition">
-                      Web Design Services for Ottawa Authors
+                      Launching Your First Website: A Simple Guide
                     </h4>
-                    <p className="text-gray-500 text-sm mt-1">Build a polished online presence for your author brand.</p>
+                    <p className="text-gray-500 text-sm mt-1">Plan, build, and launch your website step by step.</p>
                   </div>
                 </Link>
               </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Menu, X, Search, Globe, Camera, Book, Zap, ChevronDown, FileText, TrendingUp, PenTool, DollarSign } from 'lucide-react';
@@ -77,6 +78,9 @@ export default function Navbar() {
       { title: "Leadership", href: "/Leadership", type: "Page" },
       { title: "Courses", href: "/courses", type: "Page" },
       { title: "Websites, Apps & Tech Platforms", href: "/websites-apps-tech-platforms", type: "Page" },
+      { title: "Building a Business in Africa", href: "/building-a-business-in-africa", type: "Page" },
+      { title: "Beyond Visibility: How Nigerian Businesses Can Build Brand Authority", href: "/brand-authority-nigerian-businesses", type: "Page" },
+      { title: "Beyond the CEO: The People Who Shape a Company's Reputation", href: "/blog/beyond-the-ceo-people-who-shape-company-reputation", type: "Blog Post" },
       { title: "Blog", href: "/blog", type: "Page" },
       { title: "Contact Us", href: "/ContactUs", type: "Page" }
     ];
@@ -183,20 +187,21 @@ export default function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm">
         <div className="max-w-[95%] mx-auto flex items-center justify-between px-6 py-4">
           {/* Logo */}
-          <div className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2" aria-label="LO Media House home">
             <div className="w-8 h-8 rounded-xl flex items-center justify-center text-white font-bold text-xl">
               <Image
                 src="/logo.png"
                 width={32}
                 height={32}
                 className="object-cover"
-                alt="Logo"
+                alt=""
+                priority
               />
             </div>
             <div className="text-lg font-bold tracking-tighter heading-font text-black">
               Lo<span className="text-red-500">MediaHouse</span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex items-center gap-4 text-xs font-medium text-zinc-700">
@@ -209,16 +214,18 @@ export default function Navbar() {
               <span className="text-xs">Search</span>
             </button>
 
-            <a href="/" className="hover:text-red-500 transition-colors">Home</a>
-            <a href="/Aboutus" className="hover:text-red-500 transition-colors">About us</a>
-            <a href="/Divisions" className="hover:text-red-500 transition-colors">Divisions</a>
-            <a href="/Leadership" className="hover:text-red-500 transition-colors">Leadership</a>
-            <a href="/courses" className="hover:text-red-500 transition-colors">Courses</a>
-            <a href="/websites-apps-tech-platforms" className="hover:text-red-500 transition-colors">Web &amp; Apps</a>
+            <Link href="/" className="hover:text-red-500 transition-colors">Home</Link>
+            <Link href="/Aboutus" className="hover:text-red-500 transition-colors">About us</Link>
+            <Link href="/Divisions" className="hover:text-red-500 transition-colors">Divisions</Link>
+            <Link href="/Leadership" className="hover:text-red-500 transition-colors">Leadership</Link>
+            <Link href="/courses" className="hover:text-red-500 transition-colors">Courses</Link>
+            <Link href="/websites-apps-tech-platforms" className="hover:text-red-500 transition-colors">Web &amp; Apps</Link>
 
             {/* Blog Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
+                type="button"
+                aria-expanded={blogDropdownOpen}
                 onClick={() => setBlogDropdownOpen(!blogDropdownOpen)}
                 onMouseEnter={() => setBlogDropdownOpen(true)}
                 className="hover:text-red-500 transition-colors flex items-center gap-1"
@@ -240,7 +247,7 @@ export default function Navbar() {
                   {/* Blog Posts */}
                   <div className="divide-y divide-gray-100">
                     {blogPosts.map((post) => (
-                      <a
+                      <Link
                         key={post.id}
                         href={`/blog/${post.slug}`}
                         onClick={() => setBlogDropdownOpen(false)}
@@ -255,24 +262,24 @@ export default function Navbar() {
                           </h4>
                           <p className="text-xs text-gray-500 mt-0.5">{post.category}</p>
                         </div>
-                      </a>
+                      </Link>
                     ))}
                   </div>
 
                   {/* Dropdown Footer */}
-                  <a
+                  <Link
                     href="/blog"
                     onClick={() => setBlogDropdownOpen(false)}
                     className="flex items-center justify-between px-5 py-3 bg-gray-50 hover:bg-red-50 transition text-sm font-medium text-red-500"
                   >
                     <span>View All Articles</span>
                     <span>→</span>
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
 
-            <a href="/ContactUs" className="hover:text-red-500 transition-colors">Contact Us</a>
+            <Link href="/ContactUs" className="hover:text-red-500 transition-colors">Contact Us</Link>
           </div>
 
           <div className="hidden lg:flex items-center gap-2">
@@ -286,7 +293,13 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button onClick={() => setOpen(!open)} className="lg:hidden text-black">
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            className="lg:hidden text-black p-2 -mr-2"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+          >
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -307,12 +320,12 @@ export default function Navbar() {
                 <span>Search</span>
               </button>
 
-              <a href="/" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Home</a>
-              <a href="/Aboutus" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">About Us</a>
-              <a href="/Divisions" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Divisions</a>
-              <a href="/Leadership" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Leadership</a>
-              <a href="/courses" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Courses</a>
-              <a href="/websites-apps-tech-platforms" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Web &amp; Apps</a>
+              <Link href="/" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Home</Link>
+              <Link href="/Aboutus" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">About Us</Link>
+              <Link href="/Divisions" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Divisions</Link>
+              <Link href="/Leadership" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Leadership</Link>
+              <Link href="/courses" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Courses</Link>
+              <Link href="/websites-apps-tech-platforms" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Web &amp; Apps</Link>
 
               <LanguageSwitcher variant="mobile" />
 
@@ -329,7 +342,7 @@ export default function Navbar() {
                 {mobileBlogOpen && (
                   <div className="mt-4 flex flex-col items-center gap-3 border-l-2 border-red-100 pl-4">
                     {blogPosts.map((post) => (
-                      <a
+                      <Link
                         key={post.id}
                         href={`/blog/${post.slug}`}
                         onClick={() => {
@@ -340,9 +353,9 @@ export default function Navbar() {
                       >
                         <post.icon className="w-4 h-4 flex-shrink-0" />
                         <span className="line-clamp-1">{post.title}</span>
-                      </a>
+                      </Link>
                     ))}
-                    <a
+                    <Link
                       href="/blog"
                       onClick={() => {
                         setOpen(false);
@@ -351,20 +364,20 @@ export default function Navbar() {
                       className="text-sm font-medium text-red-500 hover:text-red-600 transition"
                     >
                       View All Articles →
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>
 
-              <a href="/ContactUs" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Contact Us</a>
+              <Link href="/ContactUs" onClick={() => setOpen(false)} className="hover:text-red-500 transition-colors">Contact Us</Link>
               
               {/* Mobile Call Button */}
               <a 
-                href="tel:+15142192987" 
+                href="tel:+19059224471" 
                 onClick={() => setOpen(false)}
                 className="mt-2 px-6 py-2.5 bg-black text-white rounded-full font-medium text-sm hover:bg-zinc-800 transition-all inline-block"
               >
-                Call Us: +1 (514) 219 2987
+                Call Us: +1 (905) 922-4471
               </a>
             </div>
           </div>
@@ -379,7 +392,8 @@ export default function Navbar() {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               ref={searchInputRef}
-              type="text"
+              type="search"
+              aria-label="Search the site"
               placeholder="Search divisions, courses, blog posts, pages..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -387,7 +401,9 @@ export default function Navbar() {
             />
             {searchQuery && (
               <button
+                type="button"
                 onClick={() => setSearchQuery("")}
+                aria-label="Clear search"
                 className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
               >
                 <X size={20} />

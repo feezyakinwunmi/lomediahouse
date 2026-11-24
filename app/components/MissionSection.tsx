@@ -45,9 +45,9 @@ export default function MissionSection() {
         
         {/* Section Header - Clean & Minimal */}
         <div className="text-center mb-12 md:mb-10">
-          <p className="text-transparent text-xs uppercase tracking-[3px] font-light mb-3">THE LO EDGE</p>
+          <p className="text-red-600 text-xs uppercase tracking-[3px] font-medium mb-3">THE LO EDGE</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-zinc-700 to-black bg-clip-text text-transparent">
-            Method &
+            Method &{' '}
             <span className="font-bold bg-gradient-to-r from-zinc-700 to-black bg-clip-text text-transparent">Mastery</span>
           </h2>
           <div className="w-10 h-px bg-red-500 mx-auto mt-5" />
@@ -96,7 +96,7 @@ export default function MissionSection() {
                 className="group bg-white hover:bg-gray-50 transition-all duration-500 p-5 md:p-6 text-center rounded-xl shadow-sm"
               >
                 <div className={`inline-flex p-2 rounded-full bg-gradient-to-br ${value.gradient} bg-opacity-10 mb-4 group-hover:scale-110 transition-transform duration-500`}>
-                  <Icon className="w-5 h-5 text-white" />
+                  <Icon className="w-5 h-5 text-white" aria-hidden="true" />
                 </div>
                 <h4 className="text-base md:text-lg font-medium text-gray-900 mb-2 group-hover:text-red-500 transition-colors">
                   {value.title}

@@ -1,8 +1,6 @@
-'use client';
-
-import { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
-import { runDesktopAnimations } from '@/lib/desktopAnimations';
+import ScrollReveal from '@/app/components/ScrollReveal';
 import { Mail, ArrowRight, Award, Briefcase, Users, TrendingUp, Phone, Globe } from 'lucide-react';
 
 // Custom social icons as simple SVG components (Lucide doesn't have these)
@@ -55,7 +53,7 @@ const leaders = [
       facebook: "https://www.facebook.com/layoobidike", 
       instagram: "https://www.instagram.com/layoobidike",
       email: "layo@lomediahouse.com",
-      phone: "tel:+5142192987",
+      phone: "+15142192987",
       website: "https://layoobidike.com/"
 
     },
@@ -142,6 +140,7 @@ const SocialLinks = ({ social }: { social: any }) => {
 
   return (
     <div className="flex flex-wrap gap-2">
+      <ScrollReveal />
       {socialItems.map(({ key, icon: Icon, label }) => {
         const value = social[key];
         if (!value) return null;
@@ -164,82 +163,9 @@ const SocialLinks = ({ social }: { social: any }) => {
 };
 
 export default function LeadershipPage() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const leadersRef = useRef<HTMLDivElement[]>([]);
-  const valuesRef = useRef<HTMLDivElement[]>([]);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
-    gsap.fromTo(heroRef.current,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    leadersRef.current.forEach((leader, i) => {
-      if (leader) {
-        gsap.fromTo(leader,
-          { opacity: 0, y: 40, scale: 0.98 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.6,
-            delay: i * 0.08,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: leader,
-              start: "top 85%",
-              end: "top 70%",
-              scrub: 0.5,
-            }
-          }
-        );
-      }
-    });
-
-    valuesRef.current.forEach((value, i) => {
-      if (value) {
-        gsap.fromTo(value,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            delay: i * 0.08,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: value,
-              start: "top 90%",
-              end: "top 75%",
-              scrub: 0.5,
-            }
-          }
-        );
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-    });
-  }, []);
 
   return (
-    <div ref={sectionRef} className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen">
       
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
@@ -252,7 +178,7 @@ export default function LeadershipPage() {
           className="object-cover opacity-30"
         />
         
-        <div ref={heroRef} className="relative z-10 text-center max-w-4xl mx-auto px-6">
+        <div data-reveal="up" className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
             <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
             <span className="text-[10px] text-white tracking-wide">LEADERSHIP</span>
@@ -261,7 +187,7 @@ export default function LeadershipPage() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4">
             Professionals with
             <br />
-            <span className="text-red-500">a collective mission.</span>
+            <span className="text-red-500">a collective mission</span>
           </h1>
           
           <p className="text-sm md:text-base text-gray-200 leading-relaxed max-w-2xl mx-auto">
@@ -285,7 +211,7 @@ export default function LeadershipPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Meet the
               <br />
-              <span className="text-red-500">leadership.</span>
+              <span className="text-red-500">leadership</span>
             </h2>
             <p className="text-gray-600 text-sm max-w-2xl mx-auto mt-4">
               Each member of our leadership team is dedicated not only to the growth of the organisation, 
@@ -298,7 +224,7 @@ export default function LeadershipPage() {
               return (
                 <div
                   key={index}
-                  ref={(el) => { if (el) leadersRef.current[index] = el; }}
+                  data-reveal="up" data-reveal-delay={index * 0.08}
                   className="group relative bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
                 >
                   <div className="flex flex-col h-70 md:flex-row">
@@ -349,7 +275,7 @@ export default function LeadershipPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Our leadership
               <br />
-              <span className="text-red-500">principles.</span>
+              <span className="text-red-500">principles</span>
             </h2>
             <p className="text-gray-600 text-sm max-w-2xl mx-auto mt-4">
               Every project is executed with care, precision, and a focus on meaningful outcomes.
@@ -378,7 +304,7 @@ export default function LeadershipPage() {
               return (
                 <div
                   key={index}
-                  ref={(el) => { if (el) valuesRef.current[index] = el; }}
+                  data-reveal="up" data-reveal-delay={index * 0.08}
                   className="group relative bg-white border border-gray-200 rounded-xl p-5 md:p-6 text-center hover:shadow-lg transition-all duration-500 hover:-translate-y-1"
                 >
                   <div className="inline-flex p-2 rounded-lg bg-red-50 mb-4">
@@ -413,13 +339,13 @@ export default function LeadershipPage() {
               <p className="text-gray-200 text-sm md:text-base max-w-2xl mx-auto mb-6">
                 We're always open to collaborations, partnerships, and new projects. Let's create something amazing together.
               </p>
-              <a 
+              <Link 
                 href="/ContactUs" 
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-gray-900 rounded-full font-medium text-sm hover:scale-105 transition-all duration-300 group"
               >
                 Get in Touch
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

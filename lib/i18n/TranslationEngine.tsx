@@ -14,6 +14,9 @@ import {
 /** Title of the current page in English, so it can be restored on the way back. */
 let englishTitle: string | null = null;
 
+/** Whether the DOM has been translated since the last restore. */
+let hasTranslated = false;
+
 /**
  * Translates every rendered string on the page (including server-rendered
  * content such as blog articles) and keeps translating content that React adds
@@ -27,6 +30,9 @@ export default function TranslationEngine() {
     if (typeof document === 'undefined' || !document.body) return;
 
     if (language === DEFAULT_LOCALE) {
+      // Nothing to undo on a normal English page load: skip the full DOM walk.
+      if (!hasTranslated) return;
+      hasTranslated = false;
       restoreSubtree(document.body);
       if (englishTitle !== null) {
         document.title = englishTitle;
@@ -48,6 +54,7 @@ export default function TranslationEngine() {
       document.title = translation;
     };
 
+    hasTranslated = true;
     translateSubtree(root, dictionary, translatedValues);
     translateTitle();
 

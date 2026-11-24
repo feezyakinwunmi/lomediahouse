@@ -112,7 +112,7 @@ export default function TestimonialsSection() {
                 className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 transition-all duration-500 hover:transform hover:-translate-y-2 hover:border-red-500/30"
               >
                 {/* Quote Icon */}
-                <div className="text-3xl md:text-4xl text-red-500/40 mb-4">"</div>
+                <div className="text-3xl md:text-4xl text-red-500/40 mb-4" aria-hidden="true">&ldquo;</div>
                 
                 {/* Testimony Text */}
                 <p className="text-sm md:text-base text-zinc-300 leading-relaxed mb-5 line-clamp-4">
@@ -120,7 +120,7 @@ export default function TestimonialsSection() {
                 </p>
                 
                 {/* Stars */}
-                <div className="flex gap-1 mb-4">
+                <div className="flex gap-1 mb-4" role="img" aria-label={`${testimonial.rating} out of 5 stars`}>
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-red-500 text-red-500" />
                   ))}
@@ -128,7 +128,7 @@ export default function TestimonialsSection() {
                 
                 {/* Name and Role */}
                 <div>
-                  <h4 className="text-base md:text-lg font-bold text-white">{testimonial.name}</h4>
+                  <h3 className="text-base md:text-lg font-bold text-white">{testimonial.name}</h3>
                   <p className="text-xs md:text-sm text-zinc-400">{testimonial.role}</p>
                 </div>
               </div>

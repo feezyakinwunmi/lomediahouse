@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -55,16 +55,53 @@ export const metadata: Metadata = {
 
 const organizationSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'LO Media House',
-  url: 'https://www.lomediahouse.com',
-  logo: 'https://www.lomediahouse.com/logo.png',
-  email: 'layo@lomediahouse.com',
-  telephone: '+19059224471',
-  sameAs: [
-    'https://www.instagram.com/lomediahouse',
-    'https://www.facebook.com/share/1B88qEEmzp/',
+  '@graph': [
+    {
+      '@type': ['Organization', 'ProfessionalService'],
+      '@id': 'https://www.lomediahouse.com/#organization',
+      name: 'LO Media House',
+      url: 'https://www.lomediahouse.com',
+      logo: 'https://www.lomediahouse.com/logo.png',
+      image: 'https://www.lomediahouse.com/opengraph-image',
+      description:
+        'Publishing, digital marketing, creative production, and web and app development for brands, authors, and ministries.',
+      email: 'layo@lomediahouse.com',
+      telephone: '+19059224471',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1551 Lycee Place',
+        addressLocality: 'Ottawa',
+        addressRegion: 'ON',
+        postalCode: 'K1G 4B5',
+        addressCountry: 'CA',
+      },
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '09:00',
+        closes: '18:00',
+      },
+      areaServed: ['Ottawa', 'Canada', 'Nigeria'],
+      sameAs: [
+        'https://www.instagram.com/lomediahouse',
+        'https://www.facebook.com/share/1B88qEEmzp/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.lomediahouse.com/#website',
+      url: 'https://www.lomediahouse.com',
+      name: 'LO Media House',
+      inLanguage: 'en-CA',
+      publisher: { '@id': 'https://www.lomediahouse.com/#organization' },
+    },
   ],
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#ffffff',
 };
 
 export default function RootLayout({

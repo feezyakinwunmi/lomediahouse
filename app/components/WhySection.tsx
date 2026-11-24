@@ -1,7 +1,5 @@
-'use client';
-
 import Image from 'next/image';
-import {sendGAEvent} from '@next/third-parties/google'
+import TrackedLink from './TrackedLink';
 
 const reasons = [
   {
@@ -57,18 +55,13 @@ export default function WhySection() {
             
             {/* Final CTA */}
             <div className="text-start mt-5 sm:mt-6">
-              <a
-                href="#contact"
-                onClick={() =>
-                  sendGAEvent('event', 'button_click', {
-                    value: 'Build Your Legacy',
-                    // any other parameters
-                  })
-                }
+              <TrackedLink
+                href="/ContactUs"
+                eventValue="Build Your Legacy"
                 className="inline-block px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 bg-black text-white rounded-lg text-sm sm:text-base font-semibold hover:bg-zinc-800 transition-all hover:scale-105 hover:shadow-xl transform duration-300"
               >
                 Build Your Legacy →
-              </a>
+              </TrackedLink>
             </div>
           </div>
 

@@ -8,6 +8,13 @@ import { ArrowLeft, Clock, Calendar, User, TrendingUp } from 'lucide-react';
 import { allBlogPosts, formatBlogDate } from '@/data/blog';
 
 // ========== NEW POSTS ==========
+// Every post is known at build time: prerender them all and 404 anything else.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return allBlogPosts.map((post) => ({ slug: post.slug }));
+}
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -20,6 +27,7 @@ const PostComponents: Record<string, React.ComponentType> = {
   "best-content-scheduling-publishing-tools-2026": dynamic(() => import('./posts/BestContentSchedulingPublishingTools2026')),
   "launching-your-first-website": dynamic(() => import('./posts/LaunchingYourFirstWebsite')),
   "websites-and-apps-for-churches-and-ministries": dynamic(() => import('./posts/WebsitesAndAppsForChurchesAndMinistries')),
+  "beyond-the-ceo-people-who-shape-company-reputation": dynamic(() => import('./posts/BeyondTheCEO')),
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -36,18 +44,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
-    keywords: [
-      "book marketing", "digital marketing", "Ottawa realtors", "author marketing",
-      "Ottawa marketing services", "real estate marketing Ottawa",
-      "book publicity", "author branding Ottawa", "content marketing",
-      "SEO Ottawa", "social media marketing", "email marketing",
-      post.category.toLowerCase()
-    ],
+    keywords: [post.category.toLowerCase(), 'LO Media House', 'Ottawa'],
     openGraph: {
       title: post.title,
       description: post.excerpt,
       url: `/blog/${post.slug}`,
-      images: [{ url: post.image }],
+      images: [{ url: post.image, alt: post.title }],
       locale: "en_CA",
       type: "article",
       publishedTime: `${post.date}T00:00:00.000Z`,
@@ -158,7 +160,7 @@ export default async function BlogPostPage({ params }: Props) {
 
               {/* Author */}
               <div className="bg-white rounded-2xl p-6 shadow-md">
-                <h3 className="font-bold mb-4">Written By</h3>
+                <h2 className="font-bold mb-4">Written By</h2>
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center">
                     <User className="w-7 h-7 text-red-600" />
@@ -174,7 +176,7 @@ export default async function BlogPostPage({ params }: Props) {
               <div className="bg-white rounded-2xl p-6 shadow-md">
                 <div className="flex items-center gap-2 mb-6">
                   <TrendingUp className="text-red-500" />
-                  <h3 className="font-bold">Recommended Reads</h3>
+                  <h2 className="font-bold">Recommended Reads</h2>
                 </div>
 
                 {recommended.length > 0 ? (
@@ -207,14 +209,18 @@ export default async function BlogPostPage({ params }: Props) {
 
               {/* Newsletter */}
               <div className="bg-gray-900 text-white rounded-2xl p-8">
-                <h3 className="text-xl font-bold mb-3">Stay Updated</h3>
+                <h2 className="text-xl font-bold mb-3">Stay Updated</h2>
                 <p className="text-gray-400 text-sm mb-6">Get the latest marketing, digital strategy &amp; growth insights.</p>
+                <label htmlFor="post-newsletter-email" className="sr-only">Email address</label>
                 <input
+                  id="post-newsletter-email"
+                  name="email"
+                  autoComplete="email"
                   type="email"
                   placeholder="Your email"
                   className="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-3 mb-4 focus:outline-none focus:border-red-500"
                 />
-                <button className="w-full bg-red-600 hover:bg-red-700 py-3.5 rounded-2xl font-medium transition">
+                <button type="button" className="w-full bg-red-600 hover:bg-red-700 py-3.5 rounded-2xl font-medium transition">
                   Subscribe Now
                 </button>
               </div>

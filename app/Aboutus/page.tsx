@@ -1,123 +1,13 @@
-'use client';
-
-import { useRef, useEffect } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
-import { runDesktopAnimations } from '@/lib/desktopAnimations';
+import ScrollReveal from '@/app/components/ScrollReveal';
 import { ArrowRight, Award, Globe, Zap, Heart, Coffee, Camera, PenTool, BookOpen, Layout, Mic, Users, Target, Shield } from 'lucide-react';
 
 export default function AboutPage() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const storyRef = useRef<HTMLDivElement>(null);
-  const approachRef = useRef<HTMLDivElement>(null);
-  const numbersRef = useRef<HTMLDivElement[]>([]);
-  const teamRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!sectionRef.current) return;
-
-    return runDesktopAnimations(({ gsap, ScrollTrigger }) => {
-    // Hero fade in
-    gsap.fromTo(heroRef.current,
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    // Story section
-    gsap.fromTo(storyRef.current,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: storyRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    // Approach section
-    gsap.fromTo(approachRef.current,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.3,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: approachRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    // Team section
-    gsap.fromTo(teamRef.current,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        delay: 0.4,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: teamRef.current,
-          start: "top 85%",
-          end: "top 70%",
-          scrub: 0.5,
-        }
-      }
-    );
-
-    // Numbers - staggered
-    numbersRef.current.forEach((num, i) => {
-      if (num) {
-        gsap.fromTo(num,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            delay: i * 0.1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: num,
-              start: "top 90%",
-              end: "top 75%",
-              scrub: 0.5,
-            }
-          }
-        );
-      }
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-    });
-  }, []);
 
   return (
-    <div ref={sectionRef} className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen">
+      <ScrollReveal />
       
       {/* Hero Section - Updated for LO Media House */}
       <section className="relative min-h-[100vh] flex items-center justify-center md:justify-start overflow-hidden bg-gradient-to-b from-gray-900 to-gray-800">
@@ -130,7 +20,7 @@ export default function AboutPage() {
           className="object-cover opacity-30"
         />
         
-        <div ref={heroRef} className="relative z-10 w-full max-w-[90%] mx-auto px-4 md:px-8">
+        <div data-reveal="up" className="relative z-10 w-full max-w-[90%] mx-auto px-4 md:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
             <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
             <span className="text-xs text-white tracking-wide">NIGERIA • GLOBAL REACH</span>
@@ -140,12 +30,12 @@ export default function AboutPage() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-4">
               LO Media House
               <br />
-              <span className="text-red-500">Ideas to Impact.</span>
+              <span className="text-red-500">Ideas to Impact</span>
             </h1>
 
             <p className="text-base md:text-lg text-gray-200 leading-relaxed max-w-2xl">
               We're a Nigerian-based media and technology brand connecting clients to audiences globally, 
-              transforming ideas into books, websites, apps, and content that truly reach.
+              transforming ideas into books, websites, apps, and content that truly reach people.
             </p>
           </div>
         </div>
@@ -160,14 +50,14 @@ export default function AboutPage() {
       {/* Story Section - Integrated Vision & Mission */}
       <section id="story" className="py-16 md:py-20">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
-          <div ref={storyRef} className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div data-reveal="up" className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             {/* Left - Text */}
             <div>
               <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">WHO WE ARE</p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Integrated media.
+                Integrated media
                 <br />
-                <span className="text-red-500">Global connection.</span>
+                <span className="text-red-500">Global connection</span>
               </h2>
               <div className="space-y-3 text-gray-600 text-sm md:text-base leading-relaxed">
                 <p>
@@ -219,7 +109,7 @@ export default function AboutPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               Built on
               <br />
-              <span className="text-red-500">core values.</span>
+              <span className="text-red-500">core values</span>
             </h2>
           </div>
           
@@ -227,7 +117,7 @@ export default function AboutPage() {
             {[
               { icon: Heart, title: "Love", desc: "Genuine care for your vision" },
               { icon: Users, title: "Collaboration", desc: "Hand-in-hand partnership" },
-              { icon: Target, title: "Excellence", desc: "Justice to every vision" },
+              { icon: Target, title: "Excellence", desc: "Doing justice to every vision" },
               { icon: Zap, title: "Creativity", desc: "Memorable solutions" },
               { icon: Shield, title: "Integrity", desc: "Honest & transparent" },
               { icon: Award, title: "Empowerment", desc: "Tools for independence" }
@@ -248,14 +138,14 @@ export default function AboutPage() {
       </section>
 
       {/* Divisions Section - The 3 core offerings */}
-      <section ref={approachRef} className="py-16 md:py-20">
+      <section data-reveal="up" className="py-16 md:py-20">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 md:mb-12">
             <p className="text-red-500 text-xs uppercase tracking-[3px] font-medium mb-3">HOW WE OPERATE</p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
-              Three divisions.
+              Three divisions
               <br />
-              <span className="text-red-500">One unified system.</span>
+              <span className="text-red-500">One unified system</span>
             </h2>
           </div>
           
@@ -317,7 +207,7 @@ export default function AboutPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
               The impact we've
               <br />
-              <span className="text-red-500">built together.</span>
+              <span className="text-red-500">built together</span>
             </h2>
           </div>
           
@@ -332,7 +222,7 @@ export default function AboutPage() {
               return (
                 <div
                   key={index}
-                  ref={(el) => { if (el) numbersRef.current[index] = el; }}
+                  data-reveal="up" data-reveal-delay={index * 0.08}
                   className="text-center group"
                 >
                   <div className="inline-flex p-3 rounded-full bg-white shadow-sm mb-3 group-hover:bg-red-50 transition-colors duration-300">
@@ -349,7 +239,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership + Team Preview */}
-      <section ref={teamRef} className="py-16 md:py-20">
+      <section data-reveal="up" className="py-16 md:py-20">
         <div className="max-w-[90%] mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
@@ -357,7 +247,7 @@ export default function AboutPage() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Professionals with
                 <br />
-                <span className="text-red-500">a collective mission.</span>
+                <span className="text-red-500">a collective mission</span>
               </h2>
               <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
                 LO Media House is led by experts in media, technology, branding, and communications. 
@@ -365,26 +255,26 @@ export default function AboutPage() {
                 thoughtful, high-quality service. Every leader here is dedicated to your success and 
                 lasting impact.
               </p>
-              <a 
+              <Link 
                 href="/Leadership" 
                 className="inline-flex items-center gap-2 px-6 py-2.5 border-2 border-gray-900 text-gray-900 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300 group text-sm"
               >
                 Meet Our Team
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </div>
             
             <div className="grid grid-cols-2 gap-3">
               {[
-"/layo.jpg",
-"/john.jpg",
-"/kenny.jpg",
-"/julius.jpg",
+                { src: "/layo.jpg", name: "Layo Obidike, Chief Executive Officer" },
+                { src: "/john.jpg", name: "John Olumutimi, Chief Operating Officer" },
+                { src: "/kenny.jpg", name: "Toyin Oyinloye, Chief Technology Officer" },
+                { src: "/julius.jpg", name: "Julius Edicha, Technical Expert" },
               ].map((img, i) => (
                 <div key={i} className="relative rounded-xl overflow-hidden aspect-square">
                   <Image
-                    src={img}
-                    alt="Team member"
+                    src={img.src}
+                    alt={img.name}
                     width={300}
                     height={300}
                     sizes="(max-width: 768px) 40vw, 20vw"
@@ -417,13 +307,13 @@ export default function AboutPage() {
               <p className="text-gray-300 text-sm md:text-base max-w-2xl mx-auto mb-6">
                 Whether you're looking to publish a book, build a platform, or develop your brand, we're ready to work with you.
               </p>
-              <a 
-                href="#contact" 
+              <Link 
+                href="/ContactUs" 
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-gray-900 rounded-full font-medium hover:scale-105 transition-all duration-300 group text-sm"
               >
                 Start the Conversation
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

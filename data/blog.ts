@@ -78,6 +78,17 @@ export const allBlogPosts: BlogPost[] = [
     readTime: "12 min read",
     date: "2026-10-25",
     author: "LOPublications"
+},
+{
+    id: 7,
+    title: "Beyond the CEO: The People Who Shape a Company's Reputation",
+    slug: "beyond-the-ceo-people-who-shape-company-reputation",
+    excerpt: "A company's reputation is rarely built by one person. Learn how employees, specialists, customers and independent experts can strengthen brand authority, and how to choose the right people to speak for your business.",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&h=500&fit=crop",
+    category: "Brand Strategy",
+    readTime: "10 min read",
+    date: "2026-11-24",
+    author: "LOPublications"
 }
 ];
 
