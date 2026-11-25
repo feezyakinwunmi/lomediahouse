@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/websites-apps-tech-platforms`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/building-a-business-in-africa`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/brand-authority-nigerian-businesses`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/website-user-experience-design`, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/courses`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/courses/new-partner-onboarding`, changeFrequency: 'monthly', priority: 0.5 },
     { url: `${baseUrl}/blog`, changeFrequency: 'daily', priority: 0.8 },

@@ -80,6 +80,7 @@ export default function Navbar() {
       { title: "Websites, Apps & Tech Platforms", href: "/websites-apps-tech-platforms", type: "Page" },
       { title: "Building a Business in Africa", href: "/building-a-business-in-africa", type: "Page" },
       { title: "Beyond Visibility: How Nigerian Businesses Can Build Brand Authority", href: "/brand-authority-nigerian-businesses", type: "Page" },
+      { title: "What Makes a Website or Digital Platform Work for the People Using It?", href: "/website-user-experience-design", type: "Page" },
       { title: "Beyond the CEO: The People Who Shape a Company's Reputation", href: "/blog/beyond-the-ceo-people-who-shape-company-reputation", type: "Blog Post" },
       { title: "Blog", href: "/blog", type: "Page" },
       { title: "Contact Us", href: "/ContactUs", type: "Page" }

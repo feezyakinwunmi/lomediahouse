@@ -92,6 +92,7 @@ export default function Footer() {
                 { name: 'Websites & Apps', path: '/websites-apps-tech-platforms' },
                 { name: 'Business in Africa', path: '/building-a-business-in-africa' },
                 { name: 'Brand Authority', path: '/brand-authority-nigerian-businesses' },
+                { name: 'Website UX Design', path: '/website-user-experience-design' },
                 { name: 'Contact', path: '/ContactUs' },
               ].map((item) => (
                 <li key={item.name}>
